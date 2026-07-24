@@ -1,4 +1,76 @@
 @import "tailwindcss";
+@layer base {
+  .bento-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+}
+@theme {
+  --color-primary: #0047a9;
+  --color-primary-fixed: #d9e2ff;
+  --color-primary-fixed-dim: #b0c6ff;
+  --color-on-primary: #ffffff;
+  --color-on-surface: #181c20;
+  --color-on-surface-variant: #424654;
+  --color-background: #f7f9ff;
+  --color-surface: #f7f9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f1f4f9;
+  --color-surface-container: #ebeef3;
+  --color-surface-container-high: #e5e8ee;
+  --color-surface-faint: #F8F9FA;
+  --color-border-subtle: #DEE2E6;
+  --color-emergency-red: #DC3545;
+  --color-success-bg: #EAF7F0;
+  --color-success-mint: #20C997;
+  --color-tertiary-fixed: #ffdf9e;
+  --color-tertiary: #634900;
+  --color-danger-bg: #FDEDED;
+  --color-secondary-fixed: #93f7ba;
+  --font-headline-h1: "Poppins", sans-serif;
+  --font-headline-h2: "Poppins", sans-serif;
+  --font-headline-h3: "Poppins", sans-serif;
+  --font-headline-h4: "Poppins", sans-serif;
+  --font-headline-h5: "Poppins", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-normal: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-label-btn: "Inter", sans-serif;
+  --font-caption: "Inter", sans-serif;
+  --text-headline-h1: 48px;
+  --text-headline-h1--line-height: 72px;
+  --text-headline-h1--font-weight: 700;
+  --text-headline-h2: 40px;
+  --text-headline-h2--line-height: 60px;
+  --text-headline-h2--font-weight: 600;
+  --text-headline-h3: 32px;
+  --text-headline-h3--line-height: 48px;
+  --text-headline-h3--font-weight: 600;
+  --text-headline-h4: 24px;
+  --text-headline-h4--line-height: 36px;
+  --text-headline-h4--font-weight: 600;
+  --text-headline-h5: 20px;
+  --text-headline-h5--line-height: 30px;
+  --text-headline-h5--font-weight: 500;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 27px;
+  --text-body-lg--font-weight: 400;
+  --text-body-normal: 16px;
+  --text-body-normal--line-height: 24px;
+  --text-body-normal--font-weight: 400;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 21px;
+  --text-body-sm--font-weight: 400;
+  --text-label-btn: 16px;
+  --text-label-btn--line-height: 24px;
+  --text-label-btn--font-weight: 600;
+  --text-caption: 12px;
+  --text-caption--line-height: 18px;
+  --text-caption--font-weight: 400;
+}
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -56,11 +128,7 @@ body {
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
+  width: 100%;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
