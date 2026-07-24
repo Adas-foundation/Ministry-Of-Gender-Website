@@ -1,0 +1,258 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SafeReport - Share Incident Location</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&amp;family=Inter:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .step-gradient {
+            background: linear-gradient(90deg, #0047a9 60%, #e0e3e8 60%);
+        }
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        .glass-badge {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            border: 1px solid #DEE2E6;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b0c6ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#00419d",
+                        "info-cyan": "#0DCAF0",
+                        "surface-container-highest": "#e0e3e8",
+                        "on-secondary-fixed": "#002110",
+                        "emergency-red": "#DC3545",
+                        "surface-dim": "#d7dadf",
+                        "on-surface-variant": "#424654",
+                        "success-bg": "#EAF7F0",
+                        "tertiary": "#634900",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#007144",
+                        "danger-bg": "#FDEDED",
+                        "on-surface": "#181c20",
+                        "on-primary-fixed": "#001945",
+                        "primary-fixed": "#d9e2ff",
+                        "on-background": "#181c20",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#90f4b7",
+                        "primary": "#0047a9",
+                        "inverse-on-surface": "#eef1f6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "surface-container-high": "#e5e8ee",
+                        "tertiary-fixed": "#ffdf9e",
+                        "secondary": "#006d41",
+                        "surface": "#f7f9ff",
+                        "on-tertiary-fixed": "#261a00",
+                        "tertiary-fixed-dim": "#fabd00",
+                        "tertiary-container": "#816000",
+                        "outline": "#737785",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9ff",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "surface-container-low": "#f1f4f9",
+                        "surface-variant": "#e0e3e8",
+                        "outline-variant": "#c2c6d6",
+                        "on-tertiary-container": "#ffe0a1",
+                        "surface-faint": "#F8F9FA",
+                        "text-muted": "#6C757D",
+                        "on-error": "#ffffff",
+                        "surface-container": "#ebeef3",
+                        "success-mint": "#20C997",
+                        "surface-tint": "#0057cc",
+                        "on-primary": "#ffffff",
+                        "border-subtle": "#DEE2E6",
+                        "background": "#f7f9ff",
+                        "secondary-fixed-dim": "#77da9f",
+                        "inverse-surface": "#2d3135",
+                        "on-primary-container": "#dae2ff",
+                        "secondary-fixed": "#93f7ba",
+                        "primary-container": "#0b5ed7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "container-max": "1280px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-h5": ["Poppins"],
+                        "headline-h2-mobile": ["Poppins"],
+                        "headline-h1": ["Poppins"],
+                        "caption": ["Inter"],
+                        "headline-h4": ["Poppins"],
+                        "headline-h1-mobile": ["Poppins"],
+                        "label-btn": ["Inter"],
+                        "headline-h3": ["Poppins"],
+                        "body-normal": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-h2": ["Poppins"]
+                    },
+                    "fontSize": {
+                        "headline-h5": ["20px", {"lineHeight": "30px", "fontWeight": "500"}],
+                        "headline-h2-mobile": ["28px", {"lineHeight": "42px", "fontWeight": "600"}],
+                        "headline-h1": ["48px", {"lineHeight": "72px", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-h4": ["24px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-h1-mobile": ["32px", {"lineHeight": "48px", "fontWeight": "700"}],
+                        "label-btn": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-h3": ["32px", {"lineHeight": "48px", "fontWeight": "600"}],
+                        "body-normal": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "21px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "27px", "fontWeight": "400"}],
+                        "headline-h2": ["40px", {"lineHeight": "60px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-normal text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-border-subtle">
+<div class="flex justify-between items-center px-lg py-sm max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">security</span>
+<h1 class="font-headline-h5 text-headline-h5 font-bold text-primary">Malawi Protection Portal</h1>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-normal text-body-normal" href="#">Report Incident</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-normal text-body-normal" href="#">Resources</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-normal text-body-normal" href="#">About Us</a>
+<button class="bg-primary-container text-white px-md py-xs rounded-lg font-label-btn text-label-btn cursor-pointer active:opacity-80 transition-all">Officer Login</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-12 px-md min-h-screen flex items-center justify-center">
+<div class="max-w-[720px] w-full bg-surface-container-lowest rounded-xl shadow-sm border border-border-subtle p-lg md:p-xl">
+<!-- Progress Header -->
+<header class="mb-lg">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-label-btn text-label-btn text-primary">Step 3 of 5 - Location</span>
+<span class="font-label-btn text-label-btn text-text-muted">60% Complete</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 60%;"></div>
+</div>
+</header>
+<!-- Headings -->
+<section class="mb-lg">
+<h2 class="font-headline-h3 text-headline-h3 text-on-surface mb-xs">Share Incident Location</h2>
+<p class="font-body-normal text-body-normal text-on-surface-variant">To help responders reach the correct location, we need to know where the incident occurred.</p>
+</section>
+<!-- Location Options Bento -->
+<div class="grid grid-cols-1 md:grid-cols-1 gap-lg">
+<!-- Toggle Instructions -->
+<div class="flex flex-col gap-sm bg-surface-container-low p-md rounded-lg">
+<p class="font-label-btn text-label-btn text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">info</span>
+                        Important Distinction
+                    </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Please distinguish between the <strong class="text-on-surface">Incident Location</strong> (where the event took place) and your <strong class="text-on-surface">Current Location</strong> (where you are making this report from) for safety and accuracy.
+                    </p>
+</div>
+<!-- Primary Action: GPS -->
+<button class="group flex flex-col items-center justify-center p-xl border-2 border-primary border-dashed rounded-xl bg-primary/5 hover:bg-primary/10 transition-all active:scale-[0.98]">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white mb-md shadow-md">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">my_location</span>
+</div>
+<span class="font-headline-h5 text-headline-h5 text-primary mb-xs">Use My Current Location</span>
+<p class="font-caption text-caption text-on-surface-variant text-center max-w-[320px]">
+                        We will use your device's GPS to pinpoint the exact coordinates. This information is strictly encrypted.
+                    </p>
+</button>
+<!-- Secondary Action: Search -->
+<div class="flex flex-col gap-sm">
+<label class="font-label-btn text-label-btn text-on-surface" for="location-search">Search for Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-[48px] pl-12 pr-md bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none font-body-normal text-body-normal" id="location-search" placeholder="Enter village, city, or nearby landmark..." type="text">
+</div>
+</div>
+<!-- Map Preview -->
+<div class="map-container w-full h-64 border border-border-subtle group">
+<div class="absolute inset-0 bg-surface-container-high flex items-center justify-center" data-alt="A clean, minimalist vector map of Lilongwe, Malawi, featuring soft green and beige tones. The map displays simplified street grids, small park areas in success-mint color, and a prominent blue location pin with a pulse effect in the center. The visual style is professional, institutional, and high-contrast for readability." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5NC74vLFp1aZwCI-QMI1Ih_FRKEFc2X5k1XIxWkO6Ng5X2vA3-w-o6OBlckwnl3nVIQjwLepBrZ6MB0-JtU8fcLkM7ffTM1cJHEAmyrCbEDD1rl21M6yEJofb0k3we0I1v45ksfh7NskcDkQBFwj_GeQqYU0yY2E3XRDWlNA6B1tAqX2T24B_0N87A_SQpfTk4TvbdKdHWgQXdjgs8hTpWWEODl35dnbeqYeFFg31Ol9qpW8pJCZ1ym86J1sOoevBmPtHf-mlqp8')">
+</div>
+<!-- Map Overlays -->
+<div class="absolute top-md right-md glass-badge px-sm py-xs rounded-lg flex items-center gap-xs shadow-sm">
+<span class="w-2 h-2 bg-success-mint rounded-full animate-pulse"></span>
+<span class="font-caption text-caption font-bold text-on-surface">GPS ACTIVE</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center shadow-lg transform -translate-y-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<div class="absolute bottom-md left-md bg-white/90 backdrop-blur-md px-md py-xs rounded-lg text-body-sm font-label-btn shadow-sm border border-border-subtle">
+                        Likuni, Lilongwe
+                    </div>
+</div>
+<!-- Privacy Badge -->
+<div class="flex items-center justify-center gap-md py-md px-lg bg-success-bg border border-success-mint/30 rounded-xl">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<p class="font-body-sm text-body-sm text-secondary font-semibold">
+                        Your location is encrypted and only shared with verified responders.
+                    </p>
+</div>
+</div>
+<!-- Footer Actions -->
+<footer class="mt-xl pt-lg border-t border-border-subtle flex justify-between items-center">
+<button class="flex items-center gap-sm px-lg py-sm rounded-lg font-label-btn text-label-btn text-on-surface-variant hover:bg-surface-container-low transition-colors active:opacity-70">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Back
+                </button>
+<button class="flex items-center gap-sm px-xl py-sm bg-primary text-white rounded-lg font-label-btn text-label-btn hover:bg-primary/90 shadow-md hover:shadow-lg transition-all active:scale-[0.98]">
+                    Next
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</footer>
+</div>
+</main>
+<!-- Simple Interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gpsBtn = document.querySelector('button.group');
+            gpsBtn.addEventListener('click', () => {
+                const icon = gpsBtn.querySelector('.material-symbols-outlined');
+                icon.innerHTML = 'sync';
+                icon.classList.add('animate-spin');
+                setTimeout(() => {
+                    icon.innerHTML = 'check_circle';
+                    icon.classList.remove('animate-spin');
+                    gpsBtn.classList.remove('bg-primary/5');
+                    gpsBtn.classList.add('bg-success-bg', 'border-success-mint');
+                }, 1500);
+            });
+        });
+    </script>
+</body></html>

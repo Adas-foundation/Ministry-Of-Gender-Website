@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="en" class="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f7f9ff",
+                    "surface-tint": "#0057cc",
+                    "success-bg": "#EAF7F0",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "on-tertiary-container": "#ffe0a1",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d9e2ff",
+                    "secondary-fixed": "#93f7ba",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#77da9f",
+                    "primary": "#0047a9",
+                    "tertiary-fixed": "#ffdf9e",
+                    "on-secondary": "#ffffff",
+                    "text-muted": "#6C757D",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e0e3e8",
+                    "info-cyan": "#0DCAF0",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-background": "#181c20",
+                    "outline-variant": "#c2c6d6",
+                    "tertiary-fixed-dim": "#fabd00",
+                    "on-secondary-fixed-variant": "#00522f",
+                    "inverse-on-surface": "#eef1f6",
+                    "emergency-red": "#DC3545",
+                    "surface-container-highest": "#e0e3e8",
+                    "tertiary": "#634900",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "success-mint": "#20C997",
+                    "on-secondary-fixed": "#002110",
+                    "outline": "#737785",
+                    "border-subtle": "#DEE2E6",
+                    "on-secondary-container": "#007144",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#90f4b7",
+                    "background": "#f7f9ff",
+                    "secondary": "#006d41",
+                    "on-primary-fixed-variant": "#00419d",
+                    "tertiary-container": "#816000",
+                    "on-surface": "#181c20",
+                    "surface-faint": "#F8F9FA",
+                    "primary-container": "#0b5ed7",
+                    "surface": "#f7f9ff",
+                    "inverse-surface": "#2d3135",
+                    "surface-container-low": "#f1f4f9",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-dim": "#d7dadf",
+                    "on-error-container": "#93000a",
+                    "danger-bg": "#FDEDED",
+                    "on-primary-container": "#dae2ff",
+                    "surface-container-high": "#e5e8ee",
+                    "surface-container": "#ebeef3",
+                    "on-surface-variant": "#424654",
+                    "on-primary-fixed": "#001945",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xl": "32px",
+                    "container-max": "1280px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "unit": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-h1-mobile": ["Poppins"],
+                    "caption": ["Inter"],
+                    "headline-h2-mobile": ["Poppins"],
+                    "label-btn": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-h4": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "headline-h2": ["Poppins"],
+                    "body-normal": ["Inter"],
+                    "headline-h1": ["Poppins"],
+                    "headline-h5": ["Poppins"],
+                    "headline-h3": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-h1-mobile": ["32px", {"lineHeight": "48px", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-h2-mobile": ["28px", {"lineHeight": "42px", "fontWeight": "600"}],
+                    "label-btn": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "21px", "fontWeight": "400"}],
+                    "headline-h4": ["24px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "27px", "fontWeight": "400"}],
+                    "headline-h2": ["40px", {"lineHeight": "60px", "fontWeight": "600"}],
+                    "body-normal": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-h1": ["48px", {"lineHeight": "72px", "fontWeight": "700"}],
+                    "headline-h5": ["20px", {"lineHeight": "30px", "fontWeight": "500"}],
+                    "headline-h3": ["32px", {"lineHeight": "48px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script></head><body class="font-body-normal text-body-normal">
+<!-- Side Navigation Bar (Anchor: SideNavBar) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-dim bg-surface-faint border-r border-border-subtle flex flex-col h-full p-md space-y-xs z-50">
+<div class="mb-lg px-xs">
+<div class="flex items-center gap-md">
+<img class="w-12 h-12 object-contain" data-alt="A formal and dignified illustration of the Malawi National Crest, featuring a lion and leopard supporting a shield with the rising sun, rendered in high-definition digital art style suitable for a government portal. The image uses a professional color palette of gold, black, and red against a clean, white background, projecting institutional authority and heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmdXyMNG9kEOwO30CSoRVtnknSncc5Rehv5roF16TKlL1slKGvIzSVFmu3V_ttexImcoykOyEgkCAgTLNmi8BCor38NyaHQBlqU3A1dgNzEjGkZ3pU7201BlTdP9fiYx5E2pflSJfQkv6Ulc3HOH5M790BYXjxrnR9ehETREbi1TnwipD15ml3vRlwZh3wisE7vSeewrDf9dhox4H9Oh_nZl0x8udvujsGIrfd0ULur7KZoownLXg_UHo57ZW0DoEoBfJv_emjm4s">
+<div>
+<h1 class="font-headline-h5 text-headline-h5 font-semibold text-on-surface leading-tight">Ministry of Gender</h1>
+<p class="font-caption text-caption text-text-muted">Case Management System</p>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary py-md px-md rounded-lg font-label-btn text-label-btn flex items-center justify-center gap-sm mb-lg transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined" data-icon="person_add" data-original-icon="person_add">circle</span>
+            New User Entry
+        </button>
+<nav class="flex-1 space-y-xs overflow-y-auto sidebar-scroll"><a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors font-label-btn text-label-btn" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>Overview</a><a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors font-label-btn text-label-btn" href="#"><span class="material-symbols-outlined" data-icon="description">description</span>Incident Reports</a><a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors font-label-btn text-label-btn" href="#"><span class="material-symbols-outlined" data-icon="maps_ugc">maps_ugc</span>Field Operations</a><a class="flex items-center gap-md p-md bg-primary-container text-on-primary-container rounded-lg font-semibold transition-colors font-label-btn text-label-btn shadow-sm" href="#"><span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>User Management</a><a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors font-label-btn text-label-btn" href="#"><span class="material-symbols-outlined" data-icon="distance">distance</span>District Analytics</a><a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors font-label-btn text-label-btn" href="#"><span class="material-symbols-outlined" data-icon="history">history</span>System Logs</a></nav>
+<div class="pt-lg border-t border-border-subtle space-y-xs">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg font-label-btn text-label-btn" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-md p-md text-emergency-red hover:bg-danger-bg transition-colors rounded-lg font-label-btn text-label-btn" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Sign Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- Top Nav (Anchor: TopNavBar) -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-lg py-sm bg-surface-lowest dark:bg-surface-dim border-b border-border-subtle shadow-sm">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-h4 text-headline-h4 font-bold text-primary">User Management</h2>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="notifications" data-original-icon="notifications">circle</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="flex items-center gap-md border-l border-border-subtle pl-lg">
+<div class="text-right">
+<p class="font-label-btn text-label-btn text-on-surface">Admin_Mwanza</p>
+<p class="font-caption text-caption text-text-muted">System Administrator</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged Malawian woman in formal business attire, set against a soft-focus office background. The lighting is bright and professional, following a corporate aesthetic with a high-key light-mode feel. Her expression is friendly and authoritative, perfectly fitting the role of a government system administrator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIm6we3tl1hJVlsCguMdaXuh7p_eFBjQ4AOJXB__lwgL9aLTEdjJXhFnmgCyMg11F48i67G54_aKZQz2NGH5zLE0MurUv5hIdg9Me5GJeKn2wtS5lKEQKKVdU5cquukQvkjKP93OM89CsKEmnCbOQLVID7xqxLc7kklLBFCDYEKrPL_yd2lgJcelCNvc0Z4rGsQJ1Klc6c8jZLsQhQXsHpsqqdKl_33foUPuTZoaJ9gU3k8ABtFICoa15L0V2QUR0UkDInh4OjB3k">
+</div>
+</div>
+</div>
+</header>
+<section class="p-lg space-y-lg max-w-container-max mx-auto w-full">
+<!-- High-Level Metrics Bento Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-border-subtle shadow-sm flex items-center gap-lg">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-headline-h4" data-icon="group">group</span>
+</div>
+<div>
+<p class="font-caption text-caption text-text-muted uppercase tracking-wider">Total Users</p>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface">1,284</h3>
+<p class="font-caption text-caption text-success-mint flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up" data-original-icon="trending_up">circle</span> 12% from last month
+                        </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-border-subtle shadow-sm flex items-center gap-lg">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-headline-h4" data-icon="sensors">sensors</span>
+</div>
+<div>
+<p class="font-caption text-caption text-text-muted uppercase tracking-wider">Active Sessions</p>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface">42</h3>
+<p class="font-caption text-caption text-text-muted">Real-time monitoring</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-border-subtle shadow-sm flex items-center gap-lg">
+<div class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-headline-h4" data-icon="pending_actions" data-original-icon="pending_actions">circle</span>
+</div>
+<div>
+<p class="font-caption text-caption text-text-muted uppercase tracking-wider">Pending Approvals</p>
+<h3 class="font-headline-h3 text-headline-h3 text-on-surface">18</h3>
+<p class="font-caption text-caption text-emergency-red font-semibold">Priority Action Required</p>
+</div>
+</div>
+</div>
+<!-- Filters & Search Bar -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-border-subtle shadow-sm flex flex-col md:flex-row gap-md items-center">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-[48px] pr-md py-md bg-surface-faint border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-normal text-body-normal" placeholder="Search by name, email, or staff ID..." type="text">
+</div>
+<div class="flex flex-wrap gap-sm w-full md:w-auto">
+<select class="px-md py-md bg-surface-faint border border-border-subtle rounded-lg font-label-btn text-label-btn text-on-surface-variant focus:ring-2 focus:ring-primary outline-none min-w-[140px]">
+<option>All Roles</option>
+<option>Admin</option>
+<option>District Officer</option>
+<option>Field Worker</option>
+</select>
+<select class="px-md py-md bg-surface-faint border border-border-subtle rounded-lg font-label-btn text-label-btn text-on-surface-variant focus:ring-2 focus:ring-primary outline-none min-w-[140px]">
+<option>All Districts</option>
+<option>Lilongwe</option>
+<option>Blantyre</option>
+<option>Mwanza</option>
+<option>Zomba</option>
+</select>
+<button class="bg-surface-faint border border-border-subtle p-md rounded-lg text-on-surface-variant hover:bg-surface-variant transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                        More Filters
+                    </button>
+</div>
+</div>
+<!-- User Data Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-border-subtle shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-faint border-b border-border-subtle">
+<th class="p-lg font-label-btn text-label-btn text-on-surface-variant">User Information</th>
+<th class="p-lg font-label-btn text-label-btn text-on-surface-variant">Role</th>
+<th class="p-lg font-label-btn text-label-btn text-on-surface-variant">District</th>
+<th class="p-lg font-label-btn text-label-btn text-on-surface-variant">Status</th>
+<th class="p-lg font-label-btn text-label-btn text-on-surface-variant">Activity</th>
+<th class="p-lg font-label-btn text-label-btn text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<!-- -->
+<tr class="table-row-hover transition-colors">
+<td class="p-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A profile photo of a young professional Malawian man with a focused and determined expression, wearing a collared light-blue shirt. The style is professional corporate photography with neutral studio lighting and a clean, light-colored background, maintaining the high-authority feel of a government dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-kZHf0NDntbOkxt1sbOODlccJB_tGinEIr9E38bClVR9mALrsfbp5EAhayuF7_BNe3UCmMZuk2PbBO03SjSHwtkpLv5jkV_9iB2x0hKEFlR8x-wPRaWG9P-2H7UoWxKyCfO69qgZhQrTvd1IgIz3aDjIziVU38ok0ixejaLa-LOILN8Z47gM-CnylvLoYhAB0Glt7jyVxVSvLPuXOgmwxN8tdTtLeB73-SALa3nSFss0MokyLy3_qrhtqMIj4Q9iRcGcyt5142aM">
+</div>
+<div>
+<p class="font-label-btn text-label-btn text-on-surface">Chifundo Banda</p>
+<p class="font-caption text-caption text-text-muted">c.banda@gender.gov.mw</p>
+</div>
+</div>
+</td>
+<td class="p-lg">
+<span class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant text-caption font-semibold">District Officer</span>
+</td>
+<td class="p-lg font-body-normal text-body-normal">Lilongwe Central</td>
+<td class="p-lg">
+<span class="flex items-center gap-xs text-success-mint font-semibold text-caption">
+<span class="w-2 h-2 rounded-full bg-success-mint"></span> Active
+                                    </span>
+</td>
+<td class="p-lg font-caption text-caption text-text-muted">2 hours ago</td>
+<td class="p-lg text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-sm text-outline hover:text-primary hover:bg-primary-fixed rounded-lg transition-all" title="Edit User"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-sm text-outline hover:text-tertiary hover:bg-tertiary-fixed rounded-lg transition-all" title="Reset Password"><span class="material-symbols-outlined" data-icon="lock_reset" data-original-icon="lock_reset">circle</span></button>
+<button class="p-sm text-outline hover:text-secondary hover:bg-secondary-fixed rounded-lg transition-all" title="View Logs"><span class="material-symbols-outlined" data-icon="manage_search" data-original-icon="manage_search">circle</span></button>
+</div>
+</td>
+</tr>
+<!-- Row-->
+<tr class="table-row-hover transition-colors">
+<td class="p-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of an older Malawian woman with glasses, smiling warmly. She is wearing a traditional yet professional patterned dress. The photography is clean, bright, and modern, using high-key lighting to emphasize trust and accessibility in a government context. Professional light-mode aesthetic." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg">
+</div>
+<div>
+<p class="font-label-btn text-label-btn text-on-surface">Mercy Phiri</p>
+<p class="font-caption text-caption text-text-muted">m.phiri@gender.gov.mw</p>
+</div>
+</div>
+</td>
+<td class="p-lg">
+<span class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant text-caption font-semibold">Field Worker</span>
+</td>
+<td class="p-lg font-body-normal text-body-normal">Mwanza District</td>
+<td class="p-lg">
+<span class="flex items-center gap-xs text-success-mint font-semibold text-caption">
+<span class="w-2 h-2 rounded-full bg-success-mint"></span> Active
+                                    </span>
+</td>
+<td class="p-lg font-caption text-caption text-text-muted">15 mins ago</td>
+<td class="p-lg text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-sm text-outline hover:text-primary hover:bg-primary-fixed rounded-lg transition-all"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-sm text-outline hover:text-tertiary hover:bg-tertiary-fixed rounded-lg transition-all"><span class="material-symbols-outlined" data-icon="lock_reset" data-original-icon="lock_reset">circle</span></button>
+<button class="p-sm text-outline hover:text-secondary hover:bg-secondary-fixed rounded-lg transition-all"><span class="material-symbols-outlined" data-icon="manage_search" data-original-icon="manage_search">circle</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-hover transition-colors">
+<td class="p-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A sharp profile image of a young professional Malawian man in a white dress shirt and dark tie. He has a neutral, professional expression. The background is a minimalist, light-colored office wall with subtle architectural lines, maintaining the corporate government tone of the UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2jARddN9CdM2xgFOBk940W8a3d82NnBkyFIxeiNxlQHGJ1cGw21y7uWNzNbmga7VXPZnQJzBv8ri6YubMMLY15Of4BYZ7jS9OgRl8YTcCX8ajlhxd4GC0pg7s1CHGBSgNKE-5i8g76f25q2sqVbAi42YYyVB5werzRWJ4SxN17A1KFpyxwCKwLqePlkWQvN8gYSP9YregQI__W9nqL22s9PYPJyA3x2lOuDf00EjfPp0oBXecziMfQyty9UIcmULmGYV4A-ENpRo">
+</div>
+<div>
+<p class="font-label-btn text-label-btn text-on-surface">Kondwani Nyirenda</p>
+<p class="font-caption text-caption text-text-muted">k.nyirenda@gender.gov.mw</p>
+</div>
+</div>
+</td>
+<td class="p-lg">
+<span class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant text-caption font-semibold">Field Worker</span>
+</td>
+<td class="p-lg font-body-normal text-body-normal">Blantyre South</td>
+<td class="p-lg">
+<span class="flex items-center gap-xs text-text-muted font-semibold text-caption">
+<span class="w-2 h-2 rounded-full bg-text-muted"></span> Inactive
+                                    </span>
+</td>
+<td class="p-lg font-caption text-caption text-text-muted">3 days ago</td>
+<td class="p-lg text-right">
+<div class="flex justify-end gap-xs">
+<button class="p-sm text-outline hover:text-primary hover:bg-primary-fixed rounded-lg transition-all"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-sm text-outline hover:text-tertiary hover:bg-tertiary-fixed rounded-lg transition-all"><span class="material-symbols-outlined" data-icon="lock_reset" data-original-icon="lock_reset">circle</span></button>
+<button class="p-sm text-outline hover:text-secondary hover:bg-secondary-fixed rounded-lg transition-all"><span class="material-symbols-outlined" data-icon="manage_search" data-original-icon="manage_search">circle</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-faint p-md border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="font-caption text-caption text-text-muted">Showing 1 to 10 of 1,284 entries</p>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle bg-surface-lowest text-on-surface-variant hover:bg-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left" data-original-icon="chevron_left">circle</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-semibold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle bg-surface-lowest text-on-surface-variant hover:bg-surface-variant">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle bg-surface-lowest text-on-surface-variant hover:bg-surface-variant">3</button>
+<span class="px-sm text-text-muted">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle bg-surface-lowest text-on-surface-variant hover:bg-surface-variant">129</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-subtle bg-surface-lowest text-on-surface-variant hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right" data-original-icon="chevron_right">circle</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Anchor: Footer) -->
+<footer class="full-width mt-auto bg-surface-container-highest dark:bg-surface-dim border-t border-border-subtle w-full py-lg px-xl flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col md:flex-row items-center gap-lg">
+<p class="font-caption text-caption text-on-surface-variant dark:text-surface-variant">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex gap-lg flex-wrap justify-center">
+<a class="font-caption text-caption text-text-muted hover:text-on-surface transition-all" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-text-muted hover:text-on-surface transition-all" href="#">Accessibility</a>
+<a class="font-caption text-caption text-text-muted hover:text-on-surface transition-all" href="#">Data Protection</a>
+<a class="font-caption text-caption text-text-muted hover:text-on-surface transition-all" href="#">Contact Support</a>
+</div>
+</footer>
+</main>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Flash feedback for demo
+                const originalBg = this.style.opacity;
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.style.opacity = originalBg || '1';
+                }, 150);
+            });
+        });
+    </script>
+
+</body></html>

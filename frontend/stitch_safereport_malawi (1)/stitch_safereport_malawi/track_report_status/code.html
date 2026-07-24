@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track Report | SafeReport Ministry of Gender</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-background": "#181c20",
+                    "tertiary-fixed-dim": "#fabd00",
+                    "surface-container-low": "#f1f4f9",
+                    "success-mint": "#20C997",
+                    "surface-faint": "#F8F9FA",
+                    "tertiary-fixed": "#ffdf9e",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "success-bg": "#EAF7F0",
+                    "on-secondary-container": "#007144",
+                    "primary": "#0047a9",
+                    "on-secondary": "#ffffff",
+                    "background": "#f7f9ff",
+                    "text-muted": "#6C757D",
+                    "on-tertiary-container": "#ffe0a1",
+                    "on-secondary-fixed-variant": "#00522f",
+                    "secondary": "#006d41",
+                    "on-primary-fixed": "#001945",
+                    "surface-container-high": "#e5e8ee",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3135",
+                    "info-cyan": "#0DCAF0",
+                    "primary-fixed": "#d9e2ff",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#eef1f6",
+                    "on-surface": "#181c20",
+                    "surface-container-highest": "#e0e3e8",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-tint": "#0057cc",
+                    "on-surface-variant": "#424654",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#93f7ba",
+                    "surface-container": "#ebeef3",
+                    "on-secondary-fixed": "#002110",
+                    "on-primary-container": "#dae2ff",
+                    "surface-variant": "#e0e3e8",
+                    "outline": "#737785",
+                    "tertiary-container": "#816000",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d7dadf",
+                    "emergency-red": "#DC3545",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface-bright": "#f7f9ff",
+                    "surface": "#f7f9ff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "secondary-fixed-dim": "#77da9f",
+                    "border-subtle": "#DEE2E6",
+                    "primary-container": "#0b5ed7",
+                    "tertiary": "#634900",
+                    "danger-bg": "#FDEDED",
+                    "on-primary-fixed-variant": "#00419d",
+                    "secondary-container": "#90f4b7",
+                    "outline-variant": "#c2c6d6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "container-max": "1280px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "caption": ["Inter"],
+                    "label-btn": ["Inter"],
+                    "headline-h2": ["Poppins"],
+                    "headline-h4": ["Poppins"],
+                    "headline-h3": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "headline-h2-mobile": ["Poppins"],
+                    "headline-h1": ["Poppins"],
+                    "body-normal": ["Inter"],
+                    "headline-h1-mobile": ["Poppins"],
+                    "headline-h5": ["Poppins"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "21px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "label-btn": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-h2": ["40px", {"lineHeight": "60px", "fontWeight": "600"}],
+                    "headline-h4": ["24px", {"lineHeight": "36px", "fontWeight": "600"}],
+                    "headline-h3": ["32px", {"lineHeight": "48px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "27px", "fontWeight": "400"}],
+                    "headline-h2-mobile": ["28px", {"lineHeight": "42px", "fontWeight": "600"}],
+                    "headline-h1": ["48px", {"lineHeight": "72px", "fontWeight": "700"}],
+                    "body-normal": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-h1-mobile": ["32px", {"lineHeight": "48px", "fontWeight": "700"}],
+                    "headline-h5": ["20px", {"lineHeight": "30px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(circle at 2px 2px, #dee2e6 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .status-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #DEE2E6;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(222, 226, 230, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-normal selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-50 bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-border-subtle shadow-sm">
+<div class="max-w-container-max mx-auto px-lg py-md flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<span class="font-headline-h4 text-headline-h4 font-bold text-on-surface dark:text-on-surface">SafeReport</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-body-normal text-body-normal text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Home</a>
+<a class="font-body-normal text-body-normal text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Report Incident</a>
+<a class="font-body-normal text-body-normal text-primary font-bold border-b-2 border-primary pb-1" href="#">Track Report</a>
+<a class="font-body-normal text-body-normal text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Resources</a>
+<a class="font-body-normal text-body-normal text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-sm rounded-full transition-colors duration-200">language</button>
+<button class="hidden sm:block text-on-surface-variant font-label-btn text-label-btn px-md py-sm hover:bg-surface-container-low rounded-lg transition-colors">Login</button>
+<button class="bg-emergency-red text-white font-label-btn text-label-btn px-lg py-sm rounded-lg hover:opacity-90 active:scale-95 transition-all shadow-md">Emergency SOS</button>
+</div>
+</div>
+</nav>
+<main class="min-h-screen pb-xl">
+<!-- Hero Section -->
+<section class="relative py-xl px-lg overflow-hidden">
+<div class="absolute inset-0 bg-pattern opacity-20 pointer-events-none"></div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h1 class="font-headline-h1-mobile md:font-headline-h1 text-headline-h1-mobile md:text-headline-h1 text-on-background mb-md">Track Your Report</h1>
+<p class="font-body-lg text-body-lg text-text-muted max-w-2xl mx-auto mb-xl">
+                    Check the real-time status of your case. Your privacy and safety are our priority. All tracking requests are encrypted and secure.
+                </p>
+<!-- Tracking Search Component -->
+<div class="glass-card p-xl rounded-xl shadow-lg border border-border-subtle max-w-2xl mx-auto text-left">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mb-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-btn text-label-btn text-on-surface-variant" for="ref-number">Reference Number</label>
+<input class="h-12 px-md border border-border-subtle rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-normal" id="ref-number" placeholder="SR-2024-XXXX" type="text"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-btn text-label-btn text-on-surface-variant" for="access-code">Phone or Access Code</label>
+<input class="h-12 px-md border border-border-subtle rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-normal" id="access-code" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full bg-primary text-white h-12 rounded-xl font-label-btn text-label-btn hover:bg-primary-container transition-all flex items-center justify-center gap-sm shadow-sm active:scale-[0.98]" onclick="simulateTracking()">
+<span class="material-symbols-outlined">search</span>
+                        Search Report Status
+                    </button>
+<p class="mt-md text-caption text-caption text-text-muted text-center italic">
+                        Lost your reference number? <a class="text-primary hover:underline" href="#">Contact Support</a>
+</p>
+</div>
+</div>
+</section>
+<!-- Status Preview Section (Dynamic) -->
+<section class="px-lg py-xl" id="status-section">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row gap-lg">
+<!-- Left: Status Timeline -->
+<div class="lg:w-2/3">
+<div class="bg-surface-container-lowest p-xl rounded-xl border border-border-subtle shadow-sm h-full">
+<div class="flex justify-between items-start mb-xl border-b border-border-subtle pb-md">
+<div>
+<h3 class="font-headline-h4 text-headline-h4 text-on-surface mb-xs">Report: SR-2024-8842</h3>
+<p class="text-body-sm text-body-sm text-text-muted">Case Type: Gender-Based Violence Assistance</p>
+</div>
+<div class="bg-success-bg text-on-secondary-container px-md py-sm rounded-full flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-success-mint animate-pulse"></span>
+<span class="font-label-btn text-body-sm">In Progress</span>
+</div>
+</div>
+<div class="status-timeline relative pl-lg flex flex-col gap-xl">
+<!-- Status Item 1 (Completed) -->
+<div class="relative flex gap-md">
+<div class="z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center -ml-[45px]">
+<span class="material-symbols-outlined text-white text-body-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-btn text-on-surface">Report Submitted</h4>
+<p class="text-body-sm text-text-muted">Received on Oct 12, 2024 - 09:14 AM</p>
+<div class="mt-sm p-md bg-surface-faint rounded-lg border border-border-subtle text-body-sm text-on-surface-variant">
+                                            Your report was successfully received by the central intake system. An automated confirmation was sent.
+                                        </div>
+</div>
+</div>
+<!-- Status Item 2 (Completed) -->
+<div class="relative flex gap-md">
+<div class="z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center -ml-[45px]">
+<span class="material-symbols-outlined text-white text-body-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-btn text-on-surface">Assigned to Case Officer</h4>
+<p class="text-body-sm text-text-muted">Assigned on Oct 12, 2024 - 02:30 PM</p>
+<p class="text-body-sm text-on-surface-variant mt-xs">Officer: J. Banda - Lilongwe District Office</p>
+</div>
+</div>
+<!-- Status Item 3 (Current) -->
+<div class="relative flex gap-md">
+<div class="z-10 w-8 h-8 rounded-full bg-primary-container ring-4 ring-primary-fixed flex items-center justify-center -ml-[45px]">
+<span class="material-symbols-outlined text-white text-body-sm">hourglass_empty</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-btn text-primary">Investigation in Progress</h4>
+<p class="text-body-sm text-text-muted">Last updated: Oct 14, 2024 - 10:00 AM</p>
+<div class="mt-md flex gap-sm items-center text-primary bg-primary-fixed p-sm rounded-lg border border-primary-fixed-dim">
+<span class="material-symbols-outlined">info</span>
+<span class="text-caption font-bold">Action Required: Check for SMS update</span>
+</div>
+</div>
+</div>
+<!-- Status Item 4 (Pending) -->
+<div class="relative flex gap-md opacity-40">
+<div class="z-10 w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle flex items-center justify-center -ml-[45px]">
+<span class="material-symbols-outlined text-on-surface-variant text-body-sm">flag</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-btn text-on-surface">Resolved</h4>
+<p class="text-body-sm text-text-muted">Pending final verification</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Info & CTA -->
+<div class="lg:w-1/3 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-border-subtle shadow-sm">
+<h4 class="font-headline-h5 text-headline-h5 mb-md flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined">support_agent</span>
+                                Need Assistance?
+                            </h4>
+<p class="text-body-normal text-on-surface-variant mb-lg">
+                                If you have questions about this specific status or need to add more information to your report, please contact our helpline.
+                            </p>
+<div class="space-y-md">
+<a class="flex items-center justify-between p-md bg-emergency-red text-white rounded-lg hover:opacity-95 transition-all" href="tel:555">
+<span class="font-label-btn">Call Emergency 555</span>
+<span class="material-symbols-outlined">call</span>
+</a>
+<button class="w-full flex items-center justify-center gap-sm p-md border-2 border-primary text-primary rounded-lg font-label-btn hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">chat</span>
+                                    Live Chat with Officer
+                                </button>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="rounded-xl overflow-hidden border border-border-subtle shadow-sm flex-1 relative min-h-[250px]">
+<div class="absolute inset-0 bg-surface-container-high flex items-center justify-center">
+<div class="w-full h-full bg-cover bg-center" data-alt="A detailed digital map of Lilongwe, Malawi, featuring minimalist cartography in shades of blue and gray. Clean lines indicate major roads and government districts. The aesthetic is professional, modern, and trustworthy, with soft sunlight lighting and a professional corporate feel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACYbzkaXsrhUTUhMkQRNBUINVmY3aIQzUIW0PmsfUC_BS5cuPOwejTbI3WjrCUzNfl1rCghFnfxgln3JcywfWWH9uXpeLXPfsnWSRklvh5M_Va0vJBSMEQEqJXW57DVGs__mWs3a2uko5stILJSaNtNOwR2nWRwAE9F478ZYcMgPmdzND1pDJJ4cCzuewk4p_WKfIWa2a1DRPiCsqzgSP4O9bkcJWzEh64N-T9TcnxIFFNf59U0PvkXpm8AZTiCuFsAtMn51_nz3Y')"></div>
+<div class="absolute inset-0 bg-primary/10"></div>
+<div class="absolute top-md left-md bg-white p-sm rounded shadow-md z-10">
+<p class="text-caption font-bold">Lilongwe District Office</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="bg-surface-faint py-xl px-lg">
+<div class="max-w-4xl mx-auto">
+<h2 class="font-headline-h2-mobile md:font-headline-h2 text-headline-h2-mobile md:text-headline-h2 text-center mb-xl">Frequently Asked Questions</h2>
+<div class="space-y-md">
+<!-- FAQ 1 -->
+<details class="group bg-white rounded-xl border border-border-subtle overflow-hidden">
+<summary class="flex justify-between items-center p-lg cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-label-btn text-on-surface">How long does it take for a report to be assigned?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-lg pb-lg text-body-normal text-on-surface-variant border-t border-border-subtle pt-md">
+                            Most reports are reviewed and assigned within 24-48 business hours. High-priority cases involving immediate danger are prioritized and handled within minutes or hours.
+                        </div>
+</details>
+<!-- FAQ 2 -->
+<details class="group bg-white rounded-xl border border-border-subtle overflow-hidden">
+<summary class="flex justify-between items-center p-lg cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-label-btn text-on-surface">Is my tracking information private?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-lg pb-lg text-body-normal text-on-surface-variant border-t border-border-subtle pt-md">
+                            Yes. The tracking page uses end-to-end encryption. Your identity and the details of your report are only visible to authorized case officers within the Ministry of Gender.
+                        </div>
+</details>
+<!-- FAQ 3 -->
+<details class="group bg-white rounded-xl border border-border-subtle overflow-hidden">
+<summary class="flex justify-between items-center p-lg cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+<span class="font-label-btn text-on-surface">What do I do if I lost my Access Code?</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-lg pb-lg text-body-normal text-on-surface-variant border-t border-border-subtle pt-md">
+                            If you provided an email address or phone number during submission, you can request a code reset. Alternatively, visit your nearest District Social Welfare Office with proof of identity.
+                        </div>
+</details>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg bg-surface-container-highest dark:bg-inverse-surface flex flex-col md:flex-row justify-between items-start gap-lg border-t border-border-subtle">
+<div class="max-w-container-max mx-auto w-full flex flex-col md:flex-row justify-between gap-xl">
+<div class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-body-sm" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<span class="font-headline-h5 text-headline-h5 text-on-surface">SafeReport</span>
+</div>
+<p class="max-w-xs text-caption text-on-surface-variant opacity-90">
+                    Empowering citizens through transparent and secure case management for a safer society.
+                </p>
+<p class="font-caption text-caption text-on-surface dark:text-inverse-on-surface">
+                    © 2024 Ministry of Gender, Community Development and Social Welfare, Malawi
+                </p>
+</div>
+<div class="flex flex-wrap gap-xl md:gap-32">
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-btn text-on-surface mb-xs">Services</h5>
+<a class="font-caption text-caption text-on-surface-variant hover:text-on-surface hover:underline" href="#">Resources</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-on-surface hover:underline" href="#">Emergency Contacts</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-on-surface hover:underline" href="#">District Offices</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-label-btn text-on-surface mb-xs">Legal</h5>
+<a class="font-caption text-caption text-on-surface-variant hover:text-on-surface hover:underline" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-on-surface hover:underline" href="#">Accessibility</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-on-surface hover:underline" href="#">Terms</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        function simulateTracking() {
+            const btn = document.querySelector('button[onclick="simulateTracking()"]');
+            const originalContent = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Searching Database...';
+            
+            setTimeout(() => {
+                const statusSection = document.getElementById('status-section');
+                statusSection.classList.remove('opacity-0');
+                statusSection.classList.add('opacity-100');
+                statusSection.scrollIntoView({ behavior: 'smooth' });
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }, 1200);
+        }
+
+        // Initialize view
+        document.addEventListener('DOMContentLoaded', () => {
+            // In a real app, this would be hidden until a successful search
+            // But for this preview, we show it as a "Sample Preview"
+            const statusSection = document.getElementById('status-section');
+            // statusSection.style.display = 'block'; 
+        });
+    </script>
+</body></html>

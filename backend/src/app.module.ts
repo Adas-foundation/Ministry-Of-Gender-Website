@@ -1,17 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppService } from './app.service';
+
 import { EvidenceModule } from './evidence/evidence.module';
 import { Evidence } from './evidence/entities/evidence.entity';
-import { EncryptionModule } from './encryption/encryption.module';
-import { ExifModule } from './exif/exif.module';
-import { SecurityLogModule } from './security-log/security-log.module';
-import { StationsModule } from './stations/stations.module';
-import { Station } from './stations/entities/station.entity';
-import { CaseStatusHistoryModule } from './case_status_history/case_status_history.module';
-import { NotificationsModule } from './notifications/notifications.module';
+
 
 @Module({
   imports:[ 
@@ -27,32 +22,17 @@ import { NotificationsModule } from './notifications/notifications.module';
         password: config.get('DB_PASSWORD'), 
         database: config.get('DB_NAME'), 
         synchronize: config.get('DB_SYNCHRONIZE') == 'true', 
-        entities: [Evidence, Station], 
+        entities: [Evidence], 
         logging: true, 
          ssl: {
           rejectUnauthorized: false,
-         },
-      }), 
-   }),
+        },
+      }),
+    }),
 
    EvidenceModule,
-
-   EncryptionModule,
-
-   ExifModule,
-
-   SecurityLogModule,
-
-   StationsModule,
-
-   CaseStatusHistoryModule,
-
-   NotificationsModule,
-
   ],
-   
   controllers: [AppController],
-  providers : [AppService],
+  providers: [AppService],
 })
-
 export class AppModule {}

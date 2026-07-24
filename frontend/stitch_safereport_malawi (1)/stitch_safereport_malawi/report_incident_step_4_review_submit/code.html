@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Review &amp; Submit | MoG Case Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "danger-bg": "#FDEDED",
+                        "inverse-primary": "#b0c6ff",
+                        "surface-dim": "#d7dadf",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001945",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#dae2ff",
+                        "surface-container-high": "#e5e8ee",
+                        "surface-container": "#ebeef3",
+                        "on-surface-variant": "#424654",
+                        "secondary-container": "#90f4b7",
+                        "background": "#f7f9ff",
+                        "success-mint": "#20C997",
+                        "on-secondary-fixed": "#002110",
+                        "outline": "#737785",
+                        "border-subtle": "#DEE2E6",
+                        "on-secondary-container": "#007144",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-faint": "#F8F9FA",
+                        "primary-container": "#0b5ed7",
+                        "surface": "#f7f9ff",
+                        "inverse-surface": "#2d3135",
+                        "surface-container-low": "#f1f4f9",
+                        "secondary": "#006d41",
+                        "on-primary-fixed-variant": "#00419d",
+                        "tertiary-container": "#816000",
+                        "on-surface": "#181c20",
+                        "tertiary-fixed-dim": "#fabd00",
+                        "on-secondary-fixed-variant": "#00522f",
+                        "on-secondary": "#ffffff",
+                        "text-muted": "#6C757D",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e0e3e8",
+                        "info-cyan": "#0DCAF0",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-background": "#181c20",
+                        "outline-variant": "#c2c6d6",
+                        "emergency-red": "#DC3545",
+                        "surface-container-highest": "#e0e3e8",
+                        "tertiary": "#634900",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "inverse-on-surface": "#eef1f6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "on-tertiary-container": "#ffe0a1",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d9e2ff",
+                        "surface-bright": "#f7f9ff",
+                        "surface-tint": "#0057cc",
+                        "success-bg": "#EAF7F0",
+                        "primary": "#0047a9",
+                        "tertiary-fixed": "#ffdf9e",
+                        "secondary-fixed": "#93f7ba",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#77da9f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xl": "32px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-btn": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-h1-mobile": ["Poppins"],
+                        "caption": ["Inter"],
+                        "headline-h2-mobile": ["Poppins"],
+                        "body-lg": ["Inter"],
+                        "headline-h2": ["Poppins"],
+                        "headline-h4": ["Poppins"],
+                        "body-normal": ["Inter"],
+                        "headline-h5": ["Poppins"],
+                        "headline-h3": ["Poppins"],
+                        "headline-h1": ["Poppins"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-complete { background-color: #0047a9; color: white; }
+        .step-active { border: 2px solid #0047a9; color: #0047a9; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid #DEE2E6; }
+    </style>
+</head>
+<body class="bg-surface-faint font-body-normal text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-50 flex justify-between items-center px-lg h-16 max-w-container-max mx-auto bg-surface-container-lowest border-b border-border-subtle">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" style="font-size: 32px;">account_balance</span>
+<h1 class="font-headline-h4 text-headline-h4 font-bold text-primary">MoG Case Manager</h1>
+</div>
+<div class="hidden md:flex gap-lg items-center">
+<span class="font-body-normal text-on-surface-variant">Step 4 of 4: Review &amp; Submit</span>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</div>
+</div>
+</header>
+<main class="max-w-[720px] mx-auto px-md py-xl mb-32">
+<!-- Progress Indicator -->
+<div class="mb-xl">
+<div class="flex justify-between items-center mb-sm">
+<h2 class="font-headline-h5 text-headline-h5 font-semibold text-primary">Review Your Report</h2>
+<span class="font-body-sm text-body-sm text-text-muted">75% Complete</span>
+</div>
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 transition-all duration-700 ease-out"></div>
+</div>
+<div class="flex justify-between mt-sm">
+<span class="text-caption font-caption text-text-muted">Reporter</span>
+<span class="text-caption font-caption text-text-muted">Incident</span>
+<span class="text-caption font-caption text-text-muted">Survivor</span>
+<span class="text-caption font-caption font-bold text-primary">Review</span>
+</div>
+</div>
+<p class="font-body-normal text-body-normal text-on-surface-variant mb-lg">
+            Please review the information below carefully. Ensuring accurate details helps our team respond more effectively to this case.
+        </p>
+<!-- Summary Sections (Bento-like Cards) -->
+<div class="space-y-md">
+<!-- Reporter Summary -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined">person</span>
+<h3 class="font-label-btn text-label-btn">Reporter Details</h3>
+</div>
+<button class="flex items-center gap-xs text-primary font-label-btn text-body-sm hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                    </button>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Full Name</p>
+<p class="font-body-normal text-body-normal font-medium">Kondwani Mwale</p>
+</div>
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Contact</p>
+<p class="font-body-normal text-body-normal font-medium">+265 999 123 456</p>
+</div>
+</div>
+</section>
+<!-- Incident Summary -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined">emergency_home</span>
+<h3 class="font-label-btn text-label-btn">Incident Details</h3>
+</div>
+<button class="flex items-center gap-xs text-primary font-label-btn text-body-sm hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-md gap-x-md">
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Date &amp; Time</p>
+<p class="font-body-normal text-body-normal font-medium">October 24, 2023 • 14:30 CAT</p>
+</div>
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Type of Incident</p>
+<span class="inline-flex items-center px-2 py-1 rounded bg-danger-bg text-error text-caption font-bold">Gender-Based Violence</span>
+</div>
+<div class="col-span-full">
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Location</p>
+<div class="flex items-center gap-sm mt-xs">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<p class="font-body-normal text-body-normal font-medium">Lilongwe District, Area 25, Sector 4</p>
+</div>
+</div>
+<div class="col-span-full">
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Brief Description</p>
+<p class="font-body-normal text-body-normal mt-xs text-on-surface-variant leading-relaxed">
+                            Reported physical altercation occurring at a residential address. Immediate safety concerns were addressed locally, but social welfare intervention is required for long-term protection of the family unit.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Survivor Summary -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined">diversity_3</span>
+<h3 class="font-label-btn text-label-btn">Survivor Details</h3>
+</div>
+<button class="flex items-center gap-xs text-primary font-label-btn text-body-sm hover:underline">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                    </button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-md">
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Relationship</p>
+<p class="font-body-normal text-body-normal font-medium">Neighbor</p>
+</div>
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Age Group</p>
+<p class="font-body-normal text-body-normal font-medium">Adult (25-40)</p>
+</div>
+<div>
+<p class="text-caption font-caption text-text-muted uppercase tracking-wider">Special Needs</p>
+<p class="font-body-normal text-body-normal font-medium">None Reported</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Declaration & Legal -->
+<div class="mt-xl p-lg bg-surface-container-low rounded-xl border border-outline-variant/30">
+<label class="flex items-start gap-md cursor-pointer group">
+<div class="relative flex items-center">
+<input class="w-6 h-6 rounded border-outline text-primary focus:ring-primary-container transition-all" id="confirm-check" type="checkbox"/>
+</div>
+<span class="font-body-normal text-body-normal text-on-surface select-none">
+                    I confirm the information provided is accurate to the best of my knowledge and I understand the legal implications of providing false information.
+                </span>
+</label>
+<div class="mt-md flex gap-sm text-text-muted">
+<span class="material-symbols-outlined text-[20px] shrink-0">gavel</span>
+<p class="text-caption font-caption leading-relaxed">
+<strong>Legal Disclaimer:</strong> The Ministry of Gender, Malawi, processes this data in accordance with the National Protection Act. Your identity is protected under privacy laws, however, this report carries legal weight and may be used as a basis for official intervention and judicial proceedings.
+                </p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-xl flex flex-col md:flex-row gap-md">
+<button class="flex-1 px-lg py-md bg-surface-container-high text-on-surface rounded-xl font-label-btn text-label-btn hover:bg-surface-variant transition-colors flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">arrow_back</span>
+                Save as Draft
+            </button>
+<button class="flex-[2] px-lg py-md bg-primary text-on-primary rounded-xl font-label-btn text-label-btn hover:bg-primary-container transition-all flex items-center justify-center gap-sm shadow-lg hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:grayscale" disabled="" id="submit-btn" onclick="handleSubmit()">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+                Submit Report
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface-container-lowest border-t border-border-subtle">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">report</span>
+<span class="text-caption font-caption">Report</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="text-caption font-caption">Status</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-caption font-caption">Resources</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-caption font-caption">Profile</span>
+</div>
+</nav>
+<!-- Submission Modal (Hidden) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-md bg-black/40 backdrop-blur-sm" id="success-modal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-[480px] w-full p-xl text-center shadow-2xl scale-95 opacity-0 transition-all duration-300" id="modal-content">
+<div class="w-20 h-20 bg-success-bg text-secondary rounded-full flex items-center justify-center mx-auto mb-lg">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-headline-h3 text-headline-h3 font-bold text-on-surface mb-sm">Report Submitted</h2>
+<p class="font-body-normal text-body-normal text-on-surface-variant mb-xl">
+                Your report has been successfully transmitted to the National Case Management System. A case officer will review this within 24 hours.
+            </p>
+<div class="bg-surface-faint p-md rounded-lg mb-xl text-left border border-border-subtle">
+<p class="text-caption font-caption text-text-muted">Case ID Reference:</p>
+<p class="font-body-lg text-body-lg font-bold font-mono tracking-widest text-primary">MOG-2023-99421</p>
+</div>
+<button class="w-full py-md bg-primary text-on-primary rounded-xl font-label-btn text-label-btn hover:bg-primary-container transition-colors">
+                Return to Dashboard
+            </button>
+</div>
+</div>
+<script>
+        const check = document.getElementById('confirm-check');
+        const submitBtn = document.getElementById('submit-btn');
+        const modal = document.getElementById('success-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        check.addEventListener('change', (e) => {
+            submitBtn.disabled = !e.target.checked;
+        });
+
+        function handleSubmit() {
+            // Simulated submission
+            submitBtn.innerHTML = `<span class="animate-spin material-symbols-outlined">progress_activity</span> Submitting...`;
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }, 1500);
+        }
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>
