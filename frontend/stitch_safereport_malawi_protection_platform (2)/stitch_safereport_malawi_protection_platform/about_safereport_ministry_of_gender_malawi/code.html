@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About SafeReport | Ministry of Gender, Malawi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d9e3f6",
+                        "on-primary-fixed-variant": "#264191",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed-dim": "#f6be39",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#121c2a",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "primary-container": "#1e3a8a",
+                        "inverse-surface": "#27313f",
+                        "on-primary-container": "#90a8ff",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "surface-container-high": "#dee9fc",
+                        "surface-variant": "#d9e3f6",
+                        "on-surface-variant": "#444651",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#261a00",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-container": "#99efe5",
+                        "surface-dim": "#d0dbed",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#4059aa",
+                        "surface": "#f8f9ff",
+                        "on-secondary-fixed": "#00201d",
+                        "tertiary": "#382700",
+                        "tertiary-container": "#533c00",
+                        "on-primary": "#ffffff",
+                        "primary": "#00236f",
+                        "on-secondary-container": "#006f67",
+                        "surface-container": "#e6eeff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-background": "#121c2a",
+                        "surface-bright": "#f8f9ff",
+                        "outline-variant": "#c5c5d3",
+                        "outline": "#757682",
+                        "primary-fixed": "#dce1ff",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "secondary": "#006a63",
+                        "on-primary-fixed": "#00164e",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#d8a31b",
+                        "tertiary-fixed": "#ffdfa0",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#b6c4ff",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "base": "8px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Poppins"],
+                        "title-lg": ["Poppins"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Malawi Coat of Arms" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVOZIW0hU0PW5inrO54PcBHW4uPXdIS1Q_lS9l7Pi8WOkO-qQNunc54mGI7hPd18_1czK4F7avi23zIhyCXxO_CpbGQBIfJbBjX9cjTYyx75B784j_OlUDMDSE_o2pOITl0DpWvRo34bRN-wI4oH4umdMumvsdj0d026de2aIDmlSFuCdPyi3T4zeEvMEsKhV2drGVi377ok0s2xc6yU5IrAtXjmpZpCSGlBWyo-vhDTjtvcP9FSpUCdJYNConA8Q8LH1UMNnNNQ"/>
+<div class="hidden md:block">
+<h1 class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">Ministry of Gender</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">SafeReport Malawi</p>
+</div>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Report Incident</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Resources</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-semibold" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="hidden lg:block text-label-md font-label-md text-on-surface-variant">English / Chichewa</span>
+<button class="bg-error text-on-error px-6 py-2 rounded-full font-semibold hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                    Emergency SOS
+                </button>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative py-24 overflow-hidden">
+
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="flex-1">
+<span class="text-secondary font-bold tracking-widest uppercase text-label-sm mb-4 block">Official Platform of Malawi</span>
+<h2 class="font-display-lg text-display-lg text-primary mb-6 text-balance leading-tight">Securing the Future of Every Citizen Through Digital Protection.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl">SafeReport is the Ministry of Gender's primary digital instrument for identifying, reporting, and managing cases of gender-based violence and human rights violations across the nation.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all">Report a Case</button>
+<button class="border-2 border-secondary text-secondary px-8 py-4 rounded-xl font-semibold hover:bg-secondary/5 transition-all">Watch Introduction</button>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<div class="aspect-square rounded-3xl overflow-hidden shadow-2xl relative">
+<img class="w-full h-full object-cover" data-alt="A professional Malawian female official in formal attire sitting in a modern, brightly lit office, working on a clean laptop interface. Soft morning sunlight filters through large windows. The overall mood is institutional, trustworthy, and calm, reflecting a supportive government environment with professional decor and Malawi's national colors subtly integrated into the interior design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg658S58QqyQpUkknbOaKTiz_sX10FEdbd353mTYM0uY6TOfxc3PzzmTieJhXdaJRSnVd8TdN-lR3SBzUZgPWA1bI6DY-WpZ4BlJFy2vf6g25ddiMt31KzvuOfh_812Zb3mbHRpod_vnI5ulelo0nHBpRsPr4GYs32FgfDtae77TQu70q5CxQS-2fq5Qaej_MKVGu5J3CapBb3hW4wQ4YSZB6zi9HJxIyLzj5ZsQd3UQAIhvovB2rfP_37BV6JaNF8aHQEb_dn0A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 text-on-primary">
+<p class="font-title-lg text-title-lg mb-2">Empowering Communities</p>
+<p class="font-body-md text-body-md opacity-90">Our technology bridges the gap between those in need and the services that protect them.</p>
+</div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -left-6 bg-surface-container-lowest p-6 rounded-2xl shadow-xl border border-outline-variant flex items-center gap-4 max-w-xs">
+<div class="bg-secondary-container p-3 rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p class="font-bold text-primary">Secure Encryption</p>
+<p class="text-label-sm text-on-surface-variant">All reports are strictly confidential and encrypted.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Purpose Section (Bento Grid) -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-16">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Our Institutional Mandate</h3>
+<div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+</div>
+<div class="bento-grid">
+<!-- Mission Card -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest p-10 rounded-[32px] shadow-sm border border-outline-variant flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-6" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">Ministry Mission Statement</h4>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            "To promote social and economic empowerment of women, girls, and vulnerable populations through gender-responsive programming and the provision of high-quality community development and social welfare services to the people of Malawi."
+                        </p>
+</div>
+<!-- Purpose Card -->
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary p-10 rounded-[32px] shadow-lg flex flex-col justify-between">
+<h4 class="font-headline-md text-headline-md mb-4">Digital Purpose</h4>
+<p class="font-body-md text-body-md opacity-80 mb-6">
+                            SafeReport exists to eliminate barriers in the reporting process, ensuring that distance and fear no longer prevent justice.
+                        </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="text-label-md">Instant Alert Routing</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="text-label-md">Real-time Case Tracking</span>
+</li>
+</ul>
+</div>
+<!-- Tech Feature 1 -->
+<div class="col-span-12 md:col-span-4 glass-card p-8 rounded-[32px] border border-outline-variant">
+<div class="bg-tertiary-container w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-tertiary-container">security</span>
+</div>
+<h5 class="font-title-lg text-title-lg text-primary mb-2">Protection First</h5>
+<p class="text-on-surface-variant text-body-md">Advanced protocols to mask user identity when reporting from sensitive environments.</p>
+</div>
+<!-- Tech Feature 2 -->
+<div class="col-span-12 md:col-span-4 glass-card p-8 rounded-[32px] border border-outline-variant">
+<div class="bg-secondary-container w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-secondary-container">folder_shared</span>
+</div>
+<h5 class="font-title-lg text-title-lg text-primary mb-2">Case Management</h5>
+<p class="text-on-surface-variant text-body-md">Centralized database allowing inter-departmental collaboration for swift action.</p>
+</div>
+<!-- Tech Feature 3 -->
+<div class="col-span-12 md:col-span-4 glass-card p-8 rounded-[32px] border border-outline-variant">
+<div class="bg-primary-container w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-on-primary-container">insights</span>
+</div>
+<h5 class="font-title-lg text-title-lg text-primary mb-2">Data Analytics</h5>
+<p class="text-on-surface-variant text-body-md">Heatmaps and trend analysis to deploy social services where they are most needed.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact Statistics Section -->
+<section class="py-24 relative">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="bg-primary-container rounded-[48px] p-12 md:p-20 text-on-primary-container overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover" data-alt="A sophisticated pattern based on traditional Malawian textile motifs, rendered in a minimalist geometric style using deep blues and subtle white lines. The design feels both cultural and high-tech, representing the intersection of heritage and digital progress in a clean, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIwqCdejBBfql0Eskx6pH6NHPLNbQDvK74igxicg0wh2QyG1iRKSJnWV-24Net1IxZiKN2-1HJSbpgzYeMZInF4rn59Bv66MB9J5_EyCtf_Cs8n9HTUxI8YZI3QuVfO7yXr0Ud8bi32irnNg7cfL7DktALa0PZckbGWzTp0gfCzisnOTHjf6_V_LqP7REYufQ37EQYmlNQ6vI8AAcNbQ9PM7dzIjVNn0EnZmHyE8wW7VkUadzlfZsRdDsNQSz-qOI_KADxwgcZ8w"/>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-lg text-headline-lg mb-12">Our Quantifiable Impact</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="text-center md:text-left">
+<p class="text-5xl font-bold mb-2">12k+</p>
+<p class="text-label-md uppercase tracking-widest opacity-70">Reports Resolved</p>
+<div class="mt-4 h-1 w-full bg-on-primary-container/20 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed h-full w-[85%]"></div>
+</div>
+</div>
+<div class="text-center md:text-left">
+<p class="text-5xl font-bold mb-2">24h</p>
+<p class="text-label-md uppercase tracking-widest opacity-70">Avg. Response Time</p>
+<div class="mt-4 h-1 w-full bg-on-primary-container/20 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed h-full w-[95%]"></div>
+</div>
+</div>
+<div class="text-center md:text-left">
+<p class="text-5xl font-bold mb-2">28</p>
+<p class="text-label-md uppercase tracking-widest opacity-70">Districts Covered</p>
+<div class="mt-4 h-1 w-full bg-on-primary-container/20 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed h-full w-full"></div>
+</div>
+</div>
+<div class="text-center md:text-left">
+<p class="text-5xl font-bold mb-2">100%</p>
+<p class="text-label-md uppercase tracking-widest opacity-70">Confidentiality Rate</p>
+<div class="mt-4 h-1 w-full bg-on-primary-container/20 rounded-full overflow-hidden">
+<div class="bg-secondary-fixed h-full w-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-12 border-t border-on-primary-container/10 flex flex-col md:flex-row gap-8 items-center justify-between">
+<p class="font-body-lg text-body-lg italic max-w-xl">"Since the deployment of SafeReport, the reporting of GVB cases in rural districts has increased by 40%, directly leading to faster intervention by local authorities."</p>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full border-2 border-secondary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional Malawian woman in her 50s with a kind, determined expression, wearing professional attire. The lighting is soft and studio-quality. Background is a warm, neutral office tone. She represents a high-ranking official or advocate for human rights in Malawi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCTAKBssRPxwn31BPGWaNA50osF2Rvl5xCVVNZMevM77Mi5RTTzxTgW67QZfsA1JG4sE564mPhIfkusGvH5QWJCzVZ1R78f3jfkYmklUt2ijc-JhWOIm4XkBoRUugFWzDBS_NrmxaDBXqFaOFpVfALihVybZpBnC4V90R5X2EwNgS9-xjRVLIDR_6Y-U_GCaSsFqZzKA-4ovvYik2KysGm5Uowoh5ZmoI40cgBXmVugHu8tEa2rp8TFvvGXbN4tGyLp_DtYYzN3Q"/>
+</div>
+<div>
+<p class="font-bold">Hon. Minister Jean Sendeza</p>
+<p class="text-label-sm opacity-70">Ministry of Gender, Malawi</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partners & Stakeholders Section -->
+<section class="py-24">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+<div class="max-w-2xl">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Inter-Agency Collaboration</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">SafeReport is not a standalone app; it is a gateway to a coordinated national response network including law enforcement, medical practitioners, and social workers.</p>
+</div>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Malawi Police Service -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant hover:shadow-lg transition-shadow">
+<div class="mb-6 flex items-center justify-between">
+<div class="w-16 h-16 bg-surface-container flex items-center justify-center rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">local_police</span>
+</div>
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm">Primary Partner</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-primary mb-3">Malawi Police Service</h4>
+<p class="text-body-md text-on-surface-variant mb-6">Direct integration with the Victim Support Unit (VSU) for rapid response and criminal investigations.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 hover:underline" href="#">
+                            View Protocol <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Ministry of Health -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant hover:shadow-lg transition-shadow">
+<div class="mb-6 flex items-center justify-between">
+<div class="w-16 h-16 bg-surface-container flex items-center justify-center rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+</div>
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm">Health Liaison</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-primary mb-3">Ministry of Health</h4>
+<p class="text-body-md text-on-surface-variant mb-6">Ensuring immediate medical attention and forensic evidence collection for survivors.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 hover:underline" href="#">
+                            Service Directory <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<!-- Legal Aid Bureau -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant hover:shadow-lg transition-shadow">
+<div class="mb-6 flex items-center justify-between">
+<div class="w-16 h-16 bg-surface-container flex items-center justify-center rounded-2xl">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">gavel</span>
+</div>
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-label-sm">Legal Support</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-primary mb-3">Legal Aid Bureau</h4>
+<p class="text-body-md text-on-surface-variant mb-6">Providing free legal representation and guidance for victims seeking justice through the courts.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 hover:underline" href="#">
+                            Get Counsel <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-primary overflow-hidden relative">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,35,111,1)_0%,rgba(15,118,110,0.3)_100%)] opacity-50"></div>
+<div class="max-w-container-max mx-auto px-margin-desktop text-center relative z-10">
+<h3 class="font-display-lg text-display-lg text-on-primary mb-8 max-w-3xl mx-auto">Ready to help us build a safer Malawi?</h3>
+<p class="font-body-lg text-body-lg text-on-primary/80 mb-12 max-w-2xl mx-auto">Whether you are a victim, a witness, or a concerned citizen, your report could save a life. Join our mission today.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-secondary text-on-primary px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:scale-105 transition-transform">Get Started Now</button>
+<button class="bg-transparent border-2 border-on-primary text-on-primary px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-colors">Download Offline Form</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-on-primary-fixed full-width mt-auto">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base">
+<div class="flex items-center gap-4">
+<img alt="Malawi Coat of Arms" class="h-10 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVOZIW0hU0PW5inrO54PcBHW4uPXdIS1Q_lS9l7Pi8WOkO-qQNunc54mGI7hPd18_1czK4F7avi23zIhyCXxO_CpbGQBIfJbBjX9cjTYyx75B784j_OlUDMDSE_o2pOITl0DpWvRo34bRN-wI4oH4umdMumvsdj0d026de2aIDmlSFuCdPyi3T4zeEvMEsKhV2drGVi377ok0s2xc6yU5IrAtXjmpZpCSGlBWyo-vhDTjtvcP9FSpUCdJYNConA8Q8LH1UMNnNNQ"/>
+<div class="text-on-primary">
+<p class="font-title-lg text-title-lg font-bold">SafeReport Malawi</p>
+<p class="font-body-md text-body-md opacity-70">Government Accountability Portal</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 justify-center">
+<a class="text-on-primary/80 font-body-md text-body-md hover:text-on-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 font-body-md text-body-md hover:text-on-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-primary/80 font-body-md text-body-md hover:text-on-primary transition-colors" href="#">Help Desk</a>
+<a class="text-on-primary/80 font-body-md text-body-md hover:text-on-primary transition-colors" href="#">Contact Us</a>
+</div>
+<p class="text-on-primary/60 font-body-md text-body-md text-center md:text-right">
+                © 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi
+            </p>
+</div>
+</footer>
+<script>
+        // Micro-interactions and scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, observerOptions);
+
+            // Apply fade-in animation to sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'ease-out', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+    </script>
+</body></html>

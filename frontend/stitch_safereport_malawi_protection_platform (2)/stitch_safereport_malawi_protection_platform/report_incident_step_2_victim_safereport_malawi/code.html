@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Malawi - Victim Information</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#dce1ff",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#121c2a",
+                    "on-background": "#121c2a",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface": "#f8f9ff",
+                    "outline": "#757682",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d9e3f6",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-fixed": "#9cf2e8",
+                    "secondary-container": "#99efe5",
+                    "on-primary-fixed-variant": "#264191",
+                    "inverse-primary": "#b6c4ff",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e6eeff",
+                    "secondary": "#006a63",
+                    "surface-tint": "#4059aa",
+                    "outline-variant": "#c5c5d3",
+                    "on-primary-fixed": "#00164e",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#533c00",
+                    "on-primary-container": "#90a8ff",
+                    "background": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#27313f",
+                    "on-surface-variant": "#444651",
+                    "primary-container": "#1e3a8a",
+                    "on-secondary-container": "#006f67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-dim": "#d0dbed",
+                    "surface-container-high": "#dee9fc",
+                    "tertiary": "#382700",
+                    "surface-container-highest": "#d9e3f6",
+                    "on-tertiary-container": "#d8a31b",
+                    "tertiary-fixed": "#ffdfa0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Poppins"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Poppins"],
+                    "display-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #1e3a8a; font-weight: 700; }
+        .step-line { position: relative; }
+        .step-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+        .step-dot {
+            position: relative;
+            z-index: 2;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#F9FAFB] text-on-surface min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar (Shared Component Identity) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-semibold text-primary">Ministry of Gender</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">SafeReport Malawi</p>
+</div>
+</div>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold" href="#">Report Incident</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-all active:scale-95">Emergency SOS</button>
+<button class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined">language</span>
+                    English / Chichewa
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-desktop py-stack-lg flex flex-col gap-stack-lg">
+<!-- Step Tracker -->
+<div class="w-full max-w-3xl mx-auto mb-stack-lg">
+<div class="flex justify-between items-center relative step-line">
+<div class="flex flex-col items-center gap-2 step-dot">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="text-label-md font-label-md text-secondary">Incident Type</span>
+</div>
+<div class="flex flex-col items-center gap-2 step-dot">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold ring-4 ring-primary-fixed">
+                        2
+                    </div>
+<span class="text-label-md font-label-md text-primary font-bold">Victim</span>
+</div>
+<div class="flex flex-col items-center gap-2 step-dot">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold">
+                        3
+                    </div>
+<span class="text-label-md font-label-md text-on-surface-variant">Details</span>
+</div>
+<div class="flex flex-col items-center gap-2 step-dot">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold">
+                        4
+                    </div>
+<span class="text-label-md font-label-md text-on-surface-variant">Review</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Area (8 Columns) -->
+<div class="lg:col-span-8 flex flex-col gap-stack-md">
+<div class="bg-white p-stack-lg rounded-xl card-shadow border border-transparent hover:border-primary-fixed transition-all">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Who is the victim?</h2>
+<p class="text-on-surface-variant mb-stack-lg">This information helps us provide the most relevant support and resources.</p>
+<div class="flex flex-col gap-stack-lg">
+<!-- Role Selection -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="victim_role" type="radio" value="self"/>
+<div class="p-stack-md border-2 border-outline-variant rounded-lg flex flex-col gap-2 transition-all peer-checked:border-primary peer-checked:bg-surface-container-low group-hover:bg-surface-bright">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-primary text-3xl">person</span>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant peer-checked:border-primary flex items-center justify-center transition-all">
+<div class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 peer-checked:opacity-100"></div>
+</div>
+</div>
+<p class="font-title-lg text-title-lg text-primary">I am the victim</p>
+<p class="text-label-sm text-on-surface-variant">I am reporting an incident that happened to me personally.</p>
+</div>
+<div class="hidden peer-checked:block absolute -top-2 -right-2 bg-primary text-white p-1 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="victim_role" type="radio" value="others"/>
+<div class="p-stack-md border-2 border-outline-variant rounded-lg flex flex-col gap-2 transition-all peer-checked:border-primary peer-checked:bg-surface-container-low group-hover:bg-surface-bright">
+<div class="flex justify-between items-center">
+<span class="material-symbols-outlined text-secondary text-3xl">group</span>
+<div class="w-5 h-5 rounded-full border-2 border-outline-variant flex items-center justify-center transition-all">
+<div class="w-2.5 h-2.5 rounded-full bg-primary opacity-0"></div>
+</div>
+</div>
+<p class="font-title-lg text-title-lg text-primary">Someone else</p>
+<p class="text-label-sm text-on-surface-variant">I am reporting on behalf of a friend, family member, or community member.</p>
+</div>
+</label>
+</div>
+<!-- Form Fields Container -->
+<div class="space-y-stack-md pt-4 border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold" for="full_name">Full Name</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="full_name" placeholder="Enter victim's full name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold" for="age">Age (Approximate)</label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="age" placeholder="e.g. 25" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold" for="gender">Gender</label>
+<select class="w-full bg-white border border-outline-variant rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="gender">
+<option value="">Select Gender</option>
+<option value="female">Female</option>
+<option value="male">Male</option>
+<option value="non-binary">Non-binary</option>
+<option value="prefer-not-to-say">Prefer not to say</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant font-semibold" for="phone">Contact Number <span class="font-normal text-outline">(Optional)</span></label>
+<input class="w-full bg-white border border-outline-variant rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all" id="phone" placeholder="+265..." type="tel"/>
+</div>
+</div>
+<!-- Anonymity Checkbox -->
+<div class="bg-surface-container-low p-4 rounded-lg flex items-start gap-3 border border-primary-fixed">
+<input class="mt-1 w-5 h-5 text-primary border-outline rounded focus:ring-primary" id="anonymous" type="checkbox"/>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-primary font-bold" for="anonymous">Prefer to remain anonymous</label>
+<p class="text-label-sm text-on-surface-variant">Checking this will hide the victim's name and contact from public records. Information will only be visible to authorized caseworkers.</p>
+</div>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex justify-between items-center pt-stack-lg">
+<button class="flex items-center gap-2 px-6 py-3 border-2 border-secondary text-secondary rounded-full font-bold hover:bg-secondary-container transition-all active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+                                Back
+                            </button>
+<button class="flex items-center gap-2 px-10 py-3 bg-primary text-on-primary rounded-full font-bold hover:opacity-90 shadow-md transition-all active:scale-95">
+                                Continue
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Info (4 Columns) -->
+<div class="lg:col-span-4 flex flex-col gap-stack-md">
+<!-- Privacy Note -->
+<div class="bg-primary-container text-on-primary-container p-stack-md rounded-xl card-shadow flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
+<h3 class="font-title-lg text-title-lg font-bold">Data Privacy</h3>
+</div>
+<p class="text-body-md opacity-90 leading-relaxed">
+                        Your information is encrypted and only shared with authorized caseworkers from the Ministry of Gender. We take your safety and privacy as our top priority.
+                    </p>
+<div class="bg-white/10 p-3 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="text-label-sm">End-to-End Encrypted System</span>
+</div>
+</div>
+<!-- Emergency Contact Card -->
+<div class="bg-white p-stack-md rounded-xl border border-outline-variant card-shadow flex flex-col gap-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant font-bold uppercase tracking-wider">Need Immediate Help?</h3>
+<div class="flex flex-col gap-2">
+<a class="flex items-center justify-between p-3 bg-error-container text-on-error-container rounded-lg group transition-all hover:bg-error hover:text-white" href="tel:116">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">phone_in_talk</span>
+<span class="font-bold">National Helpline</span>
+</div>
+<span class="font-display-lg text-2xl font-bold">116</span>
+</a>
+<a class="flex items-center justify-between p-3 bg-secondary-container text-on-secondary-container rounded-lg group transition-all hover:bg-secondary hover:text-white" href="tel:555">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-bold">Police Emergency</span>
+</div>
+<span class="font-display-lg text-2xl font-bold">997</span>
+</a>
+</div>
+</div>
+<!-- Illustration/Graphic Placeholder -->
+<div class="rounded-xl overflow-hidden h-48 relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A dignified and professional illustration showing the official Ministry of Gender crest of Malawi in front of a modern, clean government building. The atmosphere is official and trustworthy, with soft morning light illuminating the scene in a way that feels calm and secure. The colors are predominantly royal blue and crisp white, reflecting an institutional sense of protection and stability." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUFqRKPODTHjxfw_nuzdLsfMVe4MCxWx50SIUxz9eUqIEem0Ke3NH9bsxJI4yqf0bXMqtaNEEAa111lcKkeF2usIXE2c-89kyLFFx5ueiU-pc3XLRxlaCmnUD1kIaSlfQitgpcHwlY4XFgUgubODGkDgJ_bAFaGsBjYQ1-wyH6zqlA7mrBPc9fE7K_HwiXx6el50_MdmSbwHYswGcwG2zEvx7b-aCAP555TuuqkU6xvif1UJ0qs-D6wBaaK7dXk_LSSIDelwbPsA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<p class="text-white text-label-sm font-medium">Official Government Portal of the Republic of Malawi</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-primary mt-auto text-on-primary">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base w-full max-w-container-max mx-auto">
+<div class="flex flex-col gap-2">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport Malawi</span>
+<p class="font-body-md text-body-md text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Terms of Service</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Help Desk</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const anonymousCheckbox = document.getElementById('anonymous');
+            const nameInput = document.getElementById('full_name');
+            const phoneInput = document.getElementById('phone');
+
+            anonymousCheckbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    nameInput.value = "Anonymous Victim";
+                    nameInput.disabled = true;
+                    nameInput.classList.add('bg-surface-variant', 'text-on-surface-variant');
+                } else {
+                    nameInput.value = "";
+                    nameInput.disabled = false;
+                    nameInput.classList.remove('bg-surface-variant', 'text-on-surface-variant');
+                }
+            });
+
+            // Smooth role selection animation
+            const radios = document.querySelectorAll('input[name="victim_role"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    radios.forEach(r => {
+                        const container = r.closest('label').querySelector('.border-2');
+                        container.classList.remove('border-primary', 'bg-surface-container-low');
+                    });
+                    if (this.checked) {
+                        const container = this.closest('label').querySelector('.border-2');
+                        container.classList.add('border-primary', 'bg-surface-container-low');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

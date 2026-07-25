@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Malawi - Ministry of Gender</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b6c4ff",
+                    "surface-container": "#e6eeff",
+                    "on-tertiary-fixed": "#261a00",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-primary-container": "#90a8ff",
+                    "on-tertiary-container": "#d8a31b",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline-variant": "#c5c5d3",
+                    "primary": "#00236f",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "surface-dim": "#d0dbed",
+                    "surface-tint": "#4059aa",
+                    "outline": "#757682",
+                    "surface": "#f8f9ff",
+                    "on-primary-fixed-variant": "#264191",
+                    "background": "#f8f9ff",
+                    "on-surface": "#121c2a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "tertiary": "#382700",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#006f67",
+                    "tertiary-container": "#533c00",
+                    "surface-container-high": "#dee9fc",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "secondary-container": "#99efe5",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#27313f",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006a63",
+                    "on-primary-fixed": "#00164e",
+                    "tertiary-fixed": "#ffdfa0",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-highest": "#d9e3f6",
+                    "surface-variant": "#d9e3f6",
+                    "on-background": "#121c2a",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed": "#00201d",
+                    "secondary-fixed": "#9cf2e8",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#1e3a8a",
+                    "on-surface-variant": "#444651",
+                    "primary-fixed": "#dce1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "base": "8px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "stack-sm": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Poppins"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #e6eeff 0%, #f8f9ff 100%);
+        }
+        .btn-hover-effect {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+        .btn-hover-effect:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<img alt="Malawi Government Crest" class="h-12 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDki8aAv-XLN2kUR3bF2q1pl191097fA7sC47WWQvMbrZFTdO4PucHRqySrq9LmD1dD70RZj8wrxVadguQsfclg2S_Bz5t-FyDVyVsRsD8GCegtzLLPE3jgu7nMSAl_OpodhGt7qikGuZoii-vEBFn6nOPne2XkeZwmPFy59hyvmf1Du9gbOfwGkJud5gRNfYE5mBm0sIuOKgq7NpdOIBza6mbrGK-BnKFcryNzh8iuDGcJek5vH3pUZU5kIwMMztjBhJ1xgq7Zkg"/>
+<div class="hidden lg:block">
+<span class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim block leading-tight">Ministry of Gender</span>
+<span class="font-label-md text-label-md text-on-surface-variant tracking-wider">SafeReport Malawi</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-semibold transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Report Incident</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Resources</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden lg:flex items-center gap-2 px-4 py-2 rounded-lg text-primary font-medium hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">language</span>
+                    English / Chichewa
+                </button>
+<button class="bg-error text-on-error px-6 py-2 rounded-full font-bold shadow-md btn-hover-effect flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                    Emergency SOS
+                </button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="hero-gradient relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7 space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container text-white font-label-md">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                        Official Government Portal
+                    </div>
+<h1 class="font-display-lg text-display-lg text-primary leading-tight">
+                        Protecting Every Citizen Through <span class="text-secondary">Safe Digital Reporting</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        A secure, confidential, and compassionate platform for reporting gender-based violence and social issues. Your safety is our priority, and your voice triggers institutional action.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-title-lg shadow-lg btn-hover-effect flex items-center gap-3">
+<span class="material-symbols-outlined">campaign</span>
+                            Report Incident
+                        </button>
+<button class="bg-surface-container-highest text-primary px-8 py-4 rounded-xl font-title-lg border border-outline-variant btn-hover-effect flex items-center gap-3">
+<span class="material-symbols-outlined">search</span>
+                            Track Report
+                        </button>
+</div>
+</div>
+<div class="md:col-span-5 relative">
+<div class="rounded-3xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A professional and warm illustration of a diverse group of Malawian citizens—including a mother, a young student, and an elderly man—engaging with a kind social worker in a modern, brightly lit office setting. The style is a mix of high-end corporate illustration and soft realism, with a palette of royal blue, soft teal, and warm gold. The atmosphere is safe, supportive, and dignified, representing government compassion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGU81etA-rdz9J3I2FuFM1WoAwdDIdJg6mId-b5sUpydPfFdG6hmGNgSGohgBLaB0hjwRAx41aBY4diP4b22PvHQvfYZO9H0E5gZg60Q1Cl14iX9qXJXhH_21I1hE2x0NZsZDXdsjfLtrYYRhskCnZrDLPtcAqQ6oYnqtqhSBoAEUdZDOciZc1LZt68T3InCEmj0Xye86d9zv8r5zLWXm1148-7TME5ADfsjr_mu8LdjQwRKrgJmQLawxH1uAc6kPU0dD2dKbjyQ"/>
+</div>
+<!-- Floating Stat Card -->
+<div class="absolute -bottom-6 -left-12 bg-glass border border-white/50 p-6 rounded-2xl shadow-xl hidden lg:block">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-secondary-container rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container">done_all</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-tighter">Case Resolution Rate</p>
+<p class="font-headline-md text-primary">94.2%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-16 -mt-12 relative z-10">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="bg-surface border border-outline-variant p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">analytics</span>
+<p class="font-display-lg text-primary font-bold">12k+</p>
+<p class="font-label-md text-on-surface-variant uppercase">Cases Reported</p>
+</div>
+<div class="bg-surface border border-outline-variant p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4">check_circle</span>
+<p class="font-display-lg text-primary font-bold">8.5k</p>
+<p class="font-label-md text-on-surface-variant uppercase">Cases Resolved</p>
+</div>
+<div class="bg-surface border border-outline-variant p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-4xl mb-4">location_on</span>
+<p class="font-display-lg text-primary font-bold">28</p>
+<p class="font-label-md text-on-surface-variant uppercase">District Offices</p>
+</div>
+<div class="bg-surface border border-outline-variant p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-error text-4xl mb-4">electric_bolt</span>
+<p class="font-display-lg text-primary font-bold">24/7</p>
+<p class="font-label-md text-on-surface-variant uppercase">Emergency Response</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Simple Steps to Justice</h2>
+<p class="text-on-surface-variant max-w-xl mx-auto">Our streamlined process ensures that every report is handled with the highest degree of professionalism and speed.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base md:gap-gutter relative">
+<!-- Connector line for desktop -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-outline-variant -z-10 translate-y-[-10px]"></div>
+<div class="bg-surface p-8 rounded-2xl border border-outline-variant text-center space-y-4">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold mx-auto">1</div>
+<h3 class="font-title-lg text-primary">Report</h3>
+<p class="text-on-surface-variant font-body-md">Fill out our secure form with incident details. You can choose to remain anonymous.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl border border-outline-variant text-center space-y-4">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold mx-auto">2</div>
+<h3 class="font-title-lg text-primary">Reference #</h3>
+<p class="text-on-surface-variant font-body-md">Instantly receive a unique tracking ID to monitor your case progress securely.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl border border-outline-variant text-center space-y-4">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold mx-auto">3</div>
+<h3 class="font-title-lg text-primary">Assigned</h3>
+<p class="text-on-surface-variant font-body-md">A dedicated Social Welfare Officer is assigned to evaluate and act on your case.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl border border-outline-variant text-center space-y-4">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold mx-auto">4</div>
+<h3 class="font-title-lg text-primary">Support</h3>
+<p class="text-on-surface-variant font-body-md">Receive medical, legal, or psychological support through our partner network.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Bento Grid -->
+<section class="py-24">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-2xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Comprehensive Support Services</h2>
+<p class="text-on-surface-variant">The Ministry offers a wide array of specialized services to ensure the holistic safety and recovery of all citizens.</p>
+</div>
+<button class="text-primary font-bold flex items-center gap-2 hover:underline">
+                        View All Services
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[200px]">
+<!-- Anonymous Reporting -->
+<div class="md:col-span-4 md:row-span-2 bg-primary-container text-white p-8 rounded-3xl flex flex-col justify-between shadow-lg">
+<span class="material-symbols-outlined text-5xl">person_off</span>
+<div>
+<h3 class="font-headline-md mb-2">Anonymous Reporting</h3>
+<p class="opacity-90 font-body-md">Your identity is protected by state-of-the-art encryption. Report without fear of disclosure.</p>
+</div>
+</div>
+<!-- Emergency SOS -->
+<div class="md:col-span-4 md:row-span-1 bg-error-container text-on-error-container p-6 rounded-3xl flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+<div>
+<h4 class="font-title-lg font-bold">Emergency SOS</h4>
+<p class="text-sm opacity-80">Immediate police and medical dispatch to your GPS location.</p>
+</div>
+</div>
+<!-- Case Tracking -->
+<div class="md:col-span-4 md:row-span-2 bg-surface border border-outline-variant p-8 rounded-3xl flex flex-col justify-between shadow-sm">
+<span class="material-symbols-outlined text-secondary text-5xl">my_location</span>
+<div>
+<h3 class="font-headline-md text-primary mb-2">Live Case Tracking</h3>
+<p class="text-on-surface-variant">Get real-time updates as your report moves through official channels toward resolution.</p>
+</div>
+</div>
+<!-- Legal Support -->
+<div class="md:col-span-4 md:row-span-1 bg-secondary-container text-on-secondary-container p-6 rounded-3xl flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl">gavel</span>
+<div>
+<h4 class="font-title-lg font-bold">Legal Aid</h4>
+<p class="text-sm opacity-80">Free legal representation for survivors of gender-based violence.</p>
+</div>
+</div>
+<!-- Child Protection -->
+<div class="md:col-span-3 md:row-span-1 bg-tertiary-container text-tertiary-fixed p-6 rounded-3xl flex flex-col justify-center gap-2">
+<span class="material-symbols-outlined">child_care</span>
+<h4 class="font-title-lg font-bold leading-tight">Child Protection</h4>
+</div>
+<!-- Counselling -->
+<div class="md:col-span-3 md:row-span-1 bg-surface border border-outline-variant p-6 rounded-3xl flex flex-col justify-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<h4 class="font-title-lg font-bold leading-tight text-primary">Psychological Support</h4>
+</div>
+<!-- Emergency Shelter -->
+<div class="md:col-span-6 md:row-span-1 bg-surface-container-high p-6 rounded-3xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">holiday_village</span>
+<h4 class="font-title-lg font-bold text-primary">Emergency Safe Houses</h4>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-xl text-sm font-bold">Find Location</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Partners Section -->
+<section class="py-16 bg-white border-y border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<p class="font-label-sm text-on-surface-variant uppercase tracking-[0.2em] mb-12">Institutional Partners &amp; Stakeholders</p>
+<div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
+<img class="h-12 w-auto" data-alt="Official logo of the Malawi Police Service, centered and clean, corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg5b1J-KGxRIDQ6waCbqWzye5oMY0tmcJXtW85HPDg_TJvqKqOJCXx375JyRXnEMQWnjoDsKcheFNVKw6GQgjYty36YqVsmmACSeuM3LT_mhIoI6Aw6zsBvPSYwt5_BBYwXJzV2xKpqDOi1gWhg0SNjOiYdIkIpOIadvUU8x1adylzXA4ibwpQd6T8RCD4pAtCP2ZxsdY02kInwrznDCPxb7ZozY1iYSUexfI8LO8H7lPb3JM1Vm6mXxFfhmitW9PCGd9-XTJIJg"/>
+<img class="h-10 w-auto" data-alt="Official logo of UN Women, minimalist and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo_AMSD5jlydptfHQp9RRsdgj2Wxcq4pdfxxEFUCNi93NYckhM4TT5VhLv9bs6jpzAURVNrw-0tsFiOD6MCajRBrPZmkhX3MknJy2oUFL4G-gS4_PWlhIi-coag0y2Rm2JmbFIhEF7hXvLR4_VNZHYz3j8Grc_w4ovSqvFhANWHvuR_aA1eDobpOq8j8hXSwRBFKb-MD90mc0Dzz52w86q6L9Kry5sdOSe1OjAbqGvUsdTxlrXBXAe0wCH21xsO886tvkXYvL83Q"/>
+<img class="h-12 w-auto" data-alt="Official logo of the Ministry of Justice Malawi, elegant and official." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP6yMJxCCet5cM00JiZGMEVUPrW2vIme-JhCcZyW_39ORSS3G5wLV8lZfJmIbeW7RwPDQ2uRIAdEM7oNqd1xDidYFMxauvTWyUv5NR7-ox8kM2AkT0gMXpe9D_F0pcaLfYBJBswgmO4q_AIW35w755_ekZlLI1a-oOmedzAdefZrzVS_2SGzrGP3P7MfqVHqtZJkDjNYQvWv7Q5x-cEDvRF80MZ9L_UakBeceny44i7qnzIffaSwVTPdDQnc6YClbAzFlqOLiSiw"/>
+<img class="h-8 w-auto" data-alt="Official logo of UNICEF, iconic blue and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB7_cGVhoj8cemrXRCu-NnIDHwf4ARoyCgkFYny_eTZ8eryA42cvQ5KPtMz2R8kd9G_Lgo8t9AVjbJnXWWev_iPcfE9PuZjv3f8nXBwOOSn_bUDjS44dotuDLaO2_Kq75tQVfSdz90ndc_juBP-zTzVheXZ_dvsnkELutTikM8txoFpuq0hFN0Djp8XUXXX1BufXjobW2gMKgE65LmXvJMGQVuk4x0QMTgLlrxq_OeH7kVAArgTIS2Ya-tXTjjJEwvNabVPkkFdA"/>
+<img class="h-12 w-auto" data-alt="Official logo of the Ministry of Health Malawi, clean medical emblem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXW1IMB4YzTSQMpqvb2byKjJrBL96RH8R0qxzqbbnfDQifJvgQTcOqOvyztuLouSGiJMgRSZ9N-RtblgjTxF6V70BfndLU1AaAYXRmwfoE9oCNElA8Z87sw3YOMCgKNO4aLA5HirkM5G6M61uN-zmvw0DdbAX-hhIBzo7ahCN0-NtvSjBQ8EkidC8J-bDZL4pC0U6DkRqUxbR6ulpWc7vyC6rEKgtyRYRIcYdblQPqKiuhSHp34idtKlw-esT1hK2HUBL9LGkuug"/>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="py-24">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="bg-primary rounded-[3rem] p-12 md:p-24 relative overflow-hidden text-center text-on-primary shadow-2xl">
+<!-- Background texture/pattern simulation -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="relative z-10 space-y-8 max-w-3xl mx-auto">
+<h2 class="font-display-lg text-display-lg">Do Not Stay in Silence.<br/>We are Here to Help.</h2>
+<p class="text-body-lg opacity-80">SafeReport is available 24/7 across all districts of Malawi. Your report is the first step toward a safer life and a stronger nation.</p>
+<div class="flex flex-wrap justify-center gap-6 pt-4">
+<button class="bg-on-primary text-primary px-10 py-5 rounded-2xl font-title-lg shadow-xl btn-hover-effect">
+                                Start Secure Report Now
+                            </button>
+<button class="border-2 border-on-primary/30 text-on-primary px-10 py-5 rounded-2xl font-title-lg btn-hover-effect hover:bg-on-primary/10">
+                                Call Helpline: 116
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-on-primary-fixed text-on-primary dark:text-primary-fixed full-width mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base w-full max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport</span>
+<span class="h-6 w-[1px] bg-on-primary/30"></span>
+<span class="font-label-md opacity-80">Republic of Malawi</span>
+</div>
+<p class="font-body-md text-body-md text-on-primary/80 text-center md:text-left">
+                    © 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi
+                </p>
+</div>
+<nav class="flex flex-wrap justify-center gap-gutter">
+<a class="text-on-primary/80 font-body-md hover:text-on-primary hover:underline transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 font-body-md hover:text-on-primary hover:underline transition-colors" href="#">Terms of Service</a>
+<a class="text-on-primary/80 font-body-md hover:text-on-primary hover:underline transition-colors" href="#">Help Desk</a>
+<a class="text-on-primary/80 font-body-md hover:text-on-primary hover:underline transition-colors" href="#">Contact Us</a>
+</nav>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-on-primary/10 flex items-center justify-center hover:bg-on-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-on-primary/10 flex items-center justify-center hover:bg-on-primary/20 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+</div>
+</div>
+</footer>
+<!-- Back to top micro-interaction -->
+<button class="fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full shadow-2xl flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 z-[60]" id="backToTop">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+<script>
+        // Micro-interactions
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Hover effects for cards
+        const cards = document.querySelectorAll('.bg-surface');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+            card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+        });
+    </script>
+</body></html>

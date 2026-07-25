@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Step 5: Evidence | SafeReport Malawi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#264191",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#444651",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee9fc",
+                        "on-primary-fixed": "#00164e",
+                        "surface-container-highest": "#d9e3f6",
+                        "tertiary-container": "#533c00",
+                        "surface-variant": "#d9e3f6",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-tertiary-container": "#d8a31b",
+                        "tertiary-fixed-dim": "#f6be39",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#b6c4ff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#121c2a",
+                        "inverse-surface": "#27313f",
+                        "tertiary": "#382700",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-container": "#e6eeff",
+                        "on-secondary-container": "#006f67",
+                        "primary-fixed": "#dce1ff",
+                        "outline": "#757682",
+                        "secondary": "#006a63",
+                        "secondary-fixed": "#9cf2e8",
+                        "outline-variant": "#c5c5d3",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-bright": "#f8f9ff",
+                        "surface-tint": "#4059aa",
+                        "secondary-container": "#99efe5",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface": "#f8f9ff",
+                        "primary": "#00236f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "primary-container": "#1e3a8a",
+                        "on-primary-container": "#90a8ff",
+                        "on-surface": "#121c2a",
+                        "surface-dim": "#d0dbed"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "base": "8px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Poppins"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Poppins"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { width: 100%; transition: width 1s ease-in-out; }
+        .upload-dashed { background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%231E3A8AFF' stroke-width='2' stroke-dasharray='8%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e"); }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-white overflow-hidden">
+<img class="w-full h-full object-contain" data-alt="A dignified official government seal for the Republic of Malawi, featuring a golden sun rising over a green field with a red lion and a leopard supporting the shield. The style is clean, institutional, and high-resolution, set against a pristine white background to convey authority and stability for the Ministry of Gender." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ospxtu88DbdJrAo8lui-EJN8JHTS-dQbdT6DtSpBHSw97SNl14lMeiO-dEJOpeVmw-Sze8zrSZx2o6M-gIuojtz8J-2n3VHwijkKMfFubPLsvHy-_JQv0YIiBJL5LfRASSoX-_5lKw7SvQGXeIETEFUKNfAHfOru06Bhn30rsb3K8Qhs7GkG4tAL2zBuHM_OQS9f0IKnIAHFSREmqEbKF_ivvSLemohcnW_2FsaVOBCxtk9YuXg4GN7rFsehX8Lxg03DPuI2uw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-semibold text-primary">Ministry of Gender</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant -mt-1">SafeReport Malawi</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold" href="#">Report Incident</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="text-on-surface-variant font-medium hidden lg:inline">English / Chichewa</span>
+<button class="bg-error text-white px-6 py-2 rounded-full font-bold shadow-md hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">emergency_home</span>
+                    Emergency SOS
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Progress Bar -->
+<div class="mb-stack-lg max-w-3xl mx-auto">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-md text-primary font-bold">Step 5 of 5: Evidence Submission</span>
+<span class="font-label-md text-on-surface-variant">100% Complete</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex gap-1">
+<div class="h-full bg-secondary w-1/5 rounded-full"></div>
+<div class="h-full bg-secondary w-1/5 rounded-full"></div>
+<div class="h-full bg-secondary w-1/5 rounded-full"></div>
+<div class="h-full bg-secondary w-1/5 rounded-full"></div>
+<div class="h-full bg-primary w-1/5 rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Form Content -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Title & Intro -->
+<section>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Supporting Evidence (Optional)</h1>
+<p class="font-body-lg text-on-surface-variant">
+                        Any files you upload will be encrypted and treated with strict confidentiality. 
+                        <span class="font-semibold text-primary">You do not need evidence to file a report.</span>
+</p>
+</section>
+<!-- Security Advisory -->
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-6 rounded-xl flex gap-4 items-start shadow-sm border border-tertiary-container/20">
+<span class="material-symbols-outlined text-tertiary-container shrink-0" style="font-variation-settings: 'FILL' 1;">warning</span>
+<div>
+<h4 class="font-title-lg text-title-lg mb-1">Security Advisory</h4>
+<p class="font-body-md opacity-90">If you are using a shared or public device, remember to delete the files from the device's downloads folder after uploading. We recommend using 'Incognito' or 'Private' browsing modes for maximum safety.</p>
+</div>
+</div>
+<!-- Upload Area -->
+<div class="bg-white rounded-2xl p-stack-lg shadow-sm border border-outline-variant">
+<div class="upload-dashed rounded-xl p-12 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors group" id="drop-zone">
+<input accept=".png,.jpg,.pdf,.mp3" class="hidden" id="file-input" multiple="" type="file"/>
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 0; font-weight: 200;">cloud_upload</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Drag and drop files here</h3>
+<p class="text-on-surface-variant font-body-md mb-4">Or click to browse your local storage</p>
+<div class="flex gap-2 flex-wrap justify-center">
+<span class="bg-surface-container-high px-3 py-1 rounded text-label-sm text-primary uppercase tracking-wider">PNG</span>
+<span class="bg-surface-container-high px-3 py-1 rounded text-label-sm text-primary uppercase tracking-wider">JPG</span>
+<span class="bg-surface-container-high px-3 py-1 rounded text-label-sm text-primary uppercase tracking-wider">PDF</span>
+<span class="bg-surface-container-high px-3 py-1 rounded text-label-sm text-primary uppercase tracking-wider">MP3</span>
+</div>
+</div>
+<!-- Selected Files List (Hidden initially) -->
+<div class="mt-stack-md space-y-2 hidden" id="file-list">
+<h4 class="font-label-md text-on-surface-variant">Selected Files:</h4>
+<!-- Dynamic items will be injected here by JS -->
+</div>
+<!-- Encryption Badge -->
+<div class="mt-stack-lg pt-6 border-t border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">encrypted</span>
+</div>
+<div>
+<p class="font-label-md text-on-secondary-container font-bold uppercase tracking-tight">End-to-End Encrypted</p>
+<p class="font-label-sm text-on-surface-variant">Data is protected with military-grade 256-bit AES encryption.</p>
+</div>
+</div>
+<div class="hidden sm:block">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-4xl" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-stack-md">
+<button class="w-full sm:w-auto px-10 py-4 border-2 border-secondary text-secondary rounded-xl font-bold hover:bg-secondary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </button>
+<button class="w-full sm:w-auto px-12 py-4 bg-primary text-white rounded-xl font-bold shadow-lg hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-3 text-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+                        Submit Secure Report
+                    </button>
+</div>
+</div>
+<!-- Sidebar / Info Panel -->
+<aside class="lg:col-span-4 space-y-gutter">
+<!-- Evidence Guide -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-md border border-outline-variant">
+<h3 class="font-title-lg text-title-lg text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">help</span>
+                        What counts as evidence?
+                    </h3>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">photo_camera</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Photos &amp; Images</p>
+<p class="font-label-sm text-on-surface-variant">Photos of physical injuries, damaged property, or screenshots of threats.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">mic</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Voice Recordings</p>
+<p class="font-label-sm text-on-surface-variant">Audio clips of incidents, verbal abuse, or witness statements.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface font-bold">Documents</p>
+<p class="font-label-sm text-on-surface-variant">Medical reports, court orders, or previous police logs.</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Quick Tips -->
+<div class="bg-surface-container-high rounded-2xl p-6">
+<h3 class="font-label-md text-primary font-bold uppercase mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">lightbulb</span>
+                        Quick Tips
+                    </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-2 font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mt-0.5 text-secondary">check_circle</span>
+                            Max 25MB per individual file.
+                        </li>
+<li class="flex items-start gap-2 font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mt-0.5 text-secondary">check_circle</span>
+                            Limit of 10 files per report.
+                        </li>
+<li class="flex items-start gap-2 font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mt-0.5 text-secondary">check_circle</span>
+                            Keep original files for later reference.
+                        </li>
+</ul>
+</div>
+<!-- Trust Box -->
+<div class="relative rounded-2xl overflow-hidden h-48 group">
+<img class="w-full h-full object-cover" data-alt="A serene and compassionate Malawian social worker in professional attire, offering a reassuring and supportive gesture in a modern, brightly lit office environment. The lighting is soft and warm, conveying a sense of safety, professionalism, and government protection. The color palette is composed of soft blues and crisp whites, echoing the Ministry of Gender's corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIC6rxf7iW1lSYQz3mKVlWjbmMTR1PTdA9q8gfHWIkpbRw54VYyhAqdr22wVGn4-uqyblRXVOyPgyZtknaMz8oXX5T-ajdaGIGZ93gUXxdOksxPuALVXX9xrejh_hIzXo5z_p-hEjt3DwrBiyiLjgX8iIKHRxCu9JFBwDnuShcKYTa7KM0e3WvcZkml1PBi31_5uxyL4A4SpMMF48tNwP8hq7zvEt0px5NnABckryKG_KFxe5-HTHh-DBcrDihVuiSZgiP4QrxCw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-6">
+<p class="text-white font-bold font-title-lg">We are here to protect you.</p>
+<p class="text-white/80 font-label-sm">Your safety is our absolute priority.</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base w-full max-w-container-max mx-auto">
+<div class="flex flex-col gap-1 items-center md:items-start">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">Ministry of Gender</span>
+<p class="font-body-md text-on-primary/80 text-center md:text-left">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md underline font-bold" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Terms of Service</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Help Desk</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors font-body-md" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('file-input');
+        const fileList = document.getElementById('file-list');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-surface-container-low');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-surface-container-low');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-surface-container-low');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                fileList.classList.remove('hidden');
+                Array.from(files).forEach(file => {
+                    const row = document.createElement('div');
+                    row.className = 'flex items-center justify-between bg-surface-container-low p-3 rounded-lg border border-outline-variant animate-in fade-in slide-in-from-bottom-2';
+                    row.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">draft</span>
+                            <div>
+                                <p class="font-label-md text-on-surface truncate max-w-[200px] sm:max-w-xs">${file.name}</p>
+                                <p class="font-label-sm text-on-surface-variant">${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                            </div>
+                        </div>
+                        <button class="text-error hover:bg-error-container p-2 rounded-full transition-colors remove-file">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    `;
+                    fileList.appendChild(row);
+                    
+                    row.querySelector('.remove-file').addEventListener('click', () => {
+                        row.remove();
+                        if (fileList.children.length === 1) fileList.classList.add('hidden');
+                    });
+                });
+            }
+        }
+    </script>
+</body></html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Malawi | Case Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#90a8ff",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "surface-dim": "#d0dbed",
+                        "inverse-surface": "#27313f",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d9e3f6",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d9e3f6",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#121c2a",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-container": "#e6eeff",
+                        "tertiary-fixed-dim": "#f6be39",
+                        "on-primary-fixed": "#00164e",
+                        "secondary-fixed": "#9cf2e8",
+                        "secondary": "#006a63",
+                        "primary-fixed": "#dce1ff",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-container": "#99efe5",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#00236f",
+                        "on-surface": "#121c2a",
+                        "background": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#533c00",
+                        "surface-tint": "#4059aa",
+                        "inverse-primary": "#b6c4ff",
+                        "on-tertiary-container": "#d8a31b",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c5c5d3",
+                        "primary-container": "#1e3a8a",
+                        "on-secondary-container": "#006f67",
+                        "surface-container-high": "#dee9fc",
+                        "tertiary": "#382700",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#444651",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-secondary-fixed": "#00201d",
+                        "surface": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "outline": "#757682"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "title-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "body-md": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .status-chip {
+            @apply px-3 py-1 rounded-full text-[12px] font-semibold flex items-center gap-1 w-fit;
+        }
+        .priority-dot {
+            @apply w-2 h-2 rounded-full;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-md flex flex-col p-stack-md z-50">
+<div class="mb-10 px-2">
+<h1 class="font-title-lg text-title-lg text-primary dark:text-primary-fixed-dim font-bold">Admin Portal</h1>
+<p class="text-[12px] text-on-surface-variant opacity-70">SafeReport Malawi</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-label-md text-label-md">Case Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-md text-label-md">District Setup</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant space-y-2">
+<button class="w-full bg-primary text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 mb-4 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                Create New Case
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar Contextual Header -->
+<header class="sticky top-0 bg-surface-container-lowest z-40 border-b border-outline-variant px-margin-desktop py-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-semibold">Case Management</h2>
+<p class="text-on-surface-variant text-sm">Managing all active incident reports across Malawi districts</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline text-on-surface-variant rounded-lg hover:bg-surface-container-low transition-colors font-medium">
+<span class="material-symbols-outlined">download</span>
+                        Export CSV
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline text-on-surface-variant rounded-lg hover:bg-surface-container-low transition-colors font-medium">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                        PDF
+                    </button>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="mt-8 flex flex-wrap items-center gap-4">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Search Case ID, Victim Initials, or District..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<select class="bg-white border border-outline-variant rounded-xl px-4 py-2 text-sm text-on-surface focus:ring-primary focus:border-primary">
+<option>All Statuses</option>
+<option>New</option>
+<option>Assigned</option>
+<option>Resolved</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-xl px-4 py-2 text-sm text-on-surface focus:ring-primary focus:border-primary">
+<option>All Districts</option>
+<option>Lilongwe</option>
+<option>Blantyre</option>
+<option>Mzuzu</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-xl px-4 py-2 text-sm text-on-surface focus:ring-primary focus:border-primary">
+<option>Priority</option>
+<option>Critical</option>
+<option>High</option>
+</select>
+<button class="px-4 py-2 bg-surface-container-high text-primary rounded-xl text-sm font-semibold flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        More Filters
+                    </button>
+</div>
+</div>
+</header>
+<!-- Table Content -->
+<div class="p-margin-desktop flex-1">
+<div class="bg-white rounded-2xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Case ID</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Victim</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Type</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">District</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Priority</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Status</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Officer</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm">Date</th>
+<th class="px-6 py-4 font-semibold text-on-surface-variant text-sm text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-6 py-4">
+<span class="font-mono font-bold text-primary">SR-2024-88912</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">M.K.</span>
+<span class="text-xs text-on-surface-variant">Age: 24</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface">Domestic Violence</td>
+<td class="px-6 py-4 text-sm text-on-surface">Lilongwe</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="priority-dot bg-error"></span>
+<span class="text-sm font-medium text-error">Critical</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="status-chip bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[14px]">assignment_late</span>
+                                        New
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a female social worker in her 40s wearing a corporate navy blazer, with a warm but focused expression, soft natural office lighting, high quality portrait photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8lrtiQZrtu89qDtmUYI7GSrdAebvif5xEMYIOmklg5TfTbi7qHw-4rihcdX4LRUB6J_rHpba1kk4h42s_vyDrWJLaYj9DGFyXyFwXEeW9GFnFBo3pnbOGFaym8eX8oVghcr5rURU88ua2O1682CSXzXkb2lsQuCCfTgs_tg7Oh6jZQApmAj5KJv87wttLHrL-uMUy6E5eDAipEJ7-UYtZOuFGf9V0Y9UcZB6Z7opErUugXurj0l2v3NxPPrI4YdRRcQ7sd6MCeg"/>
+<span class="text-sm">Grace Phiri</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 12, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-sm font-semibold hover:opacity-90 active:scale-95 transition-all">
+                                        View Details
+                                    </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-6 py-4">
+<span class="font-mono font-bold text-primary">SR-2024-88915</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">J.C.</span>
+<span class="text-xs text-on-surface-variant">Age: 12</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface">Child Protection</td>
+<td class="px-6 py-4 text-sm text-on-surface">Blantyre</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="priority-dot bg-[#eab308]"></span>
+<span class="text-sm font-medium text-[#854d0e]">High</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="status-chip bg-[#fef9c3] text-[#854d0e]">
+<span class="material-symbols-outlined text-[14px]">search</span>
+                                        Investigating
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A male police officer in formal Malawi police uniform looking authoritative and professional, close-up studio portrait, neutral grey background, high detail, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCOrXij5G2RPR6OHpkiV1AqsmmRem5dX7Z00paAWhecsqHv1XxdhQQ0ueC0YXQ4VinAQWX317ADVkqn9v4i_ey_8IGzDzlbSUUC8UDDxYu8uXGhqZG5NsvwZtEj5cy_RwmUTfDI-ab85mng0rVOqLakCyNVfS3HC7Nohi-8Qp0qJLtGTGV_4P3yxo2_MX0tAbqKYJP4u0x0FPiSw313neJrbOPi3UnVfXbSWNz0AuLcZk60PdX_KSBero-wBHtK0Sh1oxV7g3TQA"/>
+<span class="text-sm">John Banda</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 11, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-sm font-semibold hover:opacity-90 active:scale-95 transition-all">
+                                        View Details
+                                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-6 py-4">
+<span class="font-mono font-bold text-primary">SR-2024-88901</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">S.L.</span>
+<span class="text-xs text-on-surface-variant">Age: 35</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface">Economic Abuse</td>
+<td class="px-6 py-4 text-sm text-on-surface">Mzimba</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="priority-dot bg-secondary"></span>
+<span class="text-sm font-medium text-secondary">Medium</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="status-chip bg-secondary/10 text-secondary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                        Resolved
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A focused female government official in business attire, writing on a clipboard in a bright office environment, modern professional look, soft bokeh background, warm institutional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP2MVBX3yUbkN-uNU9QYs-stKDUIEv-o4epUlihgqTFhVZVQ4K-sENNs5DAOFfMcTPP53a02eUzaCyeQUgL9KLwDr-ycNRtpn3lXv7s8PQqXD4IlO351gRgTFi5f65LFBbXWPmDoFZY7v8JlioHlsXRCwZcULpdkAZiNFgJmJp7OoYDuETjWXB4U86oVTQzgD-sNE2Digv2JFAJAiEaKFxENl3sAtyKzcxEmI-V4lI1YQQ2WDpHwEc36RZYhuZqcxVarlsX4nnMw"/>
+<span class="text-sm">Rose Moyo</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 10, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-sm font-semibold hover:opacity-90 active:scale-95 transition-all">
+                                        View Details
+                                    </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-6 py-4">
+<span class="font-mono font-bold text-primary">SR-2024-88920</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">P.M.</span>
+<span class="text-xs text-on-surface-variant">Age: 19</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface">Sexual Harassment</td>
+<td class="px-6 py-4 text-sm text-on-surface">Zomba</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="priority-dot bg-error"></span>
+<span class="text-sm font-medium text-error">Critical</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="status-chip bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[14px]">assignment_ind</span>
+                                        Assigned
+                                    </div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold text-xs border border-outline-variant">
+                                            MK
+                                        </div>
+<span class="text-sm">Maxwell Kapito</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Oct 12, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-sm font-semibold hover:opacity-90 active:scale-95 transition-all">
+                                        View Details
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+<span class="text-sm text-on-surface-variant">Showing 1-4 of 124 cases</span>
+<div class="flex items-center gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-white transition-colors disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="w-9 h-9 flex items-center justify-center bg-primary text-white rounded-lg font-semibold text-sm">1</button>
+<button class="w-9 h-9 flex items-center justify-center hover:bg-white text-on-surface rounded-lg font-medium text-sm transition-colors">2</button>
+<button class="w-9 h-9 flex items-center justify-center hover:bg-white text-on-surface rounded-lg font-medium text-sm transition-colors">3</button>
+<span class="w-9 h-9 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="w-9 h-9 flex items-center justify-center hover:bg-white text-on-surface rounded-lg font-medium text-sm transition-colors">31</button>
+</div>
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- System Footer -->
+<footer class="mt-auto bg-primary dark:bg-on-primary-fixed text-on-primary dark:text-primary-fixed px-margin-desktop py-stack-lg flex flex-col md:flex-row justify-between items-center gap-base">
+<div class="text-center md:text-left">
+<span class="font-title-lg text-title-lg font-bold block mb-1">SafeReport Malawi</span>
+<p class="font-body-md text-body-md text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex gap-gutter">
+<a class="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="#">Privacy Policy</a>
+<a class="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="#">Help Desk</a>
+<a class="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="#">Contact Us</a>
+</div>
+</footer>
+</main>
+<!-- Urgent SOS Floating Indicator (Contextual Overlay) -->
+<div class="fixed bottom-8 right-8 z-[100]">
+<button class="bg-error text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all group overflow-hidden relative">
+<span class="material-symbols-outlined text-[28px] group-hover:hidden">emergency_share</span>
+<span class="hidden group-hover:block font-bold text-xs uppercase tracking-tighter">Alert</span>
+<div class="absolute inset-0 bg-white/20 animate-ping rounded-full"></div>
+</button>
+</div>
+<script>
+        // Simple Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if (!e.target.closest('button')) {
+                    const caseId = row.querySelector('.font-mono').innerText;
+                    console.log(`Navigating to case: ${caseId}`);
+                    // Potential navigation logic
+                }
+            });
+        });
+    </script>
+</body></html>

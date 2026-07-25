@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Profile | SafeReport Malawi Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { font-variation-settings: 'FILL' 1; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#90a8ff",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "surface-dim": "#d0dbed",
+                        "inverse-surface": "#27313f",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d9e3f6",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d9e3f6",
+                        "on-tertiary-fixed": "#261a00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#121c2a",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-container": "#e6eeff",
+                        "tertiary-fixed-dim": "#f6be39",
+                        "on-primary-fixed": "#00164e",
+                        "secondary-fixed": "#9cf2e8",
+                        "secondary": "#006a63",
+                        "primary-fixed": "#dce1ff",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-container": "#99efe5",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface-container-low": "#eff4ff",
+                        "primary": "#00236f",
+                        "on-surface": "#121c2a",
+                        "background": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#533c00",
+                        "surface-tint": "#4059aa",
+                        "inverse-primary": "#b6c4ff",
+                        "on-tertiary-container": "#d8a31b",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c5c5d3",
+                        "primary-container": "#1e3a8a",
+                        "on-secondary-container": "#006f67",
+                        "surface-container-high": "#dee9fc",
+                        "tertiary": "#382700",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#444651",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-secondary-fixed": "#00201d",
+                        "surface": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "outline": "#757682"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Poppins"],
+                        "title-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">account_balance</span>
+</div>
+<div>
+<h1 class="font-title-lg text-title-lg font-bold text-primary">Ministry of Gender</h1>
+<p class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">SafeReport Malawi Portal</p>
+</div>
+</div>
+<div class="flex items-center gap-stack-lg">
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-primary border-b-2 border-primary pb-1 font-semibold" href="#">Case Management</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Analytics</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                        ENCRYPTED SESSION
+                    </div>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold">
+                        JD
+                    </div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
+<!-- Breadcrumbs & Urgent Actions -->
+<div class="flex justify-between items-center mb-8">
+<div>
+<nav class="flex items-center gap-2 text-sm text-on-surface-variant mb-2">
+<a class="hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Cases</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-semibold text-primary">Case #SR-2024-8842</span>
+</nav>
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md text-primary">Case Profile: GBV Incident</h2>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">priority_high</span> High Priority
+                    </span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border-1.5 border-error text-error rounded-lg font-semibold flex items-center gap-2 hover:bg-error-container transition-colors">
+<span class="material-symbols-outlined text-sm">emergency_home</span> Quick Exit Admin
+                </button>
+<button class="px-6 py-2 bg-primary text-white rounded-lg font-bold flex items-center gap-2 shadow-md hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">print</span> Print File
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- LEFT COLUMN: Victim & Incident Data -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-stack-lg">
+<!-- Victim Information -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fitbit_push_ups</span>
+<h3 class="font-title-lg text-title-lg font-bold text-primary">Victim Information</h3>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-highest rounded text-xs font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">lock</span>
+                            CONFIDENTIAL
+                        </div>
+</div>
+<div class="p-6 grid grid-cols-2 md:grid-cols-3 gap-6">
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Full Name</p>
+<p class="font-body-md font-semibold text-on-surface">Mary T. Phiri (Pseudonym)</p>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Age / Gender</p>
+<p class="font-body-md text-on-surface">26 / Female</p>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Contact Status</p>
+<span class="inline-block px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs font-bold">SAFE TO CALL</span>
+</div>
+<div class="col-span-2">
+<p class="text-xs font-bold text-outline uppercase mb-1">Current Shelter / Location</p>
+<p class="font-body-md text-on-surface">Safe House Alpha, Lilongwe (Location Obfuscated for Security)</p>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Vulnerability Level</p>
+<p class="font-body-md text-error font-bold">Critical</p>
+</div>
+</div>
+</section>
+<!-- Incident Details -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+<h3 class="font-title-lg text-title-lg font-bold text-primary">Incident Details</h3>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div class="space-y-4">
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Incident Type</p>
+<p class="font-body-md font-bold text-on-surface">Domestic Violence &amp; Economic Abuse</p>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Timestamp</p>
+<p class="font-body-md text-on-surface">October 24, 2024 - 22:45 CAT</p>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Reported Via</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">smartphone</span>
+<p class="font-body-md text-on-surface">SafeReport Mobile Web</p>
+</div>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-1">Location of Occurrence</p>
+<div class="relative h-32 w-full rounded-lg bg-surface-container-highest overflow-hidden mb-2">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, professional map visualization of Lilongwe, Malawi with a soft blue and gray color palette. A single, discrete pulsing red marker indicates a general district area without revealing precise street coordinates. The map is minimalist and focused on administrative boundaries for government use." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVUQxkd5zmKmZwBjx9_QwEyexVCnevQwE7e0-A7JbQFgLTdO3-8ILiqcNxdZBxF8SzBROqcJqcGU5C16qy8a6ya_h9H96JwbFUoyk_P8YNnsXc5HcTiPyhIAjkGvN3aXCIBoCbYFJ2ZpkGW3c9ZTuFpHrj4E8WFgdnQFNQ6pp2c9FoINl2WHeriRFNL-w5BDzg_0uI90bv_kE_P2u7EF8mDciUTtqzQ003fSin1dr-GbDGJJMytFqmukyfhePy4Re3KDqFU5KgQw')"></div>
+</div>
+<p class="text-sm text-on-surface-variant italic">District: Lilongwe City, Area 24</p>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold text-outline uppercase mb-2">Description</p>
+<div class="p-4 bg-surface rounded-lg border border-outline-variant text-body-md leading-relaxed text-on-surface">
+                                "The victim reports ongoing physical altercations with her spouse over the last 6 months. On the night of reporting, she was forcibly removed from her home and her identification documents were destroyed. She is currently seeking both legal assistance and temporary shelter for herself and her 2-year-old child."
+                            </div>
+</div>
+</div>
+</section>
+<!-- Evidence Gallery -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">photo_library</span>
+<h3 class="font-title-lg text-title-lg font-bold text-primary">Evidence Gallery</h3>
+</div>
+<button class="text-sm font-bold text-primary hover:underline">Download All (.zip)</button>
+</div>
+<div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="group relative aspect-square rounded-lg overflow-hidden border border-outline-variant cursor-pointer">
+<img class="object-cover w-full h-full transition-transform group-hover:scale-105" data-alt="A professional, slightly blurred thumbnail of a legal document titled 'Sworn Statement' on Ministry of Justice letterhead. The lighting is neutral and corporate. The atmosphere is clinical and serious, emphasizing official evidence handling procedures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKG19-Iqw7YV7IIqKIp9DCjJ1Ubn-x9hy70RgniFvWppPsyZ-Yft8Q1mW_U04XdiCdkQaMx6nRKS-IJF_Mgkso7Rwc-OF9__ASynceTM-tyf6WaHsCjJFEm-utu4EeNTKeGVbAVo1tDmSgniywF7RmS9Ux0iiYWQaZ2j0-5WqttIHzvsOLWHLudf6OJneUC5yUdcrHh2EOl01GZWou-6Tmry5FW8Khv9nPaZSL9XbmogFIldgDLaaDU1E1LKm4dT3FvEZ7DNp7Zg"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden border border-outline-variant cursor-pointer">
+<img class="object-cover w-full h-full transition-transform group-hover:scale-105" data-alt="A close-up thumbnail showing a digital photograph of a damaged national ID card. The card is cracked, illustrating the destruction of identification documents. The lighting is clear and documentary-style, suitable for forensic evidence records." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuIg7adA4DkmU5WkovFW2uToJoxRaoIrFWQIHcLtonpMGg3K1O5vla7_YxPCnhoy-zgre08qURVNrTLvVbABjNKpGMG3B0WCiFkWpFuEnzyZwHSXgZ_igKtA10M2Yf7U40_AW3wX0wrztemiKCRpaHmw_36LqltbUYPCBKXxoRd8jZipU3pxK01TnT4SelV9lDpH1T6dXVFuCyMgkLk3dqx5TCMaqOxlNd0boMvHOruCLKbyAa2j3TQFvWvGB9xlLNGeLKBxbizQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-lg border-2 border-dashed border-outline-variant bg-surface hover:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline text-3xl">add_a_photo</span>
+<p class="text-[10px] font-bold uppercase text-outline mt-2">Add Files</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-lg border-2 border-dashed border-outline-variant bg-surface hover:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline text-3xl">audio_file</span>
+<p class="text-[10px] font-bold uppercase text-outline mt-2">Add Audio</p>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Status, Assignment & Decision -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-stack-lg">
+<!-- Case Status Timeline -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+<h3 class="font-title-lg text-title-lg font-bold text-primary mb-6">Case Progress</h3>
+<div class="relative">
+<!-- Timeline Line -->
+<div class="absolute left-4 top-0 bottom-0 w-0.5 bg-outline-variant"></div>
+<div class="space-y-8 relative">
+<!-- Step 1 -->
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-sm step-active">check</span>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Reported</p>
+<p class="text-xs text-on-surface-variant">Oct 24, 2024 • 22:45</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-sm step-active">check</span>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Assigned</p>
+<p class="text-xs text-on-surface-variant">Oct 25, 2024 • 08:30</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center z-10 border-4 border-white shadow-md">
+<span class="material-symbols-outlined text-sm">clinical_notes</span>
+</div>
+<div>
+<p class="font-bold text-primary text-sm">Investigating</p>
+<p class="text-xs text-on-surface-variant">Started Oct 25, 2024</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-outline flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-sm">task_alt</span>
+</div>
+<div>
+<p class="font-bold text-outline text-sm">Resolved</p>
+<p class="text-xs text-on-surface-variant">Pending action</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Officer Assignment -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+<h3 class="font-title-lg text-title-lg font-bold text-primary mb-4">Case Officer</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3 p-3 bg-surface rounded-lg border border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Officer Kondwani Banda</p>
+<p class="text-xs text-on-surface-variant">Lilongwe Central Post</p>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-outline uppercase mb-2">Reassign Case</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg p-2 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+<option>Select Officer...</option>
+<option>Officer Chimwemwe Mwale</option>
+<option>Officer Tione Ziba</option>
+<option>Special Response Team</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Internal Case Notes -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-title-lg text-title-lg font-bold text-primary">Internal Notes</h3>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">history</span>
+</div>
+<div class="max-h-48 overflow-y-auto mb-4 space-y-3 pr-2">
+<div class="p-3 bg-surface-container-low rounded-lg text-sm border-l-4 border-primary">
+<p class="font-bold text-[10px] text-primary-container uppercase mb-1">Oct 25, 09:15 - Banda, K.</p>
+<p>Shelter coordination complete. Victim arrived safely at 08:45.</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg text-sm border-l-4 border-outline">
+<p class="font-bold text-[10px] text-on-surface-variant uppercase mb-1">Oct 25, 08:30 - System</p>
+<p>Case automatically flagged as High Priority based on destruction of docs.</p>
+</div>
+</div>
+<textarea class="w-full h-24 bg-surface border border-outline-variant rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none mb-3" placeholder="Add a new timestamped note..."></textarea>
+<button class="w-full py-2 bg-surface-container-highest text-primary font-bold rounded-lg text-sm hover:bg-surface-variant transition-colors">
+                        Add Update
+                    </button>
+</section>
+<!-- Decision Panel -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant p-6">
+<h3 class="font-title-lg text-title-lg font-bold text-primary mb-4">Actions Required</h3>
+<div class="flex flex-col gap-3">
+<button class="w-full py-3 bg-primary text-white font-bold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">check_circle</span>
+                            Mark as Resolved
+                        </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-3 border-1.5 border-error text-error font-bold rounded-lg text-sm flex items-center justify-center gap-2 hover:bg-error-container transition-colors">
+<span class="material-symbols-outlined text-sm">file_png</span>
+                                Escalate
+                            </button>
+<button class="py-3 border-1.5 border-secondary text-secondary font-bold rounded-lg text-sm flex items-center justify-center gap-2 hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-sm">help</span>
+                                Need Info
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="bg-primary mt-12 py-12 text-on-primary">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 border-b border-white/10 pb-12 mb-8">
+<div class="max-w-md">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-white rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl font-bold">account_balance</span>
+</div>
+<h4 class="font-title-lg text-title-lg font-bold">SafeReport Malawi</h4>
+</div>
+<p class="text-on-primary/80 leading-relaxed font-body-md">
+                        A secure digital initiative by the Ministry of Gender, Community Development and Social Welfare to protect and support citizens through transparent case management.
+                    </p>
+</div>
+<div class="grid grid-cols-2 gap-stack-lg">
+<div class="space-y-4">
+<h5 class="font-bold uppercase tracking-widest text-xs opacity-60">Admin Links</h5>
+<ul class="space-y-2">
+<li><a class="hover:underline transition-all" href="#">Support Desk</a></li>
+<li><a class="hover:underline transition-all" href="#">Policy Manual</a></li>
+<li><a class="hover:underline transition-all" href="#">Training Portal</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold uppercase tracking-widest text-xs opacity-60">Compliance</h5>
+<ul class="space-y-2">
+<li><a class="hover:underline transition-all" href="#">Data Privacy</a></li>
+<li><a class="hover:underline transition-all" href="#">Ethical Guidelines</a></li>
+<li><a class="hover:underline transition-all" href="#">Security Audit</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-primary/60">
+<p>© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+<div class="flex gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">encrypted</span>
+<span>AES-256 Validated</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">public</span>
+<span>Official Gov Platform</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for decision buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.textContent.includes('Resolve')) {
+                    const confirmRes = confirm('Are you sure you want to resolve this case? This action will be logged.');
+                    if (confirmRes) {
+                        this.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Resolving...';
+                        setTimeout(() => {
+                            this.classList.remove('bg-primary');
+                            this.classList.add('bg-green-600');
+                            this.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Case Resolved';
+                        }, 1200);
+                    }
+                }
+            });
+        });
+
+        // Sticky header transparency on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>
