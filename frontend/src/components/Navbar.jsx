@@ -20,35 +20,47 @@ const Navbar = () => {
           </div>
         </div>
         <nav className="hidden md:flex items-center gap-6">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className={`${isActive('/') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
             Home
           </Link>
-          <Link 
-            to="/report" 
+          <Link
+            to="/report"
             className={`${isActive('/report') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
             Report Incident
           </Link>
-          <Link 
-            to="/track" 
+          <Link
+            to="/track"
             className={`${isActive('/track') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
             Track Report
           </Link>
-          <Link 
-            to="/resources" 
+          <Link
+            to="/resources"
             className={`${isActive('/resources') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
             Resources
           </Link>
-          <Link 
-            to="/about" 
+          <Link
+            to="/about"
             className={`${isActive('/about') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
             About
+          </Link>
+          <Link
+            to="/contact"
+            className={`${isActive('/contact') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
+          >
+            Contact
+          </Link>
+          <Link
+            to="/login"
+            className={`${isActive('/login') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
+          >
+            Login
           </Link>
         </nav>
         <div className="flex items-center gap-3">
