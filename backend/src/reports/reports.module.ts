@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
+// reports.module.ts
+import { Module, forwardRef } from '@nestjs/common'; 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ReportsController } from './reports.controller';
 import { ReportsService } from './reports.service';
 import { Report } from './entities/report.entity';
 import { District } from '../district/entities/district.entity';
 import { User } from '../users/entities/user.entity';
-
+import { NotificationsModule } from '../notifications/notifications.module'; 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -13,8 +14,11 @@ import { User } from '../users/entities/user.entity';
       District,
       User,
     ]),
+    
+    forwardRef(() => NotificationsModule), 
   ],
   controllers: [ReportsController],
   providers: [ReportsService],
+  exports: [ReportsService], 
 })
 export class ReportsModule {}

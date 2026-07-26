@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany,JoinColumn } from 'typeorm';
+import { District } from 'src/district/entities/district.entity';
+import { Report } from 'src/reports/entities/report.entity';
 
 @Entity('stations')
 export class Station {
@@ -21,5 +23,12 @@ export class Station {
     type: 'Point';
     coordinates: [number, number];
   };
+
+  @ManyToOne(() => District, district => district.stations)
+ @JoinColumn({ name: 'district_id' })
+  district!: District;
+
+@OneToMany(() => Report, report => report.station)
+ reports!: Report[];
 
 }

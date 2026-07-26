@@ -7,10 +7,10 @@ export class CreateCaseStatusHistoryDto {
   report_id!: string;
 
   @IsEnum(CaseStatus)
-  status!: CaseStatus;
+  status?: CaseStatus;
 
   @IsUUID()
-  changed_by!: string;
+  changed_by?: string;
 
   @IsOptional()
   changed_at?: Date;
