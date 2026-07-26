@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn,Column, OneToMany} from 'typeorm';
 import { Report } from '../../reports/entities/report.entity';
+import { Station } from 'src/stations/entities/station.entity';
 
 @Entity('districts')
 export class District {
@@ -15,4 +16,7 @@ export class District {
   geometry?: object;
   @OneToMany(() => Report, (report) => report.district)
   reports?: Report[];
+
+  @OneToMany(() => Station, station => station.district)
+ stations!: Station[];
 }
