@@ -7,6 +7,7 @@ import { Report } from './entities/report.entity';
 import { District } from '../district/entities/district.entity';
 import { User } from '../users/entities/user.entity';
 import { NotificationsModule } from '../notifications/notifications.module'; 
+import { CaseStatusHistoryModule } from '../case_status_history/case_status_history.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -14,6 +15,7 @@ import { NotificationsModule } from '../notifications/notifications.module';
       District,
       User,
     ]),
+       CaseStatusHistoryModule,
     
     forwardRef(() => NotificationsModule), 
   ],
