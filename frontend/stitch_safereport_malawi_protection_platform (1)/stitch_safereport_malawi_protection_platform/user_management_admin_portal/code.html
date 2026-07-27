@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management | SafeReport Admin Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary-fixed": "#00164e",
+                "surface-variant": "#d9e3f6",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#5c4300",
+                "outline": "#757682",
+                "on-primary-fixed-variant": "#264191",
+                "surface-bright": "#f8f9ff",
+                "secondary-container": "#99efe5",
+                "surface-dim": "#d0dbed",
+                "primary-container": "#1e3a8a",
+                "primary": "#00236f",
+                "surface-tint": "#4059aa",
+                "background": "#f8f9ff",
+                "outline-variant": "#c5c5d3",
+                "secondary": "#006a63",
+                "inverse-on-surface": "#eaf1ff",
+                "error": "#ba1a1a",
+                "on-tertiary-container": "#d8a31b",
+                "error-container": "#ffdad6",
+                "on-primary-container": "#90a8ff",
+                "secondary-fixed-dim": "#80d5cb",
+                "on-tertiary": "#ffffff",
+                "on-secondary": "#ffffff",
+                "surface-container-low": "#eff4ff",
+                "on-secondary-fixed": "#00201d",
+                "tertiary-fixed-dim": "#f6be39",
+                "on-tertiary-fixed": "#261a00",
+                "on-secondary-fixed-variant": "#00504a",
+                "primary-fixed-dim": "#b6c4ff",
+                "on-surface-variant": "#444651",
+                "surface-container-lowest": "#ffffff",
+                "primary-fixed": "#dce1ff",
+                "inverse-surface": "#27313f",
+                "tertiary": "#382700",
+                "on-background": "#121c2a",
+                "on-error": "#ffffff",
+                "tertiary-container": "#533c00",
+                "surface": "#f8f9ff",
+                "on-error-container": "#93000a",
+                "tertiary-fixed": "#ffdfa0",
+                "secondary-fixed": "#9cf2e8",
+                "on-surface": "#121c2a",
+                "on-secondary-container": "#006f67",
+                "inverse-primary": "#b6c4ff",
+                "surface-container-highest": "#d9e3f6",
+                "surface-container-high": "#dee9fc",
+                "surface-container": "#e6eeff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "stack-lg": "32px",
+                "gutter": "24px",
+                "stack-sm": "8px",
+                "margin-desktop": "40px",
+                "base": "8px",
+                "container-max": "1280px",
+                "margin-mobile": "16px",
+                "stack-md": "16px"
+            },
+            "fontFamily": {
+                "display-lg": ["Poppins"],
+                "headline-lg": ["Poppins"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "title-lg": ["Poppins"],
+                "label-sm": ["Inter"],
+                "headline-md": ["Poppins"],
+                "body-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #F9FAFB;
+            font-family: 'Inter', sans-serif;
+            color: #121c2a;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c5c5d3;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface shadow-md flex flex-col p-stack-md z-40">
+<div class="mb-stack-lg px-2">
+<h1 class="font-title-lg text-title-lg text-primary dark:text-primary-fixed-dim font-bold">Admin Portal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 uppercase tracking-wider">SafeReport Malawi</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">folder_shared</span>
+<span class="font-label-md text-label-md">Case Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-md text-label-md">User Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">map</span>
+<span class="font-label-md text-label-md">District Setup</span>
+</a>
+</nav>
+<div class="pt-6 mt-6 border-t border-outline-variant space-y-1">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-3 px-4 rounded-xl font-semibold hover:opacity-90 active:scale-95 transition-all mb-4">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-label-md text-label-md">Add New User</span>
+</button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow ml-64 p-margin-desktop min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md mb-stack-lg">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-2">
+<span>Admin Portal</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-semibold">User Management</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Officer &amp; Staff Directory</h2>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl">Manage credentials and access levels for registered government officials, social workers, and law enforcement officers.</p>
+</div>
+<div class="flex items-center gap-stack-sm">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+<input class="pl-10 pr-4 py-2.5 rounded-xl border border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-primary transition-all w-64 text-body-md" placeholder="Search by name or ID..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2.5 bg-surface-container-high rounded-xl hover:bg-surface-container-highest transition-colors font-semibold text-on-surface">
+<span class="material-symbols-outlined">tune</span>
+<span class="font-label-md text-label-md">Filters</span>
+</button>
+</div>
+</header>
+<!-- Stats Overview Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack-lg">
+<div class="bg-surface-container-lowest p-stack-md rounded-2xl shadow-sm border border-outline-variant/30 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase">Total Staff</p>
+<p class="text-headline-md font-headline-md font-bold text-on-surface">1,284</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-2xl shadow-sm border border-outline-variant/30 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase">Active Now</p>
+<p class="text-headline-md font-headline-md font-bold text-on-surface">432</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-2xl shadow-sm border border-outline-variant/30 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase">Pending Verification</p>
+<p class="text-headline-md font-headline-md font-bold text-on-surface">18</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-2xl shadow-sm border border-outline-variant/30 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">block</span>
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm text-label-sm uppercase">Suspended</p>
+<p class="text-headline-md font-headline-md font-bold text-on-surface">7</p>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-low rounded-2xl p-4 flex flex-wrap items-center gap-gutter mb-6">
+<div class="flex items-center gap-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Role:</label>
+<select class="bg-surface-container-lowest border-outline-variant rounded-lg text-label-md py-1.5 focus:ring-primary">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Social Worker</option>
+<option>Police</option>
+<option>District Officer</option>
+</select>
+</div>
+<div class="flex items-center gap-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant">District:</label>
+<select class="bg-surface-container-lowest border-outline-variant rounded-lg text-label-md py-1.5 focus:ring-primary">
+<option>All Districts</option>
+<option>Lilongwe</option>
+<option>Blantyre</option>
+<option>Mzuzu</option>
+<option>Zomba</option>
+<option>Salima</option>
+</select>
+</div>
+<div class="flex items-center gap-3">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Status:</label>
+<select class="bg-surface-container-lowest border-outline-variant rounded-lg text-label-md py-1.5 focus:ring-primary">
+<option>All Status</option>
+<option>Active</option>
+<option>On Leave</option>
+<option>Suspended</option>
+</select>
+</div>
+<div class="ml-auto flex items-center gap-2">
+<button class="text-primary font-label-md text-label-md hover:underline">Clear All</button>
+</div>
+</div>
+<!-- Data Table Card -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-md border border-outline-variant/30 overflow-hidden flex-grow flex flex-col">
+<div class="overflow-x-auto flex-grow custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-high z-10">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/50">Name &amp; ID</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/50">Role</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/50">District</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/50">Status</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/50">Last Login</th>
+<th class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/50 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- User Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary/10 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Professional headshot of a female government official in a professional suit, set against a neutral corporate background. The lighting is soft and cinematic, following a modern government UI aesthetic with clean lines and high-quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjOzN_b4b4PM8mf7hJBlYyv_nBRiHEPy4Fws4zaKLkg2VenkAYcGCQJNTYVHMfKg_PF3ihxP01Y_q1ZoGxs53LtaONrfDF2QV0bc__rssuQNSp-p68RZhOLwqnut16k1gdOxt7XMaTA4OpvO1lGgydKUvp-PkGWAfdaj4dU8vCAxsAa1LiCaRKR1RhdVJPOefL-1aV_nMZdftepBb6XwRDj0DhZEY-TleUu0vahP0zeXM1ap-YOftieqVeKxj0q4W0h1eXlgab-Q"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Chisomo Phiri</p>
+<p class="text-label-sm text-on-surface-variant/70">ID: MW-SW-0421</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-tertiary-container">psychology</span>
+<span class="font-body-md text-body-md">Social Worker</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="font-body-md text-body-md text-on-surface">Lilongwe Central</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-label-sm font-semibold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-body-md">Oct 24, 2024</p>
+<p class="text-label-sm text-on-surface-variant/60">09:12 AM</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors" title="View Details">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary/10 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A dignified male police officer in a formal ceremonial uniform representing the Malawi Police Service. The portrait is high-definition, shot with a professional 85mm lens, featuring a subtle blurred office background to maintain focus on the subject. Minimalist and authoritative corporate feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHw6HqJtXmuTYMEp3x5RixE9TpL5hR3ZRfdA1pvTXz6_8pO87lMFUfX9tFKN9iiZrhkt35AVic1CXQQxlP1PgGg-UsfAzYn_IzDvFXyww31N_ueyxiy5CjftGxhi8th_GBVsMwuNhZ1d-jNzsaU3wvevahkjhDKKehJp7f7DdllaBVXD6GlX45QmO_5rbsKVoKC7Qcg3vCWffs_XTzLXoUc9QelrQ9jAjZfrBPeJQGG51a4XfyzY1BpUCG0eCW_6h64Eq6dgfA3A"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Inspector John Mwale</p>
+<p class="text-label-sm text-on-surface-variant/70">ID: MW-POL-8832</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">policy</span>
+<span class="font-body-md text-body-md">Police</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="font-body-md text-body-md text-on-surface">Blantyre Urban</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-label-sm font-semibold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                                    On Leave
+                                </span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-body-md">Oct 20, 2024</p>
+<p class="text-label-sm text-on-surface-variant/60">04:45 PM</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary/10 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young male professional district officer, wearing a crisp white shirt and professional spectacles. He looks confident and approachable. The image style is bright, clean, and corporate, emphasizing institutional trust and accessibility for a government portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmuuHGvc_tTjl9Ya8YDBF_TZdWpbuw2YXDV0dy0LQM27190nAU8jlFFHi0pG6UFbGaGaVr7R5JJTWXEJA89W2y3ukIu-bF8OCTRKEJJkdpPuu9oOnPviMWeNwRyXIeqY9-jPWFenAjKUfafuAW9GhAQg_y--4YuooAXMhpi_ZD43hhWbVDiSlXwCFZBGh_DoTmw-iQJG0OJ2cEz9J_9k1UskG7s3aVgubsFhYcCVlCZVGKQqs5Tq7Ec9OrziFBGQBLvosatcSyeQ"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Tiwonge Banda</p>
+<p class="text-label-sm text-on-surface-variant/70">ID: MW-DO-1102</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">location_city</span>
+<span class="font-body-md text-body-md">District Officer</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="font-body-md text-body-md text-on-surface">Mzuzu North</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-label-sm font-semibold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-body-md">Today</p>
+<p class="text-label-sm text-on-surface-variant/60">08:00 AM</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary/10 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Headshot of a senior government administrator with graying hair, wearing a traditional professional Malawian outfit. The lighting is balanced and soft, set in a modern office with glass partitions. The mood is stable, professional, and commands authority for a system admin role." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiqRni2I17-WduCidpWk-QCXWoeRe42oHzSo0MRQjPdiHAkFAAXDPNdVT2xg024-vmuJzWOVDQQ82lijWYXvuco18ByEkVfBZuwc9aoQTmn3-C8Yl16DGVPrB86oJhJAwjGdu-L4i5K2bEBTR36PUMeSm3AqP_45VOs-NAKctzxb0urdNujA6mvkSi2voq_r76GmDXeBisQisYaXHO1qDnEgcc0hFMZANyNV8nLqbNLgcKS2RKVOqH0oNdK2RzC_NyceP6q8CBdA"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Dr. Kondwani Kumwenda</p>
+<p class="text-label-sm text-on-surface-variant/70">ID: MW-ADM-0005</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-body-md text-body-md">Admin</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="font-body-md text-body-md text-on-surface">National HQ</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full bg-red-100 text-red-700 text-label-sm font-semibold flex items-center w-fit gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                    Suspended
+                                </span>
+</td>
+<td class="px-6 py-4">
+<p class="font-body-md text-body-md">Sep 12, 2024</p>
+<p class="text-label-sm text-on-surface-variant/60">02:30 PM</p>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-surface-container border-t border-outline-variant/50 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing 1 to 10 of 1,284 officers</span>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-high disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-semibold text-label-sm">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high font-semibold text-label-sm">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high font-semibold text-label-sm">3</button>
+<span class="px-1">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high font-semibold text-label-sm">129</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-stack-lg pt-stack-md border-t border-outline-variant/50 flex flex-col md:flex-row justify-between items-center gap-stack-sm text-on-surface-variant/70">
+<p class="font-body-md text-body-md">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+<div class="flex gap-stack-md font-body-md text-body-md">
+<a class="hover:text-primary transition-colors" href="#">Help Desk</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Use</a>
+</div>
+</footer>
+</main>
+<!-- FAB for Quick Actions (Mobile/Focused Only) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all md:hidden">
+<span class="material-symbols-outlined text-[32px]">person_add</span>
+</button>
+<script>
+        // Simple interactive script for row highlighting
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                // Remove active class from all
+                document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('bg-primary-container/10'));
+                // Add to current
+                row.classList.add('bg-primary-container/10');
+            });
+        });
+    </script>
+</body></html>

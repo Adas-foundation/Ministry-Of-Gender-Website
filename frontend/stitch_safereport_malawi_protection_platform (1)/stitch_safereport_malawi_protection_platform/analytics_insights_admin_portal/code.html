@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Admin Portal - Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#00164e",
+                    "surface-variant": "#d9e3f6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "outline": "#757682",
+                    "on-primary-fixed-variant": "#264191",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-container": "#99efe5",
+                    "surface-dim": "#d0dbed",
+                    "primary-container": "#1e3a8a",
+                    "primary": "#00236f",
+                    "surface-tint": "#4059aa",
+                    "background": "#f8f9ff",
+                    "outline-variant": "#c5c5d3",
+                    "secondary": "#006a63",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#d8a31b",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#90a8ff",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-secondary-fixed": "#00201d",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-surface-variant": "#444651",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#dce1ff",
+                    "inverse-surface": "#27313f",
+                    "tertiary": "#382700",
+                    "on-background": "#121c2a",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#533c00",
+                    "surface": "#f8f9ff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdfa0",
+                    "secondary-fixed": "#9cf2e8",
+                    "on-surface": "#121c2a",
+                    "on-secondary-container": "#006f67",
+                    "inverse-primary": "#b6c4ff",
+                    "surface-container-highest": "#d9e3f6",
+                    "surface-container-high": "#dee9fc",
+                    "surface-container": "#e6eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Poppins"],
+                    "headline-lg": ["Poppins"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Poppins"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-card-shadow {
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.05);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col p-stack-md z-40">
+<div class="mb-stack-lg">
+<h1 class="font-title-lg text-title-lg text-primary font-bold">Admin Portal</h1>
+<p class="text-label-sm text-on-surface-variant">SafeReport Malawi</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">folder_shared</span> Case Management
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">group</span> User Management
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 ease-in-out rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">map</span> District Setup
+            </a>
+</nav>
+<button class="mt-4 bg-primary text-on-primary py-3 px-4 rounded-xl font-label-md text-label-md font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">add</span> Create New Case
+        </button>
+<div class="mt-auto pt-4 border-t border-outline-variant flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-error hover:bg-error-container/20 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Simplified for Dashboard) -->
+<header class="sticky top-0 z-30 bg-surface/80 backdrop-blur-md px-margin-desktop py-4 flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<img class="h-10 w-auto" data-alt="Official Malawi Government Crest featuring a lion and a leopard supporting a shield, rendered in high-definition heraldic style, representing the Ministry of Gender and Social Welfare. The emblem is clean, centered on a white background, and conveys national authority and institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5QfXeoELR0KXljPCaQgSeTOqk968ZPw94G0IUPDmWXX8TuDsv9IHu_9J6AgGbTEkbj9kplvhqmm23OyXUaVc2okCDKhXq3LMGk5oRmV8GOrYvrrcfWJLYmBN580vf4UYqDTaBcx5-WB-0FDZvH8VI9ORCxhoSVrtFaN0Y7jT1CtZ7d2sryRFVEQItaeXDIWDvL1YYqnVAkb3PVmGpn1ZEql6Yd4wiSey62wV-apA1Gzl7mj0J1xmnyuUG2SVVHOeJqFE5sTCENw"/>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-primary">Analytics Dashboard</h2>
+<p class="text-label-md text-on-surface-variant">Real-time surveillance &amp; social monitoring</p>
+</div>
+</div>
+<div class="flex items-center gap-base">
+<div class="flex items-center bg-surface-container px-3 py-2 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">calendar_today</span>
+<span class="text-label-md text-on-surface">Oct 2023 - Oct 2024</span>
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+                    AM
+                </div>
+</div>
+</header>
+<div class="px-margin-desktop py-stack-lg space-y-gutter">
+<!-- KPI Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- KPI Card 1 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl custom-card-shadow border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">timer</span>
+</span>
+<span class="text-secondary font-semibold text-label-sm bg-secondary-container/30 px-2 py-0.5 rounded-full">-12%</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface-variant">Avg Response Time</h4>
+<p class="text-headline-md font-bold text-primary">4.2 Hours</p>
+</div>
+</div>
+<!-- KPI Card 2 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl custom-card-shadow border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="p-2 bg-secondary/10 rounded-lg text-secondary">
+<span class="material-symbols-outlined">check_circle</span>
+</span>
+<span class="text-secondary font-semibold text-label-sm bg-secondary-container/30 px-2 py-0.5 rounded-full">+5.4%</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface-variant">Resolution Rate</h4>
+<p class="text-headline-md font-bold text-primary">89.2%</p>
+</div>
+</div>
+<!-- KPI Card 3 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl custom-card-shadow border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="p-2 bg-tertiary/10 rounded-lg text-tertiary-container">
+<span class="material-symbols-outlined">trending_up</span>
+</span>
+<span class="text-error font-semibold text-label-sm bg-error-container/30 px-2 py-0.5 rounded-full">+18%</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface-variant">Reporting Trends</h4>
+<p class="text-headline-md font-bold text-primary">1,482 New</p>
+</div>
+</div>
+<!-- KPI Card 4 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl custom-card-shadow border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="p-2 bg-primary-container/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">record_voice_over</span>
+</span>
+<span class="text-on-surface-variant font-medium text-label-sm">Active Now</span>
+</div>
+<div>
+<h4 class="text-label-md text-on-surface-variant">Cases Pending</h4>
+<p class="text-headline-md font-bold text-primary">342 Cases</p>
+</div>
+</div>
+</div>
+<!-- Bento Layout Content -->
+<div class="bento-grid">
+<!-- Main Trend Graph -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-gutter rounded-2xl custom-card-shadow border border-outline-variant/30">
+<div class="flex justify-between items-center mb-stack-lg">
+<div>
+<h3 class="font-title-lg text-title-lg text-primary font-bold">Annual Incident Trends</h3>
+<p class="text-body-md text-on-surface-variant">Monthly breakdown of reported cases (2023-2024)</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container-high rounded-lg text-label-md font-medium text-on-surface">Filter</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold">Export</button>
+</div>
+</div>
+<div class="relative h-72 w-full flex items-end justify-between px-4 pb-8">
+<!-- Simulated Line Graph Path with CSS -->
+<div class="absolute inset-0 flex items-center justify-center">
+<svg class="w-full h-full opacity-20" preserveaspectratio="none" viewbox="0 0 1000 300">
+<path d="M0,250 Q100,100 200,200 T400,150 T600,220 T800,80 T1000,120" fill="none" stroke="#1E3A8A" stroke-width="4"></path>
+<circle cx="200" cy="200" fill="#1E3A8A" r="6"></circle>
+<circle cx="400" cy="150" fill="#1E3A8A" r="6"></circle>
+<circle cx="800" cy="80" fill="#1E3A8A" r="6"></circle>
+</svg>
+</div>
+<!-- Axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-label-sm text-on-surface-variant px-4">
+<span>Oct</span><span>Dec</span><span>Feb</span><span>Apr</span><span>Jun</span><span>Aug</span><span>Oct</span>
+</div>
+</div>
+</div>
+<!-- District Heatmap Card -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-gutter rounded-2xl custom-card-shadow border border-outline-variant/30 flex flex-col">
+<div class="mb-stack-md">
+<h3 class="font-title-lg text-title-lg text-primary font-bold">District Intensity</h3>
+<p class="text-body-md text-on-surface-variant">Malawi Heatmap</p>
+</div>
+<div class="flex-grow flex items-center justify-center relative group">
+<div class="w-full h-64 bg-surface-container rounded-lg overflow-hidden relative">
+<div class="absolute inset-0 flex items-center justify-center">
+<img class="h-full object-contain" data-alt="A stylized, modern vector map of Malawi showing its regional districts. The map uses a heat-map aesthetic with various shades of Royal Blue and Teal highlighting different areas to represent incident intensity. High-contrast labels and clean borders define the geographical boundaries against a minimalist light grey background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByICtgUAQu09fMG8Oye8bGa2K9KDa4QnDPfOAfReONyx9W5XAztFn0O2u5uzQiu67B1B4y2V2NghaTemfuObtWtK0S4jUXTiFMDN7Zbk59WtINehafsKOHDIG3CBOybo7g1IZVCVttLlssu_s4E_5PKJ_Hx8Rm81OQA6nO1wBaYyGQNS4egh0893H7se9i7SPQzolfOHTzNpbWzZpN6cTqXfkhhYcCWofEAxRBrFKLEE6i-i6YTIn43a-T7pVx715HM3v-scfK6Q"/>
+</div>
+<!-- Map Interaction Points -->
+<div class="absolute top-1/4 left-1/2 w-4 h-4 bg-error rounded-full animate-ping"></div>
+<div class="absolute top-1/2 left-2/3 w-3 h-3 bg-secondary rounded-full opacity-70"></div>
+<div class="absolute bottom-1/4 left-1/2 w-5 h-5 bg-primary rounded-full opacity-60"></div>
+</div>
+</div>
+<div class="mt-4 space-y-2">
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Lilongwe (High)</span>
+<span class="font-bold text-error">428 cases</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-error h-full w-[85%]"></div>
+</div>
+<div class="flex justify-between text-label-sm">
+<span class="text-on-surface-variant">Blantyre</span>
+<span class="font-bold text-primary">315 cases</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[65%]"></div>
+</div>
+</div>
+</div>
+<!-- Case Category Comparison (Bar Charts) -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest p-gutter rounded-2xl custom-card-shadow border border-outline-variant/30">
+<div class="flex justify-between items-center mb-stack-lg">
+<h3 class="font-title-lg text-title-lg text-primary font-bold">Case Categories</h3>
+<span class="material-symbols-outlined text-on-surface-variant">more_horiz</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span class="font-medium text-on-surface">Gender Based Violence</span>
+<span class="font-bold text-primary">542 (36%)</span>
+</div>
+<div class="h-8 bg-surface-container flex rounded-lg overflow-hidden">
+<div class="h-full bg-primary" style="width: 36%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span class="font-medium text-on-surface">Child Protection</span>
+<span class="font-bold text-secondary">412 (28%)</span>
+</div>
+<div class="h-8 bg-surface-container flex rounded-lg overflow-hidden">
+<div class="h-full bg-secondary" style="width: 28%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span class="font-medium text-on-surface">Elderly Welfare</span>
+<span class="font-bold text-tertiary-container">215 (14%)</span>
+</div>
+<div class="h-8 bg-surface-container flex rounded-lg overflow-hidden">
+<div class="h-full bg-tertiary-container" style="width: 14%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-md">
+<span class="font-medium text-on-surface">Human Trafficking</span>
+<span class="font-bold text-error">104 (7%)</span>
+</div>
+<div class="h-8 bg-surface-container flex rounded-lg overflow-hidden">
+<div class="h-full bg-error" style="width: 7%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Officer Leaderboard -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest p-gutter rounded-2xl custom-card-shadow border border-outline-variant/30">
+<div class="flex justify-between items-center mb-stack-lg">
+<h3 class="font-title-lg text-title-lg text-primary font-bold">Top Performing Officers</h3>
+<button class="text-primary font-bold text-label-md">View All</button>
+</div>
+<div class="overflow-x-auto scrollbar-hide">
+<table class="w-full text-left">
+<thead>
+<tr class="text-label-sm text-on-surface-variant border-b border-outline-variant pb-2">
+<th class="pb-3 font-semibold">Officer Name</th>
+<th class="pb-3 font-semibold">District</th>
+<th class="pb-3 font-semibold">Solved</th>
+<th class="pb-3 font-semibold">Rating</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-label-sm">CN</div>
+<span class="font-medium text-on-surface">Chikondi Ndlovu</span>
+</td>
+<td class="py-4 text-body-md">Zomba</td>
+<td class="py-4 font-bold text-primary">124</td>
+<td class="py-4">
+<div class="flex text-tertiary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star_half</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-label-sm">TM</div>
+<span class="font-medium text-on-surface">Tiwonge Mtika</span>
+</td>
+<td class="py-4 text-body-md">Mzimba</td>
+<td class="py-4 font-bold text-primary">98</td>
+<td class="py-4">
+<div class="flex text-tertiary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-bold text-label-sm">PM</div>
+<span class="font-medium text-on-surface">Precious Mwale</span>
+</td>
+<td class="py-4 text-body-md">Lilongwe</td>
+<td class="py-4 font-bold text-primary">87</td>
+<td class="py-4">
+<div class="flex text-tertiary-container">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Integration -->
+<footer class="bg-primary text-on-primary py-stack-lg px-margin-desktop mt-stack-lg">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-base">
+<div class="text-center md:text-left">
+<h5 class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport Malawi</h5>
+<p class="text-body-md text-on-primary/80 mt-1">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex gap-gutter">
+<a class="text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Help Desk</a>
+<a class="text-body-md text-on-primary/80 hover:text-on-primary transition-colors font-bold underline" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Interactions Script -->
+<script>
+        // Simple Micro-interactions for dashboard hover states
+        document.querySelectorAll('.custom-card-shadow').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'transform 0.2s ease-out';
+                card.classList.add('border-primary/40');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.classList.remove('border-primary/40');
+            });
+        });
+    </script>
+</body></html>

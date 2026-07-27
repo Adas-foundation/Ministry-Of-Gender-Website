@@ -1,211 +1,252 @@
+import { Link } from 'react-router-dom'
+
 const About = () => {
   return (
-    <main className="max-w-[1280px] mx-auto px-6">
+    <main className="w-full">
       {/* Hero Section */}
-      <section className="py-12 mb-12">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-4">
-              <span className="material-symbols-outlined text-[18px]">gavel</span>
-              <span className="text-xs font-bold">Government of Malawi Initiative</span>
-            </div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-4 leading-tight">
-              Securing the Future of <span className="text-blue-700">Every Malawian.</span>
-            </h1>
-            <p className="text-lg text-gray-600 mb-8 max-w-xl">
-              SafeReport is the national digital platform dedicated to protecting vulnerable populations from gender-based violence, abuse, and exploitation through secure reporting and rapid case management.
-            </p>
-            <div className="flex gap-4">
-              <button className="bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold shadow-md hover:bg-blue-800 transition-all">
-                Our Mission
-              </button>
-              <button className="border border-gray-300 text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all">
-                Watch Overview
-              </button>
-            </div>
-          </div>
-          <div className="lg:w-1/2 relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl relative z-10">
-              <img
-                className="w-full h-[500px] object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRccnlqN5JPajdrsJrm4B8TrYCo8hJZee1qswEuTWIieqcvmVp6hWXn6DFQteUm5GUhGCW4_fh3Hc7RUsHbUniePMc2_7VUDsJ0i1jLDdilmcYvJp9ToOt_mAUqw6FjKiFliZcrEzo7WBh0vX8fjKWNjUT9C_IhzBy9A2swHLONDVmHWq6wnSX-oyDcHGQl9B-fwFfN2W-gYUquAbi-Vlq4lG7luMtF81nA7GqnWpnIHFTLrXP3gh4HU_mbvzU8TTrmBhS59ZI70w"
-                alt="Ministry of Gender Office"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl z-20 flex items-center gap-4">
-              <div className="bg-green-100 p-4 rounded-full">
-                <span className="material-symbols-outlined text-green-600 text-[32px]">verified_user</span>
+      <section className="relative py-24 overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-10">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="flex-1">
+              <span className="text-[#006a63] font-bold tracking-widest uppercase text-[12px] mb-4 block font-['Inter']">Official Platform of Malawi</span>
+              <h2 className="text-[48px] leading-[56px] font-[700] text-[#00236f] mb-6 font-['Poppins']">Securing the Future of Every Citizen Through Digital Protection.</h2>
+              <p className="text-[18px] leading-[28px] text-gray-600 mb-8 max-w-2xl font-['Inter']">SafeReport is the Ministry of Gender's primary digital instrument for identifying, reporting, and managing cases of gender-based violence and human rights violations across the nation.</p>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/report" className="bg-[#00236f] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all font-['Poppins']">Report a Case</Link>
+                <button className="border-2 border-[#006a63] text-[#006a63] px-8 py-4 rounded-xl font-semibold hover:bg-[#006a63]/5 transition-all font-['Poppins']">Watch Introduction</button>
               </div>
-              <div>
-                <p className="text-xl font-bold text-gray-900">24/7 Monitoring</p>
-                <p className="text-xs text-gray-600">Real-time Response Coordination</p>
+            </div>
+            <div className="flex-1 w-full relative">
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl relative">
+                <img 
+                  className="w-full h-full object-cover" 
+                  alt="A professional Malawian female official in formal attire sitting in a modern office" 
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg658S58QqyQpUkknbOaKTiz_sX10FEdbd353mTYM0uY6TOfxc3PzzmTieJhXdaJRSnVd8TdN-lR3SBzUZgPWA1bI6DY-WpZ4BlJFy2vf6g25ddiMt31KzvuOfh_812Zb3mbHRpod_vnI5ulelo0nHBpRsPr4GYs32FgfDtae77TQu70q5CxQS-2fq5Qaej_MKVGu5J3CapBb3hW4wQ4YSZB6zi9HJxIyLzj5ZsQd3UQAIhvovB2rfP_37BV6JaNF8aHQEb_dn0A"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00236f]/60 to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-white">
+                  <p className="text-[20px] font-[500] mb-2 font-['Poppins']">Empowering Communities</p>
+                  <p className="text-[16px] opacity-90 font-['Inter']">Our technology bridges the gap between those in need and the services that protect them.</p>
+                </div>
+              </div>
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-300 flex items-center gap-4 max-w-xs">
+                <div className="bg-[#99efe5] p-3 rounded-full">
+                  <span className="material-symbols-outlined text-[#006f67]" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
+                </div>
+                <div>
+                  <p className="font-bold text-[#00236f]">Secure Encryption</p>
+                  <p className="text-[12px] text-gray-600 font-['Inter']">All reports are strictly confidential and encrypted.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission & Legal Framework */}
-      <section className="py-12 mb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Our Mission */}
-          <div className="bg-white/80 backdrop-blur-sm border border-gray-200 p-8 rounded-3xl flex flex-col justify-between">
-            <div>
-              <div className="bg-blue-700 p-3 rounded-lg w-fit mb-4">
-                <span className="material-symbols-outlined text-white">psychology_alt</span>
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission & Mandate</h2>
-              <p className="text-base text-gray-600 mb-4 leading-relaxed">
-                Under the Ministry of Gender, Community Development and Social Welfare, our primary mandate is to foster an environment where every citizen lives free from fear. SafeReport centralizes the reporting of GBV, child abuse, and human trafficking cases, ensuring they are handled with the urgency and sensitivity they deserve.
+      {/* Mission & Purpose Section (Bento Grid) */}
+      <section className="py-24 bg-[#eff4ff]">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-10">
+          <div className="text-center mb-16">
+            <h3 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">Our Institutional Mandate</h3>
+            <div className="w-24 h-1 bg-[#006a63] mx-auto rounded-full"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {/* Mission Card */}
+            <div className="col-span-12 md:col-span-8 bg-white p-10 rounded-[32px] shadow-sm border border-gray-300 flex flex-col justify-center">
+              <span className="material-symbols-outlined text-[#00236f] text-5xl mb-6" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance</span>
+              <h4 className="text-[24px] font-[600] text-[#00236f] mb-4 font-['Poppins']">Ministry Mission Statement</h4>
+              <p className="text-[18px] leading-[28px] text-gray-600 font-['Inter'] leading-relaxed">
+                "To promote social and economic empowerment of women, girls, and vulnerable populations through gender-responsive programming and the provision of high-quality community development and social welfare services to the people of Malawi."
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="p-4 bg-gray-100 rounded-xl">
-                <span className="text-4xl font-bold text-blue-700">100%</span>
-                <p className="text-xs text-gray-600">Confidential Tracking</p>
-              </div>
-              <div className="p-4 bg-gray-100 rounded-xl">
-                <span className="text-4xl font-bold text-blue-700">28</span>
-                <p className="text-xs text-gray-600">District Support Offices</p>
-              </div>
+            {/* Purpose Card */}
+            <div className="col-span-12 md:col-span-4 bg-[#00236f] text-white p-10 rounded-[32px] shadow-lg flex flex-col justify-between">
+              <h4 className="text-[24px] font-[600] mb-4 font-['Poppins']">Digital Purpose</h4>
+              <p className="text-[16px] opacity-80 mb-6 font-['Inter']">
+                SafeReport exists to eliminate barriers in the reporting process, ensuring that distance and fear no longer prevent justice.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-[#b6c4ff]">check_circle</span>
+                  <span className="text-[14px] font-['Inter']">Instant Alert Routing</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-[#b6c4ff]">check_circle</span>
+                  <span className="text-[14px] font-['Inter']">Real-time Case Tracking</span>
+                </li>
+              </ul>
             </div>
-          </div>
-
-          {/* Legal Framework */}
-          <div className="bg-gray-800 text-white p-8 rounded-3xl">
-            <div className="bg-blue-600 p-3 rounded-lg w-fit mb-4">
-              <span className="material-symbols-outlined text-white">gavel</span>
-            </div>
-            <h2 className="text-2xl font-semibold mb-4">Legal Framework</h2>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-blue-300 mt-1">check_circle</span>
-                <p className="text-base">Prevention of Domestic Violence Act (2006)</p>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-blue-300 mt-1">check_circle</span>
-                <p className="text-base">Child Care, Protection and Justice Act (2010)</p>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-blue-300 mt-1">check_circle</span>
-                <p className="text-base">Gender Equality Act (2013)</p>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-blue-300 mt-1">check_circle</span>
-                <p className="text-base">Trafficking in Persons Act (2015)</p>
-              </li>
-            </ul>
-            <div className="mt-8 pt-8 border-t border-white/10">
-              <p className="text-sm opacity-80 italic">"Empowering citizens through legal accountability and community-led protection systems."</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Privacy Commitment */}
-      <section className="py-12 mb-12">
-        <div className="bg-gray-200 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8 border border-gray-200">
-          <div className="md:w-1/3">
-            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-200">
-              <span className="material-symbols-outlined text-blue-700 text-[48px]">security</span>
-            </div>
-          </div>
-          <div className="md:w-2/3">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Your Privacy is Non-Negotiable</h2>
-            <p className="text-lg text-gray-600 mb-4">SafeReport utilizes enterprise-grade encryption and strict data access protocols. All reports can be made anonymously, and your information is only shared with specialized responders specifically assigned to your case.</p>
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 text-green-800 bg-green-100 px-4 py-2 rounded-lg">
-                <span className="material-symbols-outlined text-[18px]">verified</span>
-                <span className="text-xs font-bold">Encrypted End-to-End</span>
+            {/* Tech Feature 1 */}
+            <div className="col-span-12 md:col-span-4 bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-gray-300">
+              <div className="bg-[#533c00] w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-[#261a00]">security</span>
               </div>
-              <div className="flex items-center gap-2 text-green-800 bg-green-100 px-4 py-2 rounded-lg">
-                <span className="material-symbols-outlined text-[18px]">visibility_off</span>
-                <span className="text-xs font-bold">Anonymous Submission</span>
+              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Protection First</h5>
+              <p className="text-gray-600 text-[16px] font-['Inter']">Advanced protocols to mask user identity when reporting from sensitive environments.</p>
+            </div>
+            {/* Tech Feature 2 */}
+            <div className="col-span-12 md:col-span-4 bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-gray-300">
+              <div className="bg-[#99efe5] w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-[#006f67]">folder_shared</span>
               </div>
+              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Case Management</h5>
+              <p className="text-gray-600 text-[16px] font-['Inter']">Centralized database allowing inter-departmental collaboration for swift action.</p>
+            </div>
+            {/* Tech Feature 3 */}
+            <div className="col-span-12 md:col-span-4 bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-gray-300">
+              <div className="bg-[#1e3a8a] w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
+                <span className="material-symbols-outlined text-[#90a8ff]">insights</span>
+              </div>
+              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Data Analytics</h5>
+              <p className="text-gray-600 text-[16px] font-['Inter']">Heatmaps and trend analysis to deploy social services where they are most needed.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Leadership Section */}
-      <section className="py-12 mb-12">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Ministry Leadership</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Driving policy and protection through dedicated leadership and collaborative governance.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Leader 1 */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 group hover:shadow-xl transition-all">
-            <div className="h-64 overflow-hidden relative">
-              <img
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq9G7Rn6MpRCMWyo2aVo7B87jscy4mEJU1CQ3cnGf9qap8I1-D7yrz0axyMog2PD72Uj9hJwvLbkU08scACxWQ6GXwGNIWjsmODUudgHD86tLcEadJfsUKDujLBwmubczynwdDCfS6y9UxEcxdVNq9w3EHIkAZ3WP1XBZim4DMZDv6XZeG-gZqNYdsFCs-yq7yJvJwRQCfkbNgJl7sARiX8_r4OP6rnI3kQWcCfKM1Hp2Zdw8Gp8O3yumb3LRwm1iLlE55zklqT7k"
-                alt="Hon. Jean Sendeza"
+      {/* Impact Statistics Section */}
+      <section className="py-24 relative">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-10">
+          <div className="bg-[#1e3a8a] rounded-[48px] p-12 md:p-20 text-[#90a8ff] overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+              <img 
+                className="w-full h-full object-cover" 
+                alt="Traditional Malawian textile pattern" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIwqCdejBBfql0Eskx6pH6NHPLNbQDvK74igxicg0wh2QyG1iRKSJnWV-24Net1IxZiKN2-1HJSbpgzYeMZInF4rn59Bv66MB9J5_EyCtf_Cs8n9HTUxI8YZI3QuVfO7yXr0Ud8bi32irnNg7cfL7DktALa0PZckbGWzTp0gfCzisnOTHjf6_V_LqP7REYufQ37EQYmlNQ6vI8AAcNbQ9PM7dzIjVNn0EnZmHyE8wW7VkUadzlfZsRdDsNQSz-qOI_KADxwgcZ8w"
               />
             </div>
-            <div className="p-6">
-              <h4 className="text-xl font-semibold text-gray-900">Hon. Jean Sendeza, MP</h4>
-              <p className="text-blue-700 font-bold mb-4">Minister of Gender</p>
-              <p className="text-sm text-gray-600">Leading the national strategy for social welfare and gender equality across all 28 districts.</p>
-            </div>
-          </div>
-
-          {/* Leader 2 */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 group hover:shadow-xl transition-all">
-            <div className="h-64 overflow-hidden relative">
-              <img
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4WyD7KQD__Q_xYCuyMKLBxFnC1f7tqW6eTe4Y0a2x8dhGK010au2E8d1ySNzzBr4zrL8yzFs3qwOYmB5oJ0eA0KGtO3S1fJ3_EH21NlLDil6wFPseQJ1AoGSlORYyWQXDFC1IXM9NUHIHDRtQRdCad_O5ljgQtCqFXjMYQ3HyeCEjFqutmsySY50ndmMqccbEmPXPhRbWU2fZ7KNrltp9OcvjVgIqArZZXq9f_sDKCdrv4WfMk9mCB2m9qewjVAg19LdiAo_MWhM"
-                alt="Dr. Isaac Katopola"
-              />
-            </div>
-            <div className="p-6">
-              <h4 className="text-xl font-semibold text-gray-900">Dr. Isaac Katopola</h4>
-              <p className="text-blue-700 font-bold mb-4">Principal Secretary</p>
-              <p className="text-sm text-gray-600">Overseeing the operational execution of community development and social protection programs.</p>
-            </div>
-          </div>
-
-          {/* Leader 3 */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 group hover:shadow-xl transition-all">
-            <div className="h-64 overflow-hidden relative">
-              <div className="absolute inset-0 bg-blue-700/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-blue-700 text-[64px]">group</span>
+            <div className="relative z-10">
+              <h3 className="text-[32px] leading-[40px] mb-12 font-['Poppins']">Our Quantifiable Impact</h3>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div className="text-center md:text-left">
+                  <p className="text-5xl font-bold mb-2">12k+</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Reports Resolved</p>
+                  <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
+                    <div className="bg-[#b6c4ff] h-full w-[85%]"></div>
+                  </div>
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="text-5xl font-bold mb-2">24h</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Avg. Response Time</p>
+                  <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
+                    <div className="bg-[#b6c4ff] h-full w-[95%]"></div>
+                  </div>
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="text-5xl font-bold mb-2">28</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Districts Covered</p>
+                  <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
+                    <div className="bg-[#b6c4ff] h-full w-full"></div>
+                  </div>
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Confidentiality Rate</p>
+                  <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
+                    <div className="bg-[#b6c4ff] h-full w-full"></div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="p-6">
-              <h4 className="text-xl font-semibold text-gray-900">Directorate Team</h4>
-              <p className="text-blue-700 font-bold mb-4">Social Welfare Services</p>
-              <p className="text-sm text-gray-600">Specialized divisions managing child protection, gender-based violence, and human rights monitoring.</p>
+              <div className="mt-16 pt-12 border-t border-[#90a8ff]/10 flex flex-col md:flex-row gap-8 items-center justify-between">
+                <p className="text-[18px] italic max-w-xl font-['Inter']">"Since the deployment of SafeReport, the reporting of GVB cases in rural districts has increased by 40%, directly leading to faster intervention by local authorities."</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-full border-2 border-[#b6c4ff] overflow-hidden">
+                    <img 
+                      className="w-full h-full object-cover" 
+                      alt="Hon. Minister Jean Sendeza" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCTAKBssRPxwn31BPGWaNA50osF2Rvl5xCVVNZMevM77Mi5RTTzxTgW67QZfsA1JG4sE564mPhIfkusGvH5QWJCzVZ1R78f3jfkYmklUt2ijc-JhWOIm4XkBoRUugFWzDBS_NrmxaDBXqFaOFpVfALihVybZpBnC4V90R5X2EwNgS9-xjRVLIDR_6Y-U_GCaSsFqZzKA-4ovvYik2KysGm5Uowoh5ZmoI40cgBXmVugHu8tEa2rp8TFvvGXbN4tGyLp_DtYYzN3Q"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-bold">Hon. Minister Jean Sendeza</p>
+                    <p className="text-[12px] opacity-70 font-['Inter']">Ministry of Gender, Malawi</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-12 mb-12 text-center">
-        <h3 className="text-2xl font-semibold text-gray-900 mb-8">Integrated Response Partners</h3>
-        <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all">
-          <div className="flex flex-col items-center gap-2">
-            <span className="material-symbols-outlined text-[48px] text-gray-900">local_police</span>
-            <span className="text-xs font-bold">Malawi Police Service</span>
+      {/* Partners & Stakeholders Section */}
+      <section className="py-24">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-10">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <h3 className="text-[32px] leading-[40px] text-[#00236f] mb-4 font-['Poppins']">Inter-Agency Collaboration</h3>
+              <p className="text-[18px] text-gray-600 font-['Inter']">SafeReport is not a standalone app; it is a gateway to a coordinated national response network including law enforcement, medical practitioners, and social workers.</p>
+            </div>
+            <div className="flex gap-2">
+              <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                <span className="material-symbols-outlined">chevron_left</span>
+              </button>
+              <button className="w-12 h-12 rounded-full bg-[#00236f] text-white flex items-center justify-center hover:opacity-90 transition-all">
+                <span className="material-symbols-outlined">chevron_right</span>
+              </button>
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="material-symbols-outlined text-[48px] text-gray-900">medical_services</span>
-            <span className="text-xs font-bold">Ministry of Health</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Malawi Police Service */}
+            <div className="bg-white p-8 rounded-3xl border border-gray-300 hover:shadow-lg transition-shadow">
+              <div className="mb-6 flex items-center justify-between">
+                <div className="w-16 h-16 bg-[#eff4ff] flex items-center justify-center rounded-2xl">
+                  <span className="material-symbols-outlined text-[#00236f] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>local_police</span>
+                </div>
+                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">Primary Partner</span>
+              </div>
+              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">Malawi Police Service</h4>
+              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">Direct integration with the Victim Support Unit (VSU) for rapid response and criminal investigations.</p>
+              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="#">
+                View Protocol <span className="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+            {/* Ministry of Health */}
+            <div className="bg-white p-8 rounded-3xl border border-gray-300 hover:shadow-lg transition-shadow">
+              <div className="mb-6 flex items-center justify-between">
+                <div className="w-16 h-16 bg-[#eff4ff] flex items-center justify-center rounded-2xl">
+                  <span className="material-symbols-outlined text-[#00236f] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>health_and_safety</span>
+                </div>
+                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">Health Liaison</span>
+              </div>
+              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">Ministry of Health</h4>
+              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">Ensuring immediate medical attention and forensic evidence collection for survivors.</p>
+              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="#">
+                Service Directory <span className="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+            {/* Legal Aid Bureau */}
+            <div className="bg-white p-8 rounded-3xl border border-gray-300 hover:shadow-lg transition-shadow">
+              <div className="mb-6 flex items-center justify-between">
+                <div className="w-16 h-16 bg-[#eff4ff] flex items-center justify-center rounded-2xl">
+                  <span className="material-symbols-outlined text-[#00236f] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>gavel</span>
+                </div>
+                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">Legal Support</span>
+              </div>
+              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">Legal Aid Bureau</h4>
+              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">Providing free legal representation and guidance for victims seeking justice through the courts.</p>
+              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="#">
+                Get Counsel <span className="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="material-symbols-outlined text-[48px] text-gray-900">balance</span>
-            <span className="text-xs font-bold">Ministry of Justice</span>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <span className="material-symbols-outlined text-[48px] text-gray-900">handshake</span>
-            <span className="text-xs font-bold">UNICEF Malawi</span>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-[#00236f] overflow-hidden relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#00236f_0%,rgba(15,118,110,0.3)_100%)] opacity-50"></div>
+        <div className="max-w-[1280px] mx-auto px-4 md:px-10 text-center relative z-10">
+          <h3 className="text-[48px] leading-[56px] text-white mb-8 max-w-3xl mx-auto font-['Poppins']">Ready to help us build a safer Malawi?</h3>
+          <p className="text-[18px] text-white/80 mb-12 max-w-2xl mx-auto font-['Inter']">Whether you are a victim, a witness, or a concerned citizen, your report could save a life. Join our mission today.</p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <button className="bg-[#006a63] text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:scale-105 transition-transform font-['Poppins']">Get Started Now</button>
+            <button className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-colors font-['Poppins']">Download Offline Form</button>
           </div>
         </div>
       </section>
     </main>
-  );
-};
+  )
+}
 
-export default About;
+export default About

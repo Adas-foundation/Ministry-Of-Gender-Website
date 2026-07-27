@@ -1,266 +1,194 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    name: '',
-    phone: '',
-    confirmPassword: '',
-  });
-  const [isLoading, setIsLoading] = useState(false);
+export default function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [remember, setRemember] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  // Placeholder authentication function.
+  // TODO: Replace this with a real API call to your backend auth endpoint
+  async function authenticateUser(email, password) {
+    const isAdmin = String(email).toLowerCase().includes('admin')
+    return { role: isAdmin ? 'admin' : 'user' }
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      if (isLogin) {
-        alert('Login successful! Redirecting to dashboard...');
-        navigate('/');
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const result = await authenticateUser(email, password)
+      localStorage.setItem('safereport_user', JSON.stringify({ email, role: result.role }))
+
+      if (result && result.role === 'admin') {
+        navigate('/dashboard')
       } else {
-        alert('Account created successfully! Please log in.');
-        setIsLogin(true);
+        navigate('/')
       }
-    }, 1500);
-  };
+    } catch (err) {
+      console.error('Authentication error', err)
+      alert('Login failed. Please try again.')
+    }
+  }
 
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-6">
-      <div className="w-full max-w-md">
-        {/* Logo and Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-white rounded-full p-1 shadow-sm border border-gray-200 overflow-hidden">
-              <img
-                className="h-full object-contain"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6LAiD_t7dS_4s9hPpuW_AOXS_MUYHLuNDWy9EpKAlwUxPaxMdGTA69t7IB90GobXzSZW8KHTWV4qZuaj-3Fs9KFaCAwh_Qulc55XtJ0G7scRClmZWr1hTZ45h3_A5bZha6NNf7WJPLSoYBsnkriSP-mBJmDwwNp8a1B5s-6sBKPjN-fQmry6hutsY5mL13ZnDALc5Hse4LKIv9onp70L1ePO0QNxwaYkozbP_K79hMGqK28pfUXa06c0P0vqK-0F_y7QBL2bsuWE"
-                alt="Malawi Crest"
-              />
-            </div>
-            <span className="text-2xl font-bold text-gray-900">SafeReport</span>
+    <main className="min-h-screen flex flex-col md:flex-row bg-surface text-on-surface font-body-md">
+      {/* Left Side: Visual Anchor & Branding (hidden on small screens) */}
+      <section className="relative hidden md:flex md:w-1/2 lg:w-3/5 bg-primary-container overflow-hidden items-center justify-center">
+        <div className="absolute inset-0 z-0 opacity-40">
+          <div className="bg-pattern absolute inset-0"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-secondary opacity-30"></div>
+        </div>
+        <div className="relative z-10 p-margin-desktop max-w-xl text-on-primary">
+          <div className="mb-stack-lg">
+            <img
+              alt="Malawi Government Seal"
+              className="h-24 w-auto mb-stack-md drop-shadow-lg"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDki8aAv-XLN2kUR3bF2q1pl191097fA7sC47WWQvMbrZFTdO4PucHRqySrq9LmD1dD70RZj8wrxVadguQsfclg2S_Bz5t-FyDVyVsRsD8GCegtzLLPE3jgu7nMSAl_OpodhGt7qikGuZoii-vEBFn6nOPne2XkeZwmPFy59hyvmf1Du9gbOfwGkJud5gRNfYE5mBm0sIuOKgq7NpdOIBza6mbrGK-BnKFcryNzh8iuDGcJek5vH3pUZU5kIwMMztjBhJ1xgq7Zkg"
+            />
+            <h1 className="font-display-lg text-display-lg mb-base leading-tight">Ministry of Gender</h1>
+            <p className="font-headline-md text-headline-md text-primary-fixed-dim opacity-90">SafeReport Admin Portal</p>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
-          </h1>
-          <p className="text-gray-600">
-            {isLogin
-              ? 'Sign in to access your dashboard and manage reports'
-              : 'Register to track reports and access support services'}
-          </p>
+
+          <div className="space-y-stack-md font-body-lg text-body-lg opacity-80 border-l-4 border-secondary-fixed pl-stack-md">
+            <p>Ensuring the protection and well-being of every citizen through efficient incident management and data-driven policy.</p>
+            <div className="flex items-center gap-base">
+              <span className="material-symbols-outlined text-secondary-fixed">verified_user</span>
+              <span className="font-label-md text-label-md tracking-wider uppercase">Secure Government Infrastructure</span>
+            </div>
+          </div>
         </div>
 
-        {/* Auth Card */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
-          {/* Toggle Tabs */}
-          <div className="flex mb-6 bg-gray-100 rounded-lg p-1">
-            <button
-              onClick={() => setIsLogin(true)}
-              className={`flex-1 py-2 px-4 rounded-md text-sm font-semibold transition-all ${
-                isLogin ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600'
-              }`}
-            >
-              Sign In
-            </button>
-            <button
-              onClick={() => setIsLogin(false)}
-              className={`flex-1 py-2 px-4 rounded-md text-sm font-semibold transition-all ${
-                !isLogin ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600'
-              }`}
-            >
-              Register
-            </button>
-          </div>
+        <div className="absolute bottom-0 right-0 w-3/4 h-3/4 opacity-20 pointer-events-none translate-x-1/4 translate-y-1/4">
+          <div
+            className="w-full h-full bg-no-repeat bg-contain bg-bottom"
+            style={{
+              backgroundImage:
+                "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEtO7LSneuvZoSTjA-YVzhEnV-hbF0afHBdScC8lgPW7yN4Zn_kh6kSSJeRUZAYqDhDpuaSdy-YsX32LcdXu6KdyFbSyUZ9Z9DIk6BHc_qrKGuSyj5Li981VtlDDHqzoOSx5EXyV8_pXWITiAb02CB_JK5YJavR-2FUGDM-hi3KGs9aA1tqOpLZdYq_Beegy-aiU8QwZ36VcE7uIrdJaXx2_xExOX_Lxef90gEFXpUijFwC1p9rEK-0D7ehN6yY6TeIDqLbpq1pQ')",
+            }}
+          />
+        </div>
+      </section>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <>
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-600" htmlFor="name">
-                    Full Name
-                  </label>
-                  <input
-                    className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Enter your full name"
-                    required={!isLogin}
-                  />
-                </div>
+      {/* Right Side: Login Form */}
+      <section className="flex-1 flex flex-col justify-center items-center p-margin-mobile md:p-margin-desktop bg-surface">
+        <div className="md:hidden w-full max-w-md mb-stack-lg text-center">
+          <img
+            alt="Malawi Government Seal"
+            className="h-16 mx-auto mb-base"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDki8aAv-XLN2kUR3bF2q1pl191097fA7sC47WWQvMbrZFTdO4PucHRqySrq9LmD1dD70RZj8wrxVadguQsfclg2S_Bz5t-FyDVyVsRsD8GCegtzLLPE3jgu7nMSAl_OpodhGt7qikGuZoii-vEBFn6nOPne2XkeZwmPFy59hyvmf1Du9gbOfwGkJud5gRNfYE5mBm0sIuOKgq7NpdOIBza6mbrGK-BnKFcryNzh8iuDGcJek5vH3pUZU5kIwMMztjBhJ1xgq7Zkg"
+          />
+          <h2 className="font-headline-md text-headline-md text-primary">SafeReport Admin</h2>
+        </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-600" htmlFor="phone">
-                    Phone Number
-                  </label>
-                  <input
-                    className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    type="tel"
-                    placeholder="+265 XXX XXX XXX"
-                    required={!isLogin}
-                  />
-                </div>
-              </>
-            )}
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-gray-600" htmlFor="email">
-                Email Address
-              </label>
-              <input
-                className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                type="email"
-                placeholder="your@email.com"
-                required
-              />
+        <div className="w-full max-w-md">
+          <div className="bg-surface-container-lowest p-stack-lg rounded-xl login-card-shadow border border-outline-variant/30">
+            <div className="mb-stack-lg">
+              <h2 className="font-headline-lg text-headline-lg text-on-surface mb-base">Admin Login</h2>
+              <p className="font-body-md text-body-md text-on-surface-variant">Access the centralized reporting dashboard.</p>
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-gray-600" htmlFor="password">
-                Password
-              </label>
-              <input
-                className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                type="password"
-                placeholder="••••••••"
-                required
-              />
-            </div>
-
-            {!isLogin && (
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold text-gray-600" htmlFor="confirmPassword">
-                  Confirm Password
+            <form onSubmit={handleSubmit} className="space-y-stack-md" aria-label="Admin login form">
+              {/* Email Field */}
+              <div className="space-y-base">
+                <label className="block font-label-md text-label-md text-on-surface-variant" htmlFor="email">
+                  Official Email Address
                 </label>
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">mail</span>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    aria-label="Official Email Address"
+                    required
+                    placeholder="name@gender.gov.mw"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-lg border border-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-surface"
+                  />
+                </div>
+              </div>
+
+              {/* Password Field */}
+              <div className="space-y-base">
+                <div className="flex justify-between items-center">
+                  <label className="block font-label-md text-label-md text-on-surface-variant" htmlFor="password">
+                    Password
+                  </label>
+                  <a className="font-label-sm text-label-sm text-primary hover:underline transition-colors" href="#">Forgot Password?</a>
+                </div>
+
+                <div className="relative">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">lock</span>
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    aria-label="Password"
+                    required
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-10 pr-12 py-3 rounded-lg border border-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none bg-surface"
+                  />
+
+                  <button
+                    type="button"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    onClick={() => setShowPassword((s) => !s)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors"
+                  >
+                    <span className="material-symbols-outlined">{showPassword ? 'visibility_off' : 'visibility'}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Remember Me */}
+              <div className="flex items-center gap-base">
                 <input
-                  className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  type="password"
-                  placeholder="••••••••"
-                  required={!isLogin}
+                  id="remember"
+                  name="remember"
+                  type="checkbox"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                  className="w-4 h-4 rounded text-primary border-outline focus:ring-primary transition-all"
                 />
-              </div>
-            )}
-
-            {isLogin && (
-              <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 text-sm text-gray-600">
-                  <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-blue-700 focus:ring-blue-700" />
-                  Remember me
+                <label className="font-label-md text-label-md text-on-surface-variant cursor-pointer select-none" htmlFor="remember">
+                  Remember this device for 30 days
                 </label>
-                <a href="#" className="text-sm text-blue-700 hover:underline">
-                  Forgot password?
-                </a>
               </div>
-            )}
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-blue-700 text-white h-12 rounded-xl font-semibold hover:bg-blue-800 transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <span className="material-symbols-outlined animate-spin">refresh</span>
-                  Processing...
-                </span>
-              ) : (
-                isLogin ? 'Sign In' : 'Create Account'
-              )}
-            </button>
-          </form>
+              {/* Login Button */}
+              <button
+                type="submit"
+                className="w-full bg-primary text-on-primary py-4 rounded-lg font-title-lg text-title-lg hover:bg-primary-container active:scale-[0.98] transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20 mt-stack-md"
+              >
+                <span>Login to Dashboard</span>
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </form>
 
-          {/* Divider */}
-          <div className="flex items-center gap-4 my-6">
-            <div className="flex-1 h-px bg-gray-200"></div>
-            <span className="text-sm text-gray-500">or continue with</span>
-            <div className="flex-1 h-px bg-gray-200"></div>
-          </div>
-
-          {/* Social Login */}
-          <div className="grid grid-cols-2 gap-4">
-            <button className="flex items-center justify-center gap-2 h-12 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all">
-              <span className="material-symbols-outlined text-gray-700">alternate_email</span>
-              <span className="text-sm font-medium text-gray-700">Google</span>
-            </button>
-            <button className="flex items-center justify-center gap-2 h-12 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all">
-              <span className="material-symbols-outlined text-gray-700">facebook</span>
-              <span className="text-sm font-medium text-gray-700">Facebook</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Help Text */}
-        <div className="text-center mt-6">
-          <p className="text-sm text-gray-600">
-            {isLogin ? "Don't have an account? " : 'Already have an account? '}
-            <button
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-blue-700 font-semibold hover:underline"
-            >
-              {isLogin ? 'Register' : 'Sign In'}
-            </button>
-          </p>
-        </div>
-
-        {/* Emergency Notice */}
-        <div className="mt-8 bg-red-50 border border-red-200 rounded-xl p-4">
-          <div className="flex items-start gap-3">
-            <span className="material-symbols-outlined text-red-600 mt-0.5">emergency</span>
-            <div>
-              <p className="text-sm font-semibold text-red-800">Need Immediate Help?</p>
-              <p className="text-sm text-red-700">
-                If you are in immediate danger, call the emergency hotline at{' '}
-                <a href="tel:555" className="font-bold hover:underline">
-                  555
-                </a>
+            {/* Help Link */}
+            <div className="mt-stack-lg pt-stack-md border-t border-outline-variant/30 text-center">
+              <p className="font-label-sm text-label-sm text-on-surface-variant">
+                Need technical assistance?{' '}
+                <a className="text-primary font-bold hover:underline transition-colors" href="#">Contact IT Support</a>
               </p>
             </div>
           </div>
-        </div>
 
-        {/* Back to Home */}
-        <div className="text-center mt-6">
-          <Link
-            to="/"
-            className="text-sm text-gray-600 hover:text-blue-700 flex items-center justify-center gap-2 transition-colors"
-          >
-            <span className="material-symbols-outlined text-lg">arrow_back</span>
-            Back to Home
-          </Link>
+          {/* Footer Copyright */}
+          <div className="mt-stack-lg text-center">
+            <p className="font-label-sm text-label-sm text-outline">
+              © 2024 Ministry of Gender, Community Development and Social Welfare.
+              <br />Republic of Malawi.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
-  );
-};
-
-export default Login;
+  )
+}

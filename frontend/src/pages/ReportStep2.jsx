@@ -1,0 +1,48 @@
+const ReportStep2 = ({ isAnonymous, setIsAnonymous }) => {
+  return (
+    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-300">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-[24px] font-[600] text-[#00236f] font-['Poppins']">Victim Information</h2>
+        <div className="flex items-center gap-3">
+          <span className="text-[14px] font-['Inter']">Report Anonymously</span>
+          <div 
+            className={`w-12 h-6 rounded-full relative cursor-pointer transition-all ${isAnonymous ? 'bg-[#00236f]' : 'bg-[#d9e3f6]'}`}
+            onClick={setIsAnonymous}
+          >
+            <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-all shadow-sm ${isAnonymous ? 'left-7' : 'left-1'}`}></div>
+          </div>
+        </div>
+      </div>
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-all ${isAnonymous ? 'opacity-30 pointer-events-none' : ''}`}>
+        <div className="space-y-2">
+          <label className="text-[14px] text-gray-800 font-['Inter']">Full Name</label>
+          <input className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']" placeholder="Enter victim's full name" type="text"/>
+        </div>
+        <div className="space-y-2">
+          <label className="text-[14px] text-gray-800 font-['Inter']">Age Range</label>
+          <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']">
+            <option>0 - 12 (Child)</option>
+            <option>13 - 17 (Minor)</option>
+            <option>18 - 35 (Adult)</option>
+            <option>36 - 60 (Senior)</option>
+            <option>60+</option>
+          </select>
+        </div>
+        <div className="space-y-2">
+          <label className="text-[14px] text-gray-800 font-['Inter']">Gender Identity</label>
+          <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']">
+            <option>Female</option>
+            <option>Male</option>
+            <option>Other / Prefer not to say</option>
+          </select>
+        </div>
+        <div className="space-y-2">
+          <label className="text-[14px] text-gray-800 font-['Inter']">Phone Number (Optional)</label>
+          <input className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']" placeholder="+265..." type="tel"/>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ReportStep2

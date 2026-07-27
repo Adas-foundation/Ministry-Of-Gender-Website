@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Report Incident | SafeReport Malawi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b6c4ff",
+                    "surface-container": "#e6eeff",
+                    "on-tertiary-fixed": "#261a00",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-primary-container": "#90a8ff",
+                    "on-tertiary-container": "#d8a31b",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "outline-variant": "#c5c5d3",
+                    "primary": "#00236f",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "surface-dim": "#d0dbed",
+                    "surface-tint": "#4059aa",
+                    "outline": "#757682",
+                    "surface": "#f8f9ff",
+                    "on-primary-fixed-variant": "#264191",
+                    "background": "#f8f9ff",
+                    "on-surface": "#121c2a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "tertiary": "#382700",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#006f67",
+                    "tertiary-container": "#533c00",
+                    "surface-container-high": "#dee9fc",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "secondary-container": "#99efe5",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#27313f",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#006a63",
+                    "on-primary-fixed": "#00164e",
+                    "tertiary-fixed": "#ffdfa0",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-highest": "#d9e3f6",
+                    "surface-variant": "#d9e3f6",
+                    "on-background": "#121c2a",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed": "#00201d",
+                    "secondary-fixed": "#9cf2e8",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#1e3a8a",
+                    "on-surface-variant": "#444651",
+                    "primary-fixed": "#dce1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "base": "8px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "stack-sm": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Poppins"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #1e3a8a; border-color: #1e3a8a; }
+        .step-complete { color: #006a63; border-color: #006a63; }
+        .hide { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">Ministry of Gender - SafeReport</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-semibold transition-colors" href="#">Report Incident</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Resources</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 bg-error text-on-error font-semibold rounded-full hover:opacity-90 transition-all scale-100 active:scale-95 shadow-lg">Emergency SOS</button>
+<span class="hidden lg:inline text-on-surface-variant font-label-md cursor-pointer hover:underline">English / Chichewa</span>
+</div>
+</header>
+<main class="w-full max-w-4xl mx-auto px-4 py-12">
+<!-- Progress Stepper -->
+<div class="mb-12">
+<div class="flex items-center justify-between relative">
+<div class="absolute top-1/2 left-0 w-full h-1 bg-surface-container-high -z-10 -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold transition-all border-4 border-surface shadow-sm" id="step-marker-1">1</div>
+<span class="font-label-sm text-primary">Type</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all border-4 border-surface shadow-sm" id="step-marker-2">2</div>
+<span class="font-label-sm text-on-surface-variant">Victim</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all border-4 border-surface shadow-sm" id="step-marker-3">3</div>
+<span class="font-label-sm text-on-surface-variant">Details</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all border-4 border-surface shadow-sm" id="step-marker-4">4</div>
+<span class="font-label-sm text-on-surface-variant">Location</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all border-4 border-surface shadow-sm" id="step-marker-5">5</div>
+<span class="font-label-sm text-on-surface-variant">Evidence</span>
+</div>
+</div>
+</div>
+<!-- Form Sections Container -->
+<form class="space-y-8" id="incidentForm">
+<!-- Section 1: Incident Type -->
+<div class="form-section" id="section-1">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant">
+<h2 class="font-headline-md text-headline-md mb-6 text-primary">What type of incident are you reporting?</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<label class="group relative p-6 border-2 border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all active:scale-95">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary h-5 w-5" name="incident_type" type="radio" value="domestic"/>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+<span class="font-title-lg text-title-lg">Domestic Violence</span>
+<span class="font-body-md text-on-surface-variant">Violence or abuse within a household or relationship.</span>
+</div>
+</label>
+<label class="group relative p-6 border-2 border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all active:scale-95">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary h-5 w-5" name="incident_type" type="radio" value="sexual"/>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-title-lg text-title-lg">Sexual Assault</span>
+<span class="font-body-md text-on-surface-variant">Non-consensual sexual contact or behavior.</span>
+</div>
+</label>
+<label class="group relative p-6 border-2 border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all active:scale-95">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary h-5 w-5" name="incident_type" type="radio" value="child"/>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary" style="font-variation-settings: 'FILL' 1;">child_care</span>
+<span class="font-title-lg text-title-lg">Child Abuse</span>
+<span class="font-body-md text-on-surface-variant">Harm or neglect of a person under 18.</span>
+</div>
+</label>
+<label class="group relative p-6 border-2 border-outline-variant rounded-xl cursor-pointer hover:border-primary transition-all active:scale-95">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary h-5 w-5" name="incident_type" type="radio" value="harassment"/>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-3 text-primary" style="font-variation-settings: 'FILL' 1;">person_alert</span>
+<span class="font-title-lg text-title-lg">Harassment</span>
+<span class="font-body-md text-on-surface-variant">Intimidation, bullying, or stalking.</span>
+</div>
+</label>
+</div>
+<div class="mt-8 flex items-center gap-3 p-4 bg-primary-container/10 rounded-lg">
+<input class="w-5 h-5 text-error rounded focus:ring-error" id="emergency_help" type="checkbox"/>
+<label class="font-label-md text-error" for="emergency_help">I need immediate medical or security assistance</label>
+</div>
+</div>
+</div>
+<!-- Section 2: Victim Information -->
+<div class="form-section hide" id="section-2">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Victim Information</h2>
+<div class="flex items-center gap-3">
+<span class="font-label-md">Report Anonymously</span>
+<div class="w-12 h-6 bg-surface-container-highest rounded-full relative cursor-pointer transition-all" id="anonToggle">
+<div class="w-4 h-4 bg-white rounded-full absolute top-1 left-1 shadow-sm transition-all" id="anonBall"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="victimDetails">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Full Name</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="Enter victim's full name" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Age Range</label>
+<select class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all">
+<option>0 - 12 (Child)</option>
+<option>13 - 17 (Minor)</option>
+<option>18 - 35 (Adult)</option>
+<option>36 - 60 (Senior)</option>
+<option>60+</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Gender Identity</label>
+<select class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all">
+<option>Female</option>
+<option>Male</option>
+<option>Other / Prefer not to say</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Phone Number (Optional)</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="+265..." type="tel"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Incident Details -->
+<div class="form-section hide" id="section-3">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant">
+<h2 class="font-headline-md text-headline-md mb-6 text-primary">Incident Description</h2>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">When did this happen?</label>
+<div class="grid grid-cols-2 gap-4">
+<input class="px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all" type="date"/>
+<input class="px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all" type="time"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Provide a detailed account of the incident</label>
+<textarea class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all resize-none" placeholder="Describe the events clearly. Your safety and confidentiality are our priority..." rows="6"></textarea>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-on-surface">Is there an immediate threat remaining?</label>
+<div class="flex gap-4">
+<button class="px-6 py-2 border-2 border-outline-variant rounded-lg font-label-md hover:bg-surface-container-low transition-colors" type="button">Yes</button>
+<button class="px-6 py-2 border-2 border-outline-variant rounded-lg font-label-md hover:bg-surface-container-low transition-colors" type="button">No</button>
+<button class="px-6 py-2 border-2 border-outline-variant rounded-lg font-label-md hover:bg-surface-container-low transition-colors" type="button">I'm not sure</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Location -->
+<div class="form-section hide" id="section-4">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant">
+<h2 class="font-headline-md text-headline-md mb-6 text-primary">Where did it occur?</h2>
+<div class="flex flex-col gap-6">
+<div class="relative w-full h-[400px] rounded-xl overflow-hidden shadow-inner border border-outline-variant bg-surface-container">
+<div class="w-full h-full opacity-60 grayscale hover:grayscale-0 transition-all cursor-crosshair" data-location="Malawi" style=""></div>
+<div class="absolute top-4 left-4 z-10">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all" type="button">
+<span class="material-symbols-outlined text-sm">my_location</span>
+<span class="font-label-sm">Use My Current GPS</span>
+</button>
+</div>
+<!-- Mock Map UI -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-error text-5xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="bg-white px-3 py-1 rounded shadow-md mt-2 border border-outline-variant">
+<span class="text-xs font-bold text-on-surface">Lilongwe, Central Region</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-md">District</label>
+<select class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all">
+<option>Lilongwe</option>
+<option>Blantyre</option>
+<option>Zomba</option>
+<option>Mzuzu</option>
+<option>Other</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-md">Specific Landmark or Address</label>
+<input class="w-full px-4 py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="e.g. Near Area 18 Post Office" type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 5: Evidence -->
+<div class="form-section hide" id="section-5">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant">
+<h2 class="font-headline-md text-headline-md mb-2 text-primary">Evidence Upload</h2>
+<p class="text-on-surface-variant font-body-md mb-8">Upload photos, videos, or documents that support your report. Max file size: 20MB.</p>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-12 text-center hover:bg-surface-container-low transition-all cursor-pointer group">
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">cloud_upload</span>
+</div>
+<div>
+<span class="font-title-lg text-title-lg block text-on-surface">Click to upload or drag and drop</span>
+<span class="font-label-md text-on-surface-variant">JPEG, PNG, MP4, PDF, or DOCX</span>
+</div>
+</div>
+</div>
+<div class="mt-12 space-y-4">
+<div class="flex items-start gap-3">
+<input class="w-6 h-6 mt-1 text-primary rounded focus:ring-primary" id="consent" type="checkbox"/>
+<label class="font-body-md text-on-surface-variant leading-relaxed" for="consent">
+                                I confirm that the information provided is accurate to the best of my knowledge. I understand this information will be handled with strict confidentiality by the Ministry of Gender and authorized responders.
+                            </label>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex items-center justify-between mt-12">
+<button class="invisible flex items-center gap-2 px-8 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary-container/10 transition-all" id="prevBtn" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Previous Step
+                </button>
+<button class="flex items-center gap-2 px-10 py-4 bg-primary text-on-primary font-bold rounded-xl shadow-lg hover:shadow-xl hover:opacity-90 transition-all scale-100 active:scale-95" id="nextBtn" type="button">
+                    Continue
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="hide flex items-center gap-2 px-12 py-4 bg-secondary text-on-secondary font-bold rounded-xl shadow-lg hover:shadow-xl hover:opacity-90 transition-all scale-100 active:scale-95" id="submitBtn" type="submit">
+                    Submit Secure Report
+                    <span class="material-symbols-outlined">shield_with_heart</span>
+</button>
+</div>
+</form>
+</main>
+<!-- Success Modal -->
+<div class="fixed inset-0 z-[100] hide flex items-center justify-center p-4" id="successModal">
+<div class="absolute inset-0 bg-inverse-surface/60 backdrop-blur-sm"></div>
+<div class="relative bg-surface-container-lowest max-w-lg w-full p-stack-lg rounded-2xl shadow-2xl text-center">
+<div class="w-24 h-24 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-5xl text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-display-lg text-headline-lg text-secondary mb-2">Report Submitted</h2>
+<p class="font-body-lg text-on-surface-variant mb-8">Your report has been received and encrypted. A case officer will review it shortly.</p>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 mb-8">
+<span class="font-label-md text-on-surface-variant block mb-1">Your Tracking Reference</span>
+<span class="font-headline-md text-primary tracking-widest font-mono">SR-MW-2024-88912</span>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-primary text-on-primary font-bold rounded-xl hover:opacity-90 transition-all" onclick="location.reload()">Download Receipt (PDF)</button>
+<button class="w-full py-4 border-2 border-outline text-on-surface font-semibold rounded-xl hover:bg-surface-container transition-all" onclick="location.reload()">Go to Dashboard</button>
+</div>
+<p class="mt-6 font-label-sm text-error">Please save your reference number. For your security, this page will close in 2 minutes.</p>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-on-primary-fixed text-on-primary dark:text-primary-fixed font-body-md full-width mt-auto border-t-0">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base max-w-container-max mx-auto">
+<div class="flex flex-col gap-2">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport Malawi</span>
+<span class="text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</span>
+</div>
+<div class="flex gap-6">
+<a class="text-on-primary/80 hover:text-on-primary transition-colors hover:underline" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors hover:underline" href="#">Terms of Service</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors hover:underline" href="#">Help Desk</a>
+<a class="text-on-primary/80 hover:text-on-primary transition-colors hover:underline" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const incidentForm = document.getElementById('incidentForm');
+        const successModal = document.getElementById('successModal');
+
+        const anonToggle = document.getElementById('anonToggle');
+        const anonBall = document.getElementById('anonBall');
+        const victimDetails = document.getElementById('victimDetails');
+        let isAnonymous = false;
+
+        anonToggle.addEventListener('click', () => {
+            isAnonymous = !isAnonymous;
+            if (isAnonymous) {
+                anonToggle.classList.replace('bg-surface-container-highest', 'bg-primary');
+                anonBall.classList.replace('left-1', 'left-7');
+                victimDetails.classList.add('opacity-30', 'pointer-events-none');
+            } else {
+                anonToggle.classList.replace('bg-primary', 'bg-surface-container-highest');
+                anonBall.classList.replace('left-7', 'left-1');
+                victimDetails.classList.remove('opacity-30', 'pointer-events-none');
+            }
+        });
+
+        function updateStepUI() {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(s => s.classList.add('hide'));
+            // Show current section
+            document.getElementById(`section-${currentStep}`).classList.remove('hide');
+
+            // Update Progress Markers
+            for (let i = 1; i <= totalSteps; i++) {
+                const marker = document.getElementById(`step-marker-${i}`);
+                if (i < currentStep) {
+                    marker.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-secondary text-on-secondary font-bold transition-all border-4 border-surface shadow-sm';
+                    marker.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
+                } else if (i === currentStep) {
+                    marker.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-bold transition-all border-4 border-surface shadow-sm';
+                    marker.innerHTML = i;
+                } else {
+                    marker.className = 'w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-on-surface-variant font-bold transition-all border-4 border-surface shadow-sm';
+                    marker.innerHTML = i;
+                }
+            }
+
+            // Button Visibility
+            prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+            if (currentStep === totalSteps) {
+                nextBtn.classList.add('hide');
+                submitBtn.classList.remove('hide');
+            } else {
+                nextBtn.classList.remove('hide');
+                submitBtn.classList.add('hide');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        });
+
+        incidentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            successModal.classList.remove('hide');
+        });
+    </script>
+</body></html>

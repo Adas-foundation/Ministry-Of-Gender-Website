@@ -1,325 +1,370 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  });
+    subject: 'General Inquiry',
+    message: ''
+  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const [submitStatus, setSubmitStatus] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message. We will get back to you within 24 hours.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-  };
+    e.preventDefault()
+    setIsSubmitting(true)
 
-  const offices = [
+    // Placeholder submit function - simulate API call
+    setTimeout(() => {
+      console.log('Form submitted:', formData)
+      setSubmitStatus('success')
+      setFormData({
+        fullName: '',
+        email: '',
+        subject: 'General Inquiry',
+        message: ''
+      })
+
+      // Reset success message after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus(null)
+      }, 3000)
+
+      setIsSubmitting(false)
+    }, 1500)
+  }
+
+  const districtOffices = [
     {
-      city: 'Lilongwe',
-      address: 'Capital Hill, Ministry of Gender Complex',
-      phone: '+265 1 234 567',
-      email: 'lilongwe@safereport.mw',
-      hours: 'Mon-Fri: 8:00 AM - 5:00 PM',
-      isHeadquarters: true,
+      id: 1,
+      name: 'Lilongwe District Office',
+      location: 'Capital Hill, Area 20',
+      phone: '+265 1 789 322'
     },
     {
-      city: 'Blantyre',
-      address: 'City Centre, 3rd Floor, Chichiri House',
-      phone: '+265 1 765 432',
-      email: 'blantyre@safereport.mw',
-      hours: 'Mon-Fri: 8:00 AM - 5:00 PM',
-      isHeadquarters: false,
+      id: 2,
+      name: 'Blantyre District Office',
+      location: 'Chichiri Govt Offices',
+      phone: '+265 1 820 455'
     },
     {
-      city: 'Mzuzu',
-      address: 'Mzuzu City Centre, Civic Offices',
-      phone: '+265 1 345 678',
-      email: 'mzuzu@safereport.mw',
-      hours: 'Mon-Fri: 8:00 AM - 5:00 PM',
-      isHeadquarters: false,
+      id: 3,
+      name: 'Mzuzu District Office',
+      location: 'Government Buildings, Mzuzu',
+      phone: '+265 1 311 099'
     },
     {
-      city: 'Zomba',
-      address: 'Zomba City Council Building',
-      phone: '+265 1 456 789',
-      email: 'zomba@safereport.mw',
-      hours: 'Mon-Fri: 8:00 AM - 5:00 PM',
-      isHeadquarters: false,
+      id: 4,
+      name: 'Zomba District Office',
+      location: 'Chirunga Road, Zomba',
+      phone: '+265 1 524 888'
+    }
+  ]
+
+  const helplines = [
+    {
+      id: 1,
+      title: 'Child Helpline',
+      description: 'Immediate support for children in distress.',
+      number: '116',
+      icon: 'call',
+      bgColor: 'bg-red-100',
+      iconColor: 'text-red-600',
+      numberColor: 'text-red-600',
+      borderColor: 'border-l-[#ba1a1a]'
     },
-  ];
+    {
+      id: 2,
+      title: 'GBV Helpline',
+      description: 'Confidential support for Gender-Based Violence.',
+      number: '555',
+      icon: 'support_agent',
+      bgColor: 'bg-teal-100',
+      iconColor: 'text-teal-700',
+      numberColor: 'text-teal-700',
+      borderColor: 'border-l-[#006a63]'
+    },
+    {
+      id: 3,
+      title: 'HQ Location',
+      description: 'Ministry of Gender, Capital Hill',
+      icon: 'location_on',
+      bgColor: 'bg-blue-600',
+      iconColor: 'text-white',
+      textColor: 'text-white',
+      borderColor: ''
+    }
+  ]
 
   return (
-    <main className="max-w-[1280px] mx-auto px-6">
+    <main className="w-full">
       {/* Hero Section */}
-      <section className="py-12 mb-12">
-        <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-6">
-            <span className="material-symbols-outlined text-[18px]">contact_mail</span>
-            <span className="text-xs font-bold">GET IN TOUCH</span>
-          </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">Contact Us</h1>
-          <p className="text-lg text-gray-600">
-            Have questions or need assistance? Our team is here to help. Reach out to us through any of the channels below or visit your nearest district office.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Form and Info */}
-      <section className="py-12 mb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-600" htmlFor="name">
-                    Full Name
-                  </label>
-                  <input
-                    className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    type="text"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-gray-600" htmlFor="email">
-                    Email Address
-                  </label>
-                  <input
-                    className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    type="email"
-                    placeholder="your@email.com"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold text-gray-600" htmlFor="phone">
-                  Phone Number
-                </label>
-                <input
-                  className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  type="tel"
-                  placeholder="+265 XXX XXX XXX"
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold text-gray-600" htmlFor="subject">
-                  Subject
-                </label>
-                <select
-                  className="h-12 px-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all appearance-none bg-white"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                >
-                  <option disabled value="">Select a topic</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="report">Report Status Inquiry</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="partnership">Partnership Opportunity</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold text-gray-600" htmlFor="message">
-                  Message
-                </label>
-                <textarea
-                  className="p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-all resize-none"
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="How can we help you?"
-                  rows="5"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-blue-700 text-white h-12 rounded-xl font-semibold hover:bg-blue-800 transition-all shadow-md active:scale-95"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Quick Contact */}
-            <div className="bg-blue-700 text-white rounded-2xl p-8">
-              <h2 className="text-2xl font-bold mb-6">Quick Contact</h2>
-              <div className="space-y-4">
-                <a href="tel:555" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="material-symbols-outlined">phone</span>
-                  </div>
-                  <div>
-                    <p className="text-sm opacity-80">Emergency Hotline</p>
-                    <p className="text-xl font-bold">555</p>
-                  </div>
-                </a>
-                <a href="tel:+2651234567" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="material-symbols-outlined">call</span>
-                  </div>
-                  <div>
-                    <p className="text-sm opacity-80">Main Office</p>
-                    <p className="text-xl font-bold">+265 1 234 567</p>
-                  </div>
-                </a>
-                <a href="mailto:info@safereport.mw" className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                    <span className="material-symbols-outlined">email</span>
-                  </div>
-                  <div>
-                    <p className="text-sm opacity-80">Email</p>
-                    <p className="text-xl font-bold">info@safereport.mw</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            {/* Office Hours */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Office Hours</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Monday - Friday</span>
-                  <span className="font-semibold text-gray-900">8:00 AM - 5:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Saturday</span>
-                  <span className="font-semibold text-gray-900">9:00 AM - 12:00 PM</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Sunday</span>
-                  <span className="font-semibold text-gray-900">Closed</span>
-                </div>
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-600">
-                    <span className="font-semibold text-red-600">Emergency services available 24/7</span> through the hotline.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Follow Us</h3>
-              <div className="flex gap-4">
-                <a href="#" className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
-                  <span className="material-symbols-outlined text-gray-700">facebook</span>
-                </a>
-                <a href="#" className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
-                  <span className="material-symbols-outlined text-gray-700">alternate_email</span>
-                </a>
-                <a href="#" className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
-                  <span className="material-symbols-outlined text-gray-700">photo_camera</span>
-                </a>
-                <a href="#" className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
-                  <span className="material-symbols-outlined text-gray-700">videocam</span>
-                </a>
-              </div>
-            </div>
+      <section className="relative py-20 px-4 md:px-10 bg-[#00236f] text-white overflow-hidden">
+        <div className="max-w-[1280px] mx-auto relative z-10">
+          <div className="max-w-2xl">
+            <h1 className="text-[48px] leading-[56px] font-[700] mb-6 font-['Poppins']">
+              How can we help you today?
+            </h1>
+            <p className="text-[18px] leading-[28px] text-white/80 mb-8 font-['Inter']">
+              The Ministry of Gender is here to support every citizen. Whether you need to report an incident, seek guidance, or locate your nearest office, our team is ready to assist.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* District Offices */}
-      <section className="py-12 mb-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">District Offices</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {offices.map((office, index) => (
-            <div
-              key={index}
-              className={`bg-white rounded-2xl border p-6 hover:shadow-lg transition-all ${
-                office.isHeadquarters ? 'border-blue-700 bg-blue-50' : 'border-gray-200'
-              }`}
+      {/* Immediate Help Section (Bento Style) */}
+      <section className="px-4 md:px-10 -mt-16 relative z-20">
+        <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Helpline 1 - Child Helpline */}
+          <div className="bg-white p-8 rounded-xl shadow-md border-l-4 border-l-[#ba1a1a] flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+            <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4">
+              <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+            </div>
+            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Child Helpline</h3>
+            <p className="text-gray-600 mb-4 font-['Inter']">Immediate support for children in distress.</p>
+            <a 
+              href="tel:116" 
+              className="text-red-600 font-extrabold text-3xl hover:underline font-['Poppins']"
+              aria-label="Call child helpline 116"
             >
-              {office.isHeadquarters && (
-                <span className="inline-block bg-blue-700 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                  Headquarters
-                </span>
-              )}
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{office.city} Office</h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-gray-600 mt-1">location_on</span>
-                  <p className="text-sm text-gray-700">{office.address}</p>
+              116
+            </a>
+          </div>
+
+          {/* Helpline 2 - GBV Helpline */}
+          <div className="bg-white p-8 rounded-xl shadow-md border-l-4 border-l-[#006a63] flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+            <div className="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mb-4">
+              <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>support_agent</span>
+            </div>
+            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">GBV Helpline</h3>
+            <p className="text-gray-600 mb-4 font-['Inter']">Confidential support for Gender-Based Violence.</p>
+            <a 
+              href="tel:555" 
+              className="text-teal-700 font-extrabold text-3xl hover:underline font-['Poppins']"
+              aria-label="Call GBV helpline 555"
+            >
+              555
+            </a>
+          </div>
+
+          {/* Office Location */}
+          <div className="bg-[#1e3a8a] p-8 rounded-xl shadow-md text-white flex flex-col items-center text-center transition-transform hover:-translate-y-1">
+            <div className="w-16 h-16 bg-blue-700 text-white rounded-full flex items-center justify-center mb-4">
+              <span className="material-symbols-outlined text-[32px]">location_on</span>
+            </div>
+            <h3 className="text-[20px] font-[500] mb-2 font-['Poppins']">HQ Location</h3>
+            <p className="text-white/80 mb-4 font-['Inter']">Ministry of Gender, Capital Hill</p>
+            <button 
+              onClick={() => document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' })}
+              className="bg-white text-[#00236f] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors font-['Poppins']"
+              aria-label="View map of headquarters location"
+            >
+              View Map
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form & Directory */}
+      <section className="py-24 px-4 md:px-10">
+        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Contact Form Column */}
+          <div className="lg:col-span-7">
+            <div className="bg-white p-10 rounded-xl shadow-sm border border-gray-300">
+              <h2 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-2 font-['Poppins']">
+                Send us a Message
+              </h2>
+              <p className="text-gray-600 mb-8 font-['Inter']">
+                Have a non-urgent inquiry? Fill out the form below and our team will get back to you within 48 hours.
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name and Email Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="fullName" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
+                      Full Name
+                    </label>
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Kondwani Phiri"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter']"
+                      aria-label="Full name input"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
+                      Email Address
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="k.phiri@example.mw"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter']"
+                      aria-label="Email address input"
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-gray-600">phone</span>
-                  <a href={`tel:${office.phone}`} className="text-sm text-blue-700 hover:underline">
-                    {office.phone}
-                  </a>
+
+                {/* Subject Dropdown */}
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
+                    Subject
+                  </label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter']"
+                    aria-label="Inquiry subject dropdown"
+                  >
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Case Follow-up">Case Follow-up</option>
+                    <option value="Technical Support">Technical Support</option>
+                    <option value="Media/Press Inquiry">Media/Press Inquiry</option>
+                    <option value="Report Feedback">Report Feedback</option>
+                  </select>
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-gray-600">email</span>
-                  <a href={`mailto:${office.email}`} className="text-sm text-blue-700 hover:underline">
-                    {office.email}
-                  </a>
+
+                {/* Message Textarea */}
+                <div className="space-y-2">
+                  <label htmlFor="message" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
+                    Your Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="How can we assist you today?"
+                    rows="5"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter'] resize-none"
+                    aria-label="Message textarea"
+                    required
+                  />
                 </div>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-gray-600">schedule</span>
-                  <p className="text-sm text-gray-700">{office.hours}</p>
+
+                {/* Submit Button with Status */}
+                <div className="space-y-3">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#00236f] text-white py-4 rounded-lg font-bold text-lg shadow-lg hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed font-['Poppins']"
+                    aria-label="Submit contact form"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="material-symbols-outlined animate-spin">sync</span>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <span className="material-symbols-outlined">send</span>
+                        Submit Message
+                      </>
+                    )}
+                  </button>
+
+                  {/* Success Message */}
+                  {submitStatus === 'success' && (
+                    <div className="p-4 bg-teal-50 border border-teal-200 rounded-lg flex items-center gap-3">
+                      <span className="material-symbols-outlined text-teal-700">check_circle</span>
+                      <p className="text-teal-700 font-['Inter']">Thank you! Your message has been sent. We'll get back to you within 48 hours.</p>
+                    </div>
+                  )}
                 </div>
+              </form>
+            </div>
+          </div>
+
+          {/* District Directory Column */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="bg-[#eff4ff] p-8 rounded-xl border border-gray-300">
+              <h2 className="text-[20px] font-[500] text-[#00236f] mb-6 flex items-center gap-2 font-['Poppins']">
+                <span className="material-symbols-outlined">map</span>
+                District Welfare Offices
+              </h2>
+              <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                {districtOffices.map((office) => (
+                  <div
+                    key={office.id}
+                    className="bg-white p-4 rounded-lg border border-gray-300 hover:border-[#00236f] transition-colors cursor-pointer group"
+                  >
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-semibold text-[#00236f] font-['Poppins']">{office.name}</h4>
+                        <p className="text-sm text-gray-600 font-['Inter']">{office.location}</p>
+                      </div>
+                      <span className="material-symbols-outlined text-[#00236f] opacity-0 group-hover:opacity-100 transition-opacity">
+                        chevron_right
+                      </span>
+                    </div>
+                    <div className="mt-3 flex items-center gap-2 text-sm text-teal-700 font-['Inter']">
+                      <span className="material-symbols-outlined text-sm">phone</span>
+                      <a href={`tel:${office.phone}`} className="hover:underline">
+                        {office.phone}
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-        <div className="text-center mt-8">
-          <button className="text-blue-700 font-semibold flex items-center gap-2 mx-auto hover:underline">
-            View All 28 District Offices
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
+          </div>
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="py-12 mb-12">
-        <div className="bg-gray-200 rounded-2xl overflow-hidden h-[400px] relative">
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-300">
-            <div className="text-center">
-              <span className="material-symbols-outlined text-6xl text-gray-500 mb-4">map</span>
-              <p className="text-gray-600">Interactive map showing all district offices</p>
-              <p className="text-sm text-gray-500 mt-2">Click on markers to see office details</p>
+      <section className="px-4 md:px-10 py-12" id="map-section">
+        <div className="max-w-[1280px] mx-auto rounded-2xl overflow-hidden shadow-xl h-[450px] relative">
+          <div className="w-full h-full">
+            <img
+              className="w-full h-full object-cover"
+              alt="A detailed, professional digital map showing the Lilongwe capital city region of Malawi, specifically highlighting the Capital Hill government district"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIt-DMJ8y0daaRI0xNM1w4uVdnMrRqhLPXlS8nO3tq4llG_H90S8_9Cksjl2JhdpaRPtx4XQteGXFvv0MqAGKRerlsPTF1ObFfAoWrQySKe621UGV6dI2Lj27z-SNWCi6dMYcLjemdOhmOEOS-D4kp2UeQh-wwcdsFWD79TVej0pLjgZnewScz3UJuXIWnE421rq5Mu70FeSGKHOAv8zIwE8Ctsa31uR8jUIdca_l6YeRiGneAvYmdbrNVz6rgKBizT7wheBx6TA"
+            />
+          </div>
+          {/* Map Info Card */}
+          <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-300 max-w-sm">
+            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">HQ Headquarters</h3>
+            <p className="text-gray-600 text-sm mb-4 font-['Inter']">
+              Ministry of Gender, Community Development and Social Welfare, Capital Hill, Lilongwe, Malawi.
+            </p>
+            <div className="flex gap-4">
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#00236f] font-semibold flex items-center gap-1 hover:underline font-['Inter']"
+                aria-label="Get directions to Ministry of Gender headquarters on Google Maps"
+              >
+                <span className="material-symbols-outlined text-sm">directions</span>
+                Get Directions
+              </a>
             </div>
           </div>
         </div>
       </section>
     </main>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact
