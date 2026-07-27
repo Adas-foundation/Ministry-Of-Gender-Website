@@ -5,7 +5,7 @@ export class CreateEvidenceDto {
 
   
   @IsUUID() 
-  report_id?: string;
+  report_id!: string;
 
   @IsOptional()
   @IsObject()
