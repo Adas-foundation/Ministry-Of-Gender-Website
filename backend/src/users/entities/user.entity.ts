@@ -14,6 +14,8 @@ export class User {
 
   @Column({ unique: true })
   email?: string;
+  @Column()
+  password?: string;
 
   @ManyToOne(() => Role)
   @JoinColumn({ name: 'role_id' })
