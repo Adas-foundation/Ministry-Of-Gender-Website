@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { Role } from 'src/roles/entities/role.entity';
+import * as bcrypt from 'bcrypt';
 
 
 @Injectable()
@@ -13,14 +14,20 @@ export class UsersService {
     @InjectRepository(User)private readonly userRepository: Repository<User>,
     @InjectRepository(Role)private readonly rolesRepository: Repository<Role>
   ){}
+    
   async create(createUserDto: CreateUserDto) {
     const role=await this.rolesRepository.findOne({where: {id: createUserDto.roleId}});
     if(!role){
       throw new NotFoundException('Role not found')
     }
+    if (!createUserDto.password) {
+      throw new BadRequestException('Password is required');
+    }
+    const hashedPassword=await bcrypt.hash(createUserDto.password, 10);
     const user =this.userRepository.create({
       name: createUserDto.name,
       email: createUserDto.email,
+      password: hashedPassword,
       role,
 
     });
