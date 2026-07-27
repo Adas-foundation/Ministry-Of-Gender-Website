@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dto/create-report.dto';
-import { UpdateReportDto } from './dto/update-report.dto';
+import { UpdateReportDto } from './dto/update-report.dto'
 
 @Controller('reports')
 export class ReportsController {
@@ -16,6 +16,11 @@ export class ReportsController {
   findAll() {
     return this.reportsService.findAll();
   }
+
+    @Get('dashboard')
+   getDashboard() {
+  return this.reportsService.getDashboardStats();
+}
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -32,8 +37,4 @@ export class ReportsController {
     return this.reportsService.remove(id);
   }
 
-  @Get('dashboard')
-getDashboard() {
-  return this.reportsService.getDashboardStats();
-}
 }
