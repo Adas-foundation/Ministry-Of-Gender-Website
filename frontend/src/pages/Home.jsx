@@ -39,7 +39,7 @@ const Home = () => {
               <img 
                 className="w-full aspect-[4/5] object-cover" 
                 alt="A professional and warm illustration of a diverse group of Malawian citizens engaging with a kind social worker" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGU81etA-rdz9J3I2FuFM1WoAwdDIdJg6mId-b5sUpydPfFdG6hmGNgSGohgBLaB0hjwRAx41aBY4diP4b22PvHQvfYZO9H0E5gZg60Q1Cl14iX9qXJXhH_21I1hE2x0NZsZDXdsjfLtrYYRhskCnZrDLPtcAqQ6oYnqtqhSBoAEUdZDOciZc1LZt68T3InCEmj0Xye86d9zv8r5zLWXm1148-7TME5ADfsjr_mu8LdjQwRKrgJmQLawxH1uAc6kPU0dD2dKbjyQ"
+                src="womanreport.png"
               />
             </div>
             {/* Floating Stat Card */}
@@ -184,20 +184,6 @@ const Home = () => {
               </div>
               <button className="bg-[#00236f] text-white px-4 py-2 rounded-xl text-sm font-bold">Find Location</button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Partners Section */}
-      <section className="py-16 bg-white border-y border-gray-300">
-        <div className="max-w-[1280px] mx-auto px-4 md:px-10 text-center">
-          <p className="text-[12px] text-gray-600 uppercase tracking-[0.2em] mb-12 font-['Inter']">Institutional Partners & Stakeholders</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
-            <img className="h-12 w-auto" alt="Malawi Police Service" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg5b1J-KGxRIDQ6waCbqWzye5oMY0tmcJXtW85HPDg_TJvqKqOJCXx375JyRXnEMQWnjoDsKcheFNVKw6GQgjYty36YqVsmmACSeuM3LT_mhIoI6Aw6zsBvPSYwt5_BBYwXJzV2xKpqDOi1gWhg0SNjOiYdIkIpOIadvUU8x1adylzXA4ibwpQd6T8RCD4pAtCP2ZxsdY02kInwrznDCPxb7ZozY1iYSUexfI8LO8H7lPb3JM1Vm6mXxFfhmitW9PCGd9-XTJIJg"/>
-            <img className="h-10 w-auto" alt="UN Women" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo_AMSD5jlydptfHQp9RRsdgj2Wxcq4pdfxxEFUCNi93NYckhM4TT5VhLv9bs6jpzAURVNrw-0tsFiOD6MCajRBrPZmkhX3MknJy2oUFL4G-gS4_PWlhIi-coag0y2Rm2JmbFIhEF7hXvLR4_VNZHYz3j8Grc_w4ovSqvFhANWHvuR_aA1eDobpOq8j8hXSwRBFKb-MD90mc0Dzz52w86q6L9Kry5sdOSe1OjAbqGvUsdTxlrXBXAe0wCH21xsO886tvkXYvL83Q"/>
-            <img className="h-12 w-auto" alt="Ministry of Justice" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP6yMJxCCet5cM00JiZGMEVUPrW2vIme-JhCcZyW_39ORSS3G5wLV8lZfJmIbeW7RwPDQ2uRIAdEM7oNqd1xDidYFMxauvTWyUv5NR7-ox8kM2AkT0gMXpe9D_F0pcaLfYBJBswgmO4q_AIW35w755_ekZlLI1a-oOmedzAdefZrzVS_2SGzrGP3P7MfqVHqtZJkDjNYQvWv7Q5x-cEDvRF80MZ9L_UakBeceny44i7qnzIffaSwVTPdDQnc6YClbAzFlqOLiSiw"/>
-            <img className="h-8 w-auto" alt="UNICEF" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB7_cGVhoj8cemrXRCu-NnIDHwf4ARoyCgkFYny_eTZ8eryA42cvQ5KPtMz2R8kd9G_Lgo8t9AVjbJnXWWev_iPcfE9PuZjv3f8nXBwOOSn_bUDjS44dotuDLaO2_Kq75tQVfSdz90ndc_juBP-zTzVheXZ_dvsnkELutTikM8txoFpuq0hFN0Djp8XUXXX1BufXjobW2gMKgE65LmXvJMGQVuk4x0QMTgLlrxq_OeH7kVAArgTIS2Ya-tXTjjJEwvNabVPkkFdA"/>
-            <img className="h-12 w-auto" alt="Ministry of Health" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXW1IMB4YzTSQMpqvb2byKjJrBL96RH8R0qxzqbbnfDQifJvgQTcOqOvyztuLouSGiJMgRSZ9N-RtblgjTxF6V70BfndLU1AaAYXRmwfoE9oCNElA8Z87sw3YOMCgKNO4aLA5HirkM5G6M61uN-zmvw0DdbAX-hhIBzo7ahCN0-NtvSjBQ8EkidC8J-bDZL4pC0U6DkRqUxbR6ulpWc7vyC6rEKgtyRYRIcYdblQPqKiuhSHp34idtKlw-esT1hK2HUBL9LGkuug"/>
           </div>
         </div>
       </section>

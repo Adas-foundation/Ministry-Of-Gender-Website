@@ -8,24 +8,18 @@ const Footer = () => {
             <span className="h-6 w-[1px] bg-white/30"></span>
             <span className="text-[14px] opacity-80 font-['Inter']">Republic of Malawi</span>
           </div>
-          <p className="text-[16px] text-white/80 text-center md:text-left font-['Inter']">
+          <p className="text-[16px] text-white/80 font-['Inter']">
             © 2026 Ministry of Gender, Community Development and Social Welfare 
           </p>
         </div>
-        <nav className="flex flex-wrap justify-center gap-6">
-          <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Privacy Policy</a>
-          <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Terms of Service</a>
-          <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Help Desk</a>
-          <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Contact Us</a>
-        </nav>
-        <div className="flex gap-4">
-          <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#">
-            <span className="material-symbols-outlined text-[20px]">public</span>
-          </a>
-          <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#">
-            <span className="material-symbols-outlined text-[20px]">share</span>
-          </a>
-        </div>
+        <div className="flex flex-col items-center md:items-end gap-4">
+          <nav className="flex flex-wrap gap-6 justify-center">
+            <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Privacy Policy</a>
+            <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Terms of Service</a>
+            <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Help Desk</a>
+            <a className="text-white/80 font-['Inter'] hover:text-white hover:underline transition-colors" href="#">Contact Us</a>
+          </nav>
+     </div>
       </div>
     </footer>
   )
