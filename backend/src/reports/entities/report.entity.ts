@@ -14,6 +14,7 @@ export class Report {
   referenceNumber?: string;
 
   @Column({
+     name: 'incident_location',
     type: 'geometry',
     spatialFeatureType: 'Point',
     srid: 4326,
@@ -22,6 +23,7 @@ export class Report {
   incidentLocation?: object;
 
   @Column({
+    name: 'reporter_location',
     type: 'geometry',
     spatialFeatureType: 'Point',
     srid: 4326,

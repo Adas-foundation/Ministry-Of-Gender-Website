@@ -1,8 +1,9 @@
-import {IsString, IsNotEmpty, IsObject} from 'class-validator';
+import {IsString, IsNotEmpty, IsObject, IsOptional} from 'class-validator';
 export class CreateDistrictDto {
   @IsString()
   @IsNotEmpty()
   name?: string;
+  @IsOptional()
   @IsObject()
   geometry?: object;
 }
