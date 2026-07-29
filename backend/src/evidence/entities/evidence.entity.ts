@@ -23,7 +23,7 @@ export class Evidence {
   @JoinColumn({ name: 'report_id' })
  report!: Report;
 
- @ManyToOne(() => User, user => user.uploadedEvidence)
+ @ManyToOne(() => User)
  @JoinColumn({ name: 'uploaded_by' })
  uploadedBy!: User;
 

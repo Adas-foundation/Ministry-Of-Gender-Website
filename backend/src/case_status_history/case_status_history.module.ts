@@ -8,5 +8,6 @@ import { CaseStatusHistory } from './entities/case_status_history.entity';
   imports: [TypeOrmModule.forFeature([CaseStatusHistory])],
   controllers: [CaseStatusHistoryController],
   providers: [CaseStatusHistoryService],
+  exports: [CaseStatusHistoryService],
 })
 export class CaseStatusHistoryModule {}

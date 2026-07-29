@@ -1,4 +1,4 @@
-import { IsEnum, IsUUID, IsString, IsOptional } from 'class-validator';
+import { IsEnum, IsUUID, IsString, IsOptional, IsInt } from 'class-validator';
 import { CaseStatus } from '../enums/case_status_history.enum';
 
 export class CreateCaseStatusHistoryDto {
@@ -9,8 +9,9 @@ export class CreateCaseStatusHistoryDto {
   @IsEnum(CaseStatus)
   status?: CaseStatus;
 
-  @IsUUID()
-  changed_by?: string;
+  @IsOptional()
+@IsInt()
+changed_by?: number;
 
   @IsOptional()
   changed_at?: Date;
