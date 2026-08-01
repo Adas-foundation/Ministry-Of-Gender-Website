@@ -1,6 +1,23 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getReportsStats } from '../services/reportsApi'
+
+const formatCompact = (n) => {
+  if (n == null) return '—'
+  return new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(n)
+}
 
 const Home = () => {
+  const [stats, setStats] = useState(null)
+
+  useEffect(() => {
+    let active = true
+    getReportsStats()
+      .then((data) => { if (active) setStats(data) })
+      .catch((err) => console.error('Failed to load public stats', err))
+    return () => { active = false }
+  }, [])
+
   return (
     <main>
       {/* Hero Section */}
@@ -50,7 +67,7 @@ const Home = () => {
                 </div>
                 <div>
                   <p className="text-[12px] text-gray-600 uppercase tracking-tighter font-['Inter']">Case Resolution Rate</p>
-                  <p className="text-[24px] font-[600] text-[#00236f] font-['Poppins']">94.2%</p>
+                  <p className="text-[24px] font-[600] text-[#00236f] font-['Poppins']">{stats ? `${stats.resolutionRate}%` : '—'}</p>
                 </div>
               </div>
             </div>
@@ -64,17 +81,17 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#00236f] text-4xl mb-4">analytics</span>
-              <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">12k+</p>
+              <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">{formatCompact(stats?.totalCases)}</p>
               <p className="text-[14px] text-gray-600 uppercase font-['Inter']">Cases Reported</p>
             </div>
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#006a63] text-4xl mb-4">check_circle</span>
-              <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">8.5k</p>
+              <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">{formatCompact(stats?.resolved)}</p>
               <p className="text-[14px] text-gray-600 uppercase font-['Inter']">Cases Resolved</p>
             </div>
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#f6be39] text-4xl mb-4">location_on</span>
-              <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">28</p>
+              <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">{formatCompact(stats?.districtCount)}</p>
               <p className="text-[14px] text-gray-600 uppercase font-['Inter']">District Offices</p>
             </div>
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">

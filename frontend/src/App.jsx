@@ -35,6 +35,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/case-management" element={<CaseManagement />} />
+          <Route path="/case-management/create" element={<Report />} />
           <Route path="/user-management" element={<UserManagement />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/district-setup" element={<DistrictSetup />} />

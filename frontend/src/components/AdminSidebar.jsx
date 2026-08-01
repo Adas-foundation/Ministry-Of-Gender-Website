@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 
 export default function AdminSidebar() {
@@ -49,6 +48,7 @@ export default function AdminSidebar() {
           type="button"
           onClick={() => {
             localStorage.removeItem('safereport_user')
+            localStorage.removeItem('safereport_token')
             navigate('/login')
           }}
           className="w-full text-left flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 rounded-lg transition-all duration-200 ease-in-out"

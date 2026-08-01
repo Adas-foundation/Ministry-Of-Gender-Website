@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Submitted = () => {
+  const location = useLocation()
+  const referenceNumber = location.state?.referenceNumber || ''
+
   return (
     <main className="w-full max-w-4xl mx-auto px-4 py-12">
       <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
@@ -20,7 +23,7 @@ const Submitted = () => {
         {/* Reference Number */}
         <div className="bg-[#eff4ff] border border-gray-300 rounded-xl p-6 mb-8 max-w-md mx-auto">
           <span className="text-[14px] text-gray-600 block mb-1 font-['Inter']">Your Tracking Reference</span>
-          <span className="text-[24px] font-[600] text-[#00236f] tracking-widest font-mono font-['Poppins']">SR-MW-2024-88912</span>
+          <span className="text-[24px] font-[600] text-[#00236f] tracking-widest font-mono font-['Poppins']">{referenceNumber || '—'}</span>
         </div>
 
         {/* Action Buttons */}

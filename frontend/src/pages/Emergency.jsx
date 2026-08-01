@@ -1,23 +1,74 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { createSosAlert } from '../services/sosApi'
 
 const Emergency = () => {
   const [sosActive, setSosActive] = useState(false)
   const [pressTimer, setPressTimer] = useState(null)
+  const [sendingSilent, setSendingSilent] = useState(false)
+  const [sendingSos, setSendingSos] = useState(false)
+  const [sosError, setSosError] = useState('')
+  const [sosMessage, setSosMessage] = useState('')
 
   const quickExit = () => {
     window.location.replace("https://www.google.com/search?q=malawi+weather")
   }
 
-  const triggerSOS = () => {
-    setSosActive(true)
+  const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error('Geolocation is not supported by this browser.'))
+        return
+      }
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          accuracy: position.coords.accuracy,
+        }),
+        () => reject(new Error('Unable to access your location. Please enable location services and try again.')),
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      )
+    })
+  }
+
+  const sendSosAlert = async (source) => {
+    const coords = await getCurrentPosition()
+    return createSosAlert({ ...coords, source })
+  }
+
+  const triggerSOS = async () => {
+    setSosError('')
+    setSosMessage('')
+    setSendingSos(true)
+    try {
+      await sendSosAlert('sos')
+      setSosActive(true)
+    } catch (err) {
+      console.error('Failed to send SOS', err)
+      setSosError(err.message || 'Could not send SOS. Please call 997.')
+    } finally {
+      setSendingSos(false)
+    }
   }
 
   const cancelSOS = () => {
     setSosActive(false)
   }
 
-  const silentSOS = () => {
-    alert("Silent SOS triggered. Location shared discreetly. No sirens or sounds will play on this device.")
+  const silentSOS = async () => {
+    setSosError('')
+    setSosMessage('')
+    setSendingSilent(true)
+    try {
+      await sendSosAlert('silent')
+      setSosMessage('Silent SOS sent. Your location has been shared discreetly with the emergency team. No sirens or sounds will play on this device.')
+      setTimeout(() => setSosMessage(''), 6000)
+    } catch (err) {
+      console.error('Failed to send silent SOS', err)
+      setSosError(err.message || 'Could not send silent SOS.')
+    } finally {
+      setSendingSilent(false)
+    }
   }
 
   const handleMouseDown = () => {
@@ -70,20 +121,33 @@ const Emergency = () => {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               >
-                <span className="material-symbols-outlined text-7xl md:text-8xl mb-2" style={{ fontVariationSettings: "'FILL' 1" }}>emergency_share</span>
-                <span className="text-[24px] font-[600] font-['Poppins']">ACTIVATE SOS</span>
-                <span className="text-[14px] mt-2 opacity-80 uppercase tracking-widest font-['Inter']">Hold for 3 seconds</span>
+                <span className="material-symbols-outlined text-7xl md:text-8xl mb-2" style={{ fontVariationSettings: "'FILL' 1" }}>{sendingSos ? 'sync' : 'emergency_share'}</span>
+                <span className="text-[24px] font-[600] font-['Poppins']">{sendingSos ? 'SENDING SOS...' : 'ACTIVATE SOS'}</span>
+                <span className="text-[14px] mt-2 opacity-80 uppercase tracking-widest font-['Inter']">{sendingSos ? 'Transmitting your location' : 'Hold for 3 seconds'}</span>
               </button>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <button 
-                className="flex items-center gap-2 px-8 py-4 bg-[#d9e3f6] border border-gray-300 rounded-xl font-bold text-gray-800 hover:bg-gray-200 transition-colors font-['Inter']"
+                className="flex items-center gap-2 px-8 py-4 bg-[#d9e3f6] border border-gray-300 rounded-xl font-bold text-gray-800 hover:bg-gray-200 transition-colors font-['Inter'] disabled:opacity-60 disabled:cursor-not-allowed"
                 onClick={silentSOS}
+                disabled={sendingSilent}
               >
-                <span className="material-symbols-outlined">visibility_off</span>
-                SILENT SOS (No sound)
+                <span className="material-symbols-outlined">{sendingSilent ? 'sync' : 'visibility_off'}</span>
+                {sendingSilent ? 'SENDING...' : 'SILENT SOS (No sound)'}
               </button>
             </div>
+            {sosError && (
+              <div className="mt-4 max-w-md w-full rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 flex items-start gap-2">
+                <span className="material-symbols-outlined">error</span>
+                <span>{sosError}</span>
+              </div>
+            )}
+            {sosMessage && (
+              <div className="mt-4 max-w-md w-full rounded-xl border border-teal-200 bg-teal-50 p-4 text-sm text-teal-700 flex items-start gap-2">
+                <span className="material-symbols-outlined">check_circle</span>
+                <span>{sosMessage}</span>
+              </div>
+            )}
           </div>
 
           {/* Status & Location Bento Area */}

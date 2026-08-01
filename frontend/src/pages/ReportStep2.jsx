@@ -1,11 +1,11 @@
-const ReportStep2 = ({ isAnonymous, setIsAnonymous }) => {
+const ReportStep2 = ({ formData, updateField, isAnonymous, setIsAnonymous }) => {
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-300">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-[24px] font-[600] text-[#00236f] font-['Poppins']">Victim Information</h2>
         <div className="flex items-center gap-3">
           <span className="text-[14px] font-['Inter']">Report Anonymously</span>
-          <div 
+          <div
             className={`w-12 h-6 rounded-full relative cursor-pointer transition-all ${isAnonymous ? 'bg-[#00236f]' : 'bg-[#d9e3f6]'}`}
             onClick={setIsAnonymous}
           >
@@ -16,11 +16,23 @@ const ReportStep2 = ({ isAnonymous, setIsAnonymous }) => {
       <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-all ${isAnonymous ? 'opacity-30 pointer-events-none' : ''}`}>
         <div className="space-y-2">
           <label className="text-[14px] text-gray-800 font-['Inter']">Full Name</label>
-          <input className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']" placeholder="Enter victim's full name" type="text"/>
+          <input
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
+            placeholder="Enter victim's full name"
+            type="text"
+            value={formData.victimName}
+            onChange={(e) => updateField('victimName', e.target.value)}
+            disabled={isAnonymous}
+          />
         </div>
         <div className="space-y-2">
           <label className="text-[14px] text-gray-800 font-['Inter']">Age Range</label>
-          <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']">
+          <select
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
+            value={formData.victimAgeRange}
+            onChange={(e) => updateField('victimAgeRange', e.target.value)}
+            disabled={isAnonymous}
+          >
             <option>0 - 12 (Child)</option>
             <option>13 - 17 (Minor)</option>
             <option>18 - 35 (Adult)</option>
@@ -30,7 +42,12 @@ const ReportStep2 = ({ isAnonymous, setIsAnonymous }) => {
         </div>
         <div className="space-y-2">
           <label className="text-[14px] text-gray-800 font-['Inter']">Gender Identity</label>
-          <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']">
+          <select
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
+            value={formData.victimGender}
+            onChange={(e) => updateField('victimGender', e.target.value)}
+            disabled={isAnonymous}
+          >
             <option>Female</option>
             <option>Male</option>
             <option>Other / Prefer not to say</option>
@@ -38,7 +55,14 @@ const ReportStep2 = ({ isAnonymous, setIsAnonymous }) => {
         </div>
         <div className="space-y-2">
           <label className="text-[14px] text-gray-800 font-['Inter']">Phone Number (Optional)</label>
-          <input className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']" placeholder="+265..." type="tel"/>
+          <input
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
+            placeholder="+265..."
+            type="tel"
+            value={formData.victimPhone}
+            onChange={(e) => updateField('victimPhone', e.target.value)}
+            disabled={isAnonymous}
+          />
         </div>
       </div>
     </div>

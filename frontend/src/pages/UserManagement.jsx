@@ -1,40 +1,168 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import AdminSidebar from '../components/AdminSidebar'
+import { getUsers, createUser, updateUser, deleteUser } from '../services/usersApi'
+import { getRoles } from '../services/rolesApi'
 
-const initialFilters = {
-  role: 'All Roles',
-  district: 'All Districts',
-  status: 'All Status',
+const PAGE_SIZE = 10
+
+function titleCase(value) {
+  return String(value || '')
+    .split(/[\s_]+/)
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ')
 }
 
+const emptyForm = { name: '', email: '', password: '', roleId: '' }
+
 const UserManagement = () => {
+  const [users, setUsers] = useState([])
+  const [roles, setRoles] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
-  const [filters, setFilters] = useState(initialFilters)
+  const [filters, setFilters] = useState({ role: 'All Roles', district: 'All Districts', status: 'All Status' })
   const [currentPage, setCurrentPage] = useState(1)
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editingUser, setEditingUser] = useState(null)
+  const [form, setForm] = useState(emptyForm)
+  const [formError, setFormError] = useState('')
+  const [saving, setSaving] = useState(false)
+
+  const loadData = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const [userData, roleData] = await Promise.all([getUsers(), getRoles()])
+      setUsers(Array.isArray(userData) ? userData : [])
+      setRoles(Array.isArray(roleData) ? roleData : [])
+    } catch (err) {
+      console.error('Failed to load users', err)
+      setError(err.message || 'Could not load users.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    let cancelled = false
+
+    Promise.all([getUsers(), getRoles()])
+      .then(([userData, roleData]) => {
+        if (cancelled) return
+        setUsers(Array.isArray(userData) ? userData : [])
+        setRoles(Array.isArray(roleData) ? roleData : [])
+        setError('')
+      })
+      .catch((err) => {
+        if (cancelled) return
+        console.error('Failed to load users', err)
+        setError(err.message || 'Could not load users.')
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const adminCount = users.filter((u) => /admin/i.test(u.role?.roleName || '')).length
+
+  const filtered = useMemo(() => {
+    return users.filter((user) => {
+      if (filters.role !== 'All Roles' && titleCase(user.role?.roleName) !== filters.role) return false
+      if (searchQuery) {
+        const haystack = `${user.name || ''} ${user.email || ''}`.toLowerCase()
+        if (!haystack.includes(searchQuery.toLowerCase())) return false
+      }
+      return true
+    })
+  }, [users, filters.role, searchQuery])
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const pageUsers = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
 
   const handleSearch = (event) => {
     setSearchQuery(event.target.value)
+    setCurrentPage(1)
   }
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target
     setFilters((prev) => ({ ...prev, [name]: value }))
+    setCurrentPage(1)
   }
 
   const handleClearFilters = () => {
     setSearchQuery('')
-    setFilters(initialFilters)
+    setFilters({ role: 'All Roles', district: 'All Districts', status: 'All Status' })
   }
 
-  const handleAddUser = () => {
-    // Placeholder action: open add user modal or navigate to add user screen
-    console.log('Add new user action triggered')
+  const openAddModal = () => {
+    setEditingUser(null)
+    setForm(emptyForm)
+    setFormError('')
+    setModalOpen(true)
   }
 
-  const handleRowAction = (userId, action) => {
-    // Placeholder action: edit/delete/more details
-    console.log(`User ${userId} action: ${action}`)
+  const openEditModal = (user) => {
+    setEditingUser(user)
+    setForm({
+      name: user.name || '',
+      email: user.email || '',
+      password: '',
+      roleId: user.role?.id ?? '',
+    })
+    setFormError('')
+    setModalOpen(true)
   }
+
+  const handleSubmitForm = async (e) => {
+    e.preventDefault()
+    setFormError('')
+    setSaving(true)
+    try {
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        roleId: Number(form.roleId),
+      }
+      if (!payload.name || !payload.email) {
+        throw new Error('Name and email are required.')
+      }
+      if (!editingUser) {
+        if (!form.password) throw new Error('A password is required for new users.')
+        payload.password = form.password
+        await createUser(payload)
+      } else {
+        if (form.password) payload.password = form.password
+        await updateUser(editingUser.id, payload)
+      }
+      setModalOpen(false)
+      await loadData()
+    } catch (err) {
+      console.error('Failed to save user', err)
+      setFormError(err.message || 'Could not save the user.')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleDeleteUser = async (user) => {
+    if (!window.confirm(`Delete user "${user.name}"? This action cannot be undone.`)) return
+    try {
+      await deleteUser(user.id)
+      await loadData()
+    } catch (err) {
+      console.error('Failed to delete user', err)
+      setError(err.message || 'Could not delete the user.')
+    }
+  }
+
+  const roleOptions = ['All Roles', ...roles.map((r) => titleCase(r.roleName))]
 
   return (
     <div className="flex">
@@ -53,6 +181,8 @@ const UserManagement = () => {
               <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
                 Manage credentials and access levels for registered government officials, social workers, and law enforcement officers.
               </p>
+              {loading && <p className="mt-3 text-sm text-slate-500">Loading staff directory...</p>}
+              {error && !loading && <p className="mt-3 text-sm text-red-600">{error}</p>}
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -65,13 +195,13 @@ const UserManagement = () => {
                   value={searchQuery}
                   onChange={handleSearch}
                   className="w-full rounded-2xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-900 focus:border-[#00236f] focus:outline-none focus:ring-2 focus:ring-[#00236f]/10"
-                  placeholder="Search by name or ID..."
-                  aria-label="Search users by name or ID"
+                  placeholder="Search by name or email..."
+                  aria-label="Search users by name or email"
                 />
               </div>
               <button
                 type="button"
-                onClick={handleAddUser}
+                onClick={openAddModal}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#00236f] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1e3a8a]"
               >
                 <span className="material-symbols-outlined">person_add</span>
@@ -89,7 +219,7 @@ const UserManagement = () => {
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Total Staff</p>
-                <p className="mt-2 text-3xl font-semibold text-slate-900">1,284</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{users.length}</p>
               </div>
             </div>
           </article>
@@ -100,8 +230,8 @@ const UserManagement = () => {
                 <span className="material-symbols-outlined">verified_user</span>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Active Now</p>
-                <p className="mt-2 text-3xl font-semibold text-slate-900">432</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Non-Admin Staff</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{users.length - adminCount}</p>
               </div>
             </div>
           </article>
@@ -109,11 +239,11 @@ const UserManagement = () => {
           <article className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fef3c7] text-[#a16207]">
-                <span className="material-symbols-outlined">pending_actions</span>
+                <span className="material-symbols-outlined">admin_panel_settings</span>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Pending Verification</p>
-                <p className="mt-2 text-3xl font-semibold text-slate-900">18</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Administrators</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{adminCount}</p>
               </div>
             </div>
           </article>
@@ -121,11 +251,11 @@ const UserManagement = () => {
           <article className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fee2e2] text-[#b91c1c]">
-                <span className="material-symbols-outlined">block</span>
+                <span className="material-symbols-outlined">badge</span>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Suspended</p>
-                <p className="mt-2 text-3xl font-semibold text-slate-900">7</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Access Roles</p>
+                <p className="mt-2 text-3xl font-semibold text-slate-900">{roles.length}</p>
               </div>
             </div>
           </article>
@@ -143,28 +273,9 @@ const UserManagement = () => {
                   onChange={handleFilterChange}
                   className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-[#00236f] focus:ring-2 focus:ring-[#00236f]/10"
                 >
-                  <option>All Roles</option>
-                  <option>Admin</option>
-                  <option>Social Worker</option>
-                  <option>Police</option>
-                  <option>District Officer</option>
-                </select>
-              </div>
-              <div className="flex items-center gap-3">
-                <label htmlFor="filter-district" className="text-sm font-semibold text-slate-500">District:</label>
-                <select
-                  id="filter-district"
-                  name="district"
-                  value={filters.district}
-                  onChange={handleFilterChange}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-[#00236f] focus:ring-2 focus:ring-[#00236f]/10"
-                >
-                  <option>All Districts</option>
-                  <option>Lilongwe</option>
-                  <option>Blantyre</option>
-                  <option>Mzuzu</option>
-                  <option>Zomba</option>
-                  <option>Salima</option>
+                  {roleOptions.map((role) => (
+                    <option key={role}>{role}</option>
+                  ))}
                 </select>
               </div>
               <div className="flex items-center gap-3">
@@ -178,8 +289,6 @@ const UserManagement = () => {
                 >
                   <option>All Status</option>
                   <option>Active</option>
-                  <option>On Leave</option>
-                  <option>Suspended</option>
                 </select>
               </div>
             </div>
@@ -198,197 +307,73 @@ const UserManagement = () => {
             <table className="min-w-full border-collapse text-left">
               <thead className="bg-slate-50">
                 <tr>
-                  <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Name & ID</th>
+                  <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Name & Email</th>
                   <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Role</th>
-                  <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">District</th>
                   <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Status</th>
-                  <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Last Login</th>
                   <th className="px-6 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#eff6ff]">
-                        <img
-                          className="h-full w-full object-cover"
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjOzN_b4b4PM8mf7hJBlYyv_nBRiHEPy4Fws4zaKLkg2VenkAYcGCQJNTYVHMfKg_PF3ihxP01Y_q1ZoGxs53LtaONrfDF2QV0bc__rssuQNSp-p68RZhOLwqnut16k1gdOxt7XMaTA4OpvO1lGgydKUvp-PkGWAfdaj4dU8vCAxsAa1LiCaRKR1RhdVJPOefL-1aV_nMZdftepBb6XwRDj0DhZEY-TleUu0vahP0zeXM1ap-YOftieqVeKxj0q4W0h1eXlgab-Q"
-                          alt="Headshot of Chisomo Phiri"
-                        />
+                {pageUsers.map((user) => (
+                  <tr key={user.id} className="hover:bg-slate-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eff6ff] text-[#00236f] font-bold">
+                          {(user.name || '?').charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-slate-900">{user.name}</p>
+                          <p className="text-sm text-slate-500">ID: {user.id} · {user.email}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-semibold text-slate-900">Chisomo Phiri</p>
-                        <p className="text-sm text-slate-500">ID: MW-SW-0421</p>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2 text-slate-700">
+                        <span className="material-symbols-outlined text-[18px] text-[#00236f]">psychology</span>
+                        <span>{titleCase(user.role?.roleName)}</span>
                       </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-slate-700">
-                      <span className="material-symbols-outlined text-[18px] text-[#047857]">psychology</span>
-                      <span>Social Worker</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">Lilongwe Central</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-                      Active
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">
-                    <p>Oct 24, 2024</p>
-                    <p className="text-sm text-slate-500">09:12 AM</p>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      type="button"
-                      onClick={() => handleRowAction('MW-SW-0421', 'details')}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-                      aria-label="View actions for Chisomo Phiri"
-                    >
-                      <span className="material-symbols-outlined">more_vert</span>
-                    </button>
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#eff6ff]">
-                        <img
-                          className="h-full w-full object-cover"
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHw6HqJtXmuTYMEp3x5RixE9TpL5hR3ZRfdA1pvTXz6_8pO87lMFUfX9tFKN9iiZrhkt35AVic1CXQQxlP1PgGg-UsfAzYn_IzDvFXyww31N_ueyxiy5CjftGxhi8th_GBVsMwuNhZ1d-jNzsaU3wvevahkjhDKKehJp7f7DdllaBVXD6GlX45QmO_5rbsKVoKC7Qcg3vCWffs_XTzLXoUc9QelrQ9jAjZfrBPeJQGG51a4XfyzY1BpUCG0eCW_6h64Eq6dgfA3A"
-                          alt="Headshot of Inspector John Mwale"
-                        />
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
+                        <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+                        Active
+                      </span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          type="button"
+                          onClick={() => openEditModal(user)}
+                          className="inline-flex items-center gap-1 rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">edit</span>
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteUser(user)}
+                          className="inline-flex items-center gap-1 rounded-2xl border border-red-200 bg-white px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">delete</span>
+                          Delete
+                        </button>
                       </div>
-                      <div>
-                        <p className="font-semibold text-slate-900">Inspector John Mwale</p>
-                        <p className="text-sm text-slate-500">ID: MW-POL-8832</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-slate-700">
-                      <span className="material-symbols-outlined text-[18px] text-[#00236f]">policy</span>
-                      <span>Police</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">Blantyre Urban</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold text-orange-700">
-                      <span className="h-2 w-2 rounded-full bg-orange-500" aria-hidden="true" />
-                      On Leave
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">
-                    <p>Oct 20, 2024</p>
-                    <p className="text-sm text-slate-500">04:45 PM</p>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      type="button"
-                      onClick={() => handleRowAction('MW-POL-8832', 'details')}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-                      aria-label="View actions for Inspector John Mwale"
-                    >
-                      <span className="material-symbols-outlined">more_vert</span>
-                    </button>
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#eff6ff]">
-                        <img
-                          className="h-full w-full object-cover"
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmuuHGvc_tTjl9Ya8YDBF_TZdWpbuw2YXDV0dy0LQM27190nAU8jlFFHi0pG6UFbGaGaVr7R5JJTWXEJA89W2y3ukIu-bF8OCTRKEJJkdpPuu9oOnPviMWeNwRyXIeqY9-jPWFenAjKUfafuAW9GhAQg_y--4YuooAXMhpi_ZD43hhWbVDiSlXwCFZBGh_DoTmw-iQJG0OJ2cEz9J_9k1UskG7s3aVgubsFhYcCVlCZVGKQqs5Tq7Ec9OrziFBGQBLvosatcSyeQ"
-                          alt="Headshot of Tiwonge Banda"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-slate-900">Tiwonge Banda</p>
-                        <p className="text-sm text-slate-500">ID: MW-DO-1102</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-slate-700">
-                      <span className="material-symbols-outlined text-[18px] text-[#006a63]">location_city</span>
-                      <span>District Officer</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">Mzuzu North</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-                      Active
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">
-                    <p>Today</p>
-                    <p className="text-sm text-slate-500">08:00 AM</p>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      type="button"
-                      onClick={() => handleRowAction('MW-DO-1102', 'details')}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-                      aria-label="View actions for Tiwonge Banda"
-                    >
-                      <span className="material-symbols-outlined">more_vert</span>
-                    </button>
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#eff6ff]">
-                        <img
-                          className="h-full w-full object-cover"
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiqRni2I17-WduCidpWk-QCXWoeRe42oHzSo0MRQjPdiHAkFAAXDPNdVT2xg024-vmuJzWOVDQQ82lijWYXvuco18ByEkVfBZuwc9aoQTmn3-C8Yl16DGVPrB86oJhJAwjGdu-L4i5K2bEBTR36PUMeSm3AqP_45VOs-NAKctzxb0urdNujA6mvkSi2voq_r76GmDXeBisQisYaXHO1qDnEgcc0hFMZANyNV8nLqbNLgcKS2RKVOqH0oNdK2RzC_NyceP6q8CBdA"
-                          alt="Headshot of Dr. Kondwani Kumwenda"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-slate-900">Dr. Kondwani Kumwenda</p>
-                        <p className="text-sm text-slate-500">ID: MW-ADM-0005</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-slate-700">
-                      <span className="material-symbols-outlined text-[18px] text-[#00236f]" style={{ fontVariationSettings: "'FILL' 1" }}>admin_panel_settings</span>
-                      <span>Admin</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">National HQ</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-700">
-                      <span className="h-2 w-2 rounded-full bg-red-500" aria-hidden="true" />
-                      Suspended
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-slate-700">
-                    <p>Sep 12, 2024</p>
-                    <p className="text-sm text-slate-500">02:30 PM</p>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      type="button"
-                      onClick={() => handleRowAction('MW-ADM-0005', 'details')}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-slate-500 hover:bg-slate-100 hover:text-slate-900"
-                      aria-label="View actions for Dr. Kondwani Kumwenda"
-                    >
-                      <span className="material-symbols-outlined">more_vert</span>
-                    </button>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                ))}
+                {!loading && pageUsers.length === 0 && (
+                  <tr>
+                    <td colSpan="4" className="px-6 py-12 text-center text-sm text-slate-500">
+                      No users found.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
 
           <div className="border-t border-slate-200 bg-slate-50 px-6 py-4 md:flex md:items-center md:justify-between">
-            <p className="text-sm text-slate-600">Showing 1 to 10 of 1,284 officers</p>
+            <p className="text-sm text-slate-600">Showing {filtered.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1} to {Math.min(currentPage * PAGE_SIZE, filtered.length)} of {filtered.length} staff</p>
             <div className="mt-3 flex flex-wrap items-center gap-2 md:mt-0">
               <button
                 type="button"
@@ -399,34 +384,24 @@ const UserManagement = () => {
               >
                 <span className="material-symbols-outlined">chevron_left</span>
               </button>
-              {[1, 2, 3].map((page) => (
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
                   type="button"
                   onClick={() => setCurrentPage(page)}
                   className={`inline-flex h-10 min-w-[40px] items-center justify-center rounded-2xl border border-slate-200 bg-white text-sm font-semibold transition ${
-                    currentPage === page
-                      ? 'bg-[#00236f] text-white'
-                      : 'text-slate-700 hover:bg-slate-100'
+                    currentPage === page ? 'bg-[#00236f] text-white' : 'text-slate-700 hover:bg-slate-100'
                   }`}
                   aria-label={`Go to page ${page}`}
                 >
                   {page}
                 </button>
               ))}
-              <span className="text-sm text-slate-500">...</span>
               <button
                 type="button"
-                onClick={() => setCurrentPage(129)}
-                className="inline-flex h-10 min-w-[40px] items-center justify-center rounded-2xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 hover:bg-slate-100"
-                aria-label="Go to last page"
-              >
-                129
-              </button>
-              <button
-                type="button"
-                onClick={() => setCurrentPage((prev) => prev + 1)}
+                onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-100"
+                disabled={currentPage === totalPages}
                 aria-label="Next page"
               >
                 <span className="material-symbols-outlined">chevron_right</span>
@@ -436,6 +411,101 @@ const UserManagement = () => {
         </section>
       </div>
       </main>
+
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true">
+          <div className="w-full max-w-md rounded-[28px] bg-white p-8 shadow-2xl">
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-2xl font-semibold text-[#00236f]">{editingUser ? 'Edit User' : 'Add New User'}</h2>
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                className="flex h-10 w-10 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100"
+                aria-label="Close modal"
+              >
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+
+            {formError && (
+              <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{formError}</div>
+            )}
+
+            <form onSubmit={handleSubmitForm} className="space-y-4">
+              <div className="space-y-2">
+                <label htmlFor="user-name" className="text-sm font-semibold text-slate-700">Full Name</label>
+                <input
+                  id="user-name"
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[#00236f] focus:ring-2 focus:ring-[#00236f]/10 focus:outline-none"
+                  placeholder="e.g. Chisomo Phiri"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="user-email" className="text-sm font-semibold text-slate-700">Email Address</label>
+                <input
+                  id="user-email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[#00236f] focus:ring-2 focus:ring-[#00236f]/10 focus:outline-none"
+                  placeholder="name@gender.gov.mw"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="user-password" className="text-sm font-semibold text-slate-700">
+                  {editingUser ? 'New Password (optional)' : 'Password'}
+                </label>
+                <input
+                  id="user-password"
+                  type="password"
+                  value={form.password}
+                  onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
+                  required={!editingUser}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[#00236f] focus:ring-2 focus:ring-[#00236f]/10 focus:outline-none"
+                  placeholder={editingUser ? 'Leave blank to keep current password' : '••••••••'}
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="user-role" className="text-sm font-semibold text-slate-700">Role</label>
+                <select
+                  id="user-role"
+                  value={form.roleId}
+                  onChange={(e) => setForm((f) => ({ ...f, roleId: e.target.value }))}
+                  required
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-[#00236f] focus:ring-2 focus:ring-[#00236f]/10 focus:outline-none"
+                >
+                  <option value="" disabled>Select a role...</option>
+                  {roles.map((role) => (
+                    <option key={role.id} value={role.id}>{titleCase(role.roleName)}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(false)}
+                  className="flex-1 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="flex-1 rounded-2xl bg-[#00236f] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#1e3a8a] disabled:opacity-60"
+                >
+                  {saving ? 'Saving...' : editingUser ? 'Save Changes' : 'Create User'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,5 +1,18 @@
-import React, { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AdminSidebar from '../components/AdminSidebar'
+import { getSettings, updateSettings } from '../services/settingsApi'
+
+function formatRelative(iso) {
+  if (!iso) return 'Never'
+  const diff = Date.now() - new Date(iso).getTime()
+  const mins = Math.floor(diff / 60000)
+  if (mins < 1) return 'Just now'
+  if (mins < 60) return `${mins} minute${mins === 1 ? '' : 's'} ago`
+  const hours = Math.floor(mins / 60)
+  if (hours < 24) return `${hours} hour${hours === 1 ? '' : 's'} ago`
+  const days = Math.floor(hours / 24)
+  return `${days} day${days === 1 ? '' : 's'} ago`
+}
 
 export default function Settings() {
   const [platformName, setPlatformName] = useState('SafeReport Malawi')
@@ -13,16 +26,40 @@ export default function Settings() {
   const [ipWhitelist, setIpWhitelist] = useState('')
 
   const [retention, setRetention] = useState('7 Years (Default Legal Requirement)')
+  const [lastBackup, setLastBackup] = useState(null)
+
+  const [saving, setSaving] = useState(false)
+  const [backingUp, setBackingUp] = useState(false)
+  const [saveError, setSaveError] = useState('')
 
   const toastRef = useRef(null)
+
+  useEffect(() => {
+    let active = true
+    getSettings()
+      .then((s) => {
+        if (!active || !s) return
+        setPlatformName(s.platform_name || 'SafeReport Malawi')
+        setTimezone(s.timezone || 'Central Africa Time (CAT) - UTC+2')
+        setLanguage(s.language || 'English (UK)')
+        setContactEmail(s.contact_email || 'support@gender.gov.mw')
+        setTwoFA(s.two_fa !== 'false')
+        setSessionTimeout(s.session_timeout != null ? Number(s.session_timeout) : 30)
+        setPasswordExpiry(s.password_expiry != null ? Number(s.password_expiry) : 90)
+        setIpWhitelist(s.ip_whitelist || '')
+        setRetention(s.retention || '7 Years (Default Legal Requirement)')
+        setLastBackup(s.last_backup || null)
+      })
+      .catch((err) => console.error('Failed to load settings', err))
+    return () => { active = false }
+  }, [])
 
   function scrollToSection(id) {
     const el = document.getElementById(id)
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  function handleSave() {
-    // Placeholder: replace with real save API call
+  function showToast() {
     if (toastRef.current) {
       toastRef.current.classList.remove('translate-y-24', 'opacity-0')
       toastRef.current.classList.add('translate-y-0', 'opacity-100')
@@ -35,8 +72,43 @@ export default function Settings() {
     }
   }
 
-  function handleTriggerBackup() {
-    alert('Manual backup triggered (placeholder)')
+  async function handleSave() {
+    setSaveError('')
+    setSaving(true)
+    try {
+      await updateSettings({
+        platform_name: platformName,
+        timezone,
+        language,
+        contact_email: contactEmail,
+        two_fa: String(twoFA),
+        session_timeout: String(sessionTimeout),
+        password_expiry: String(passwordExpiry),
+        ip_whitelist: ipWhitelist,
+        retention,
+      })
+      showToast()
+    } catch (err) {
+      console.error('Failed to save settings', err)
+      setSaveError(err.message || 'Failed to save settings.')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  async function handleTriggerBackup() {
+    setSaveError('')
+    setBackingUp(true)
+    try {
+      const now = new Date().toISOString()
+      await updateSettings({ last_backup: now })
+      setLastBackup(now)
+    } catch (err) {
+      console.error('Failed to trigger backup', err)
+      setSaveError(err.message || 'Failed to trigger backup.')
+    } finally {
+      setBackingUp(false)
+    }
   }
 
   return (
@@ -62,15 +134,22 @@ export default function Settings() {
             </button>
             <button
               type="button"
-              className="px-6 py-2 rounded-lg bg-primary text-on-primary font-semibold shadow-md hover:opacity-90 transition-all active:scale-95"
+              className="px-6 py-2 rounded-lg bg-primary text-on-primary font-semibold shadow-md hover:opacity-90 transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
               onClick={handleSave}
+              disabled={saving}
             >
-              Save Changes
+              {saving ? 'Saving...' : 'Save Changes'}
             </button>
           </div>
         </header>
 
         <div className="p-margin-desktop grid grid-cols-12 gap-gutter max-w-container-max mx-auto w-full">
+          {saveError && (
+            <div className="col-span-12 rounded-xl border border-error/30 bg-error-container/20 p-4 text-error flex items-center gap-3">
+              <span className="material-symbols-outlined">error</span>
+              <span>{saveError}</span>
+            </div>
+          )}
           <div className="col-span-12 lg:col-span-3 space-y-4">
             <div className="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_12px_rgba(30,58,138,0.05)] sticky top-32">
               <h3 className="text-label-sm uppercase tracking-wider text-outline mb-4 px-2">Configuration</h3>
@@ -247,16 +326,16 @@ export default function Settings() {
                     <p className="text-on-surface-variant">Disaster recovery and automated backup scheduling.</p>
                   </div>
                 </div>
-                <button onClick={handleTriggerBackup} className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-semibold shadow-sm hover:opacity-90 active:scale-95 transition-all">
-                  <span className="material-symbols-outlined">rocket_launch</span>
-                  Trigger Manual Backup
+                <button onClick={handleTriggerBackup} disabled={backingUp} className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-semibold shadow-sm hover:opacity-90 active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+                  <span className="material-symbols-outlined">{backingUp ? 'progress_activity' : 'rocket_launch'}</span>
+                  {backingUp ? 'Backing Up...' : 'Trigger Manual Backup'}
                 </button>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="bg-surface p-4 rounded-xl flex flex-col items-center text-center">
                   <span className="text-label-sm text-on-surface-variant mb-1">Last Backup</span>
-                  <span className="font-bold text-primary">2 hours ago</span>
-                  <span className="text-label-sm mt-2">1.4 GB • Successful</span>
+                  <span className="font-bold text-primary">{formatRelative(lastBackup)}</span>
+                  <span className="text-label-sm mt-2">{lastBackup ? 'Successful' : 'No backup on record'}</span>
                 </div>
                 <div className="bg-surface p-4 rounded-xl flex flex-col items-center text-center border-l-4 border-primary">
                   <span className="text-label-sm text-on-surface-variant mb-1">Schedule</span>

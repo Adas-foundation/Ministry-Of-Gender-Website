@@ -70,41 +70,6 @@ const Contact = () => {
     }
   ]
 
-  const helplines = [
-    {
-      id: 1,
-      title: 'Child Helpline',
-      description: 'Immediate support for children in distress.',
-      number: '116',
-      icon: 'call',
-      bgColor: 'bg-red-100',
-      iconColor: 'text-red-600',
-      numberColor: 'text-red-600',
-      borderColor: 'border-l-[#ba1a1a]'
-    },
-    {
-      id: 2,
-      title: 'GBV Helpline',
-      description: 'Confidential support for Gender-Based Violence.',
-      number: '555',
-      icon: 'support_agent',
-      bgColor: 'bg-teal-100',
-      iconColor: 'text-teal-700',
-      numberColor: 'text-teal-700',
-      borderColor: 'border-l-[#006a63]'
-    },
-    {
-      id: 3,
-      title: 'HQ Location',
-      description: 'Ministry of Gender, Capital Hill',
-      icon: 'location_on',
-      bgColor: 'bg-blue-600',
-      iconColor: 'text-white',
-      textColor: 'text-white',
-      borderColor: ''
-    }
-  ]
-
   return (
     <main className="w-full">
       {/* Hero Section */}
