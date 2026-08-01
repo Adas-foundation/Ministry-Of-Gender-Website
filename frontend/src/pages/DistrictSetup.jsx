@@ -11,9 +11,9 @@ function districtStatus(activeCases, stations) {
 }
 
 const DistrictSetup = () => {
-  const [districts, setDistricts] = useState([])
-  const [stations, setStations] = useState([])
-  const [reports, setReports] = useState([])
+  const [districts, setDistricts] = useState(/** @type {any[]} */ ([]))
+  const [stations, setStations] = useState(/** @type {any[]} */ ([]))
+  const [reports, setReports] = useState(/** @type {any[]} */ ([]))
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [searchText, setSearchText] = useState('')
@@ -275,7 +275,7 @@ const DistrictSetup = () => {
                     ))}
                     {!loading && filteredDistricts.length === 0 && (
                       <tr>
-                        <td colSpan="5" className="px-6 py-12 text-center text-sm text-slate-500">No districts found.</td>
+                        <td colSpan={5} className="px-6 py-12 text-center text-sm text-slate-500">No districts found.</td>
                       </tr>
                     )}
                   </tbody>

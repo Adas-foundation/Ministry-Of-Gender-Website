@@ -5,8 +5,8 @@ import { parseReportDescription, statusLabel, statusVariant, formatDateTime } fr
 const Track = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
-  const [report, setReport] = useState(null)
-  const [history, setHistory] = useState([])
+  const [report, setReport] = useState(/** @type {any} */ (null))
+  const [history, setHistory] = useState(/** @type {any[]} */ ([]))
   const [error, setError] = useState('')
   const [searched, setSearched] = useState(false)
 
@@ -47,6 +47,7 @@ const Track = () => {
       description: 'Your report was successfully submitted and logged into the central database.',
       timestamp: report?.createdAt,
       done: true,
+      inProgress: false,
     },
     ...history.map((h, index) => ({
       key: `${h.id}-${index}`,
@@ -54,6 +55,7 @@ const Track = () => {
       description: `Case status changed to ${statusLabel(h.status).toLowerCase()} by the case team.`,
       timestamp: h.changed_at,
       done: true,
+      inProgress: false,
     })),
     {
       key: 'current',

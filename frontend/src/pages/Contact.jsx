@@ -8,7 +8,7 @@ const Contact = () => {
     message: ''
   })
 
-  const [submitStatus, setSubmitStatus] = useState(null)
+  const [submitStatus, setSubmitStatus] = useState(/** @type {string | null} */ (null))
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleInputChange = (e) => {
@@ -129,7 +129,7 @@ const Contact = () => {
             <h3 className="text-[20px] font-[500] mb-2 font-['Poppins']">HQ Location</h3>
             <p className="text-white/80 mb-4 font-['Inter']">Ministry of Gender, Capital Hill</p>
             <button 
-              onClick={() => document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('map-section')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white text-[#00236f] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors font-['Poppins']"
               aria-label="View map of headquarters location"
             >
@@ -221,7 +221,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="How can we assist you today?"
-                    rows="5"
+                    rows={5}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter'] resize-none"
                     aria-label="Message textarea"
                     required

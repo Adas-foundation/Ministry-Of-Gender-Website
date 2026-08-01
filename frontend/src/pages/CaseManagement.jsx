@@ -7,8 +7,8 @@ import { parseReportDescription, victimLabel, statusLabel, statusVariant, format
 const STATUS_OPTIONS = ['submitted', 'under_review', 'assigned', 'resolved']
 
 export default function CaseManagement() {
-  const [reports, setReports] = useState([])
-  const [districts, setDistricts] = useState([])
+  const [reports, setReports] = useState(/** @type {any[]} */ ([]))
+  const [districts, setDistricts] = useState(/** @type {any[]} */ ([]))
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [actionMsg, setActionMsg] = useState('')
@@ -19,8 +19,8 @@ export default function CaseManagement() {
   const [page, setPage] = useState(1)
   const pageSize = 8
 
-  const [selectedReport, setSelectedReport] = useState(null)
-  const [statusHistory, setStatusHistory] = useState([])
+  const [selectedReport, setSelectedReport] = useState(/** @type {any} */ (null))
+  const [statusHistory, setStatusHistory] = useState(/** @type {any[]} */ ([]))
   const [updatingId, setUpdatingId] = useState(null)
 
   const loadReports = () => {
@@ -253,7 +253,7 @@ export default function CaseManagement() {
                   <tbody className="divide-y divide-outline-variant">
                     {pageItems.length === 0 && (
                       <tr>
-                        <td colSpan="8" className="px-6 py-16 text-center text-on-surface-variant text-sm">No cases match your filters.</td>
+                        <td colSpan={8} className="px-6 py-16 text-center text-on-surface-variant text-sm">No cases match your filters.</td>
                       </tr>
                     )}
                     {pageItems.map((c) => {

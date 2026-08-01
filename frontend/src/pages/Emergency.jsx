@@ -3,7 +3,7 @@ import { createSosAlert } from '../services/sosApi'
 
 const Emergency = () => {
   const [sosActive, setSosActive] = useState(false)
-  const [pressTimer, setPressTimer] = useState(null)
+  const [pressTimer, setPressTimer] = useState(/** @type {ReturnType<typeof setTimeout> | null} */ (null))
   const [sendingSilent, setSendingSilent] = useState(false)
   const [sendingSos, setSendingSos] = useState(false)
   const [sosError, setSosError] = useState('')

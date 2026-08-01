@@ -8,7 +8,7 @@ const formatCompact = (n) => {
 }
 
 const Home = () => {
-  const [stats, setStats] = useState(null)
+  const [stats, setStats] = useState(/** @type {any} */ (null))
 
   useEffect(() => {
     let active = true

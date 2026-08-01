@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 
 const ReportStep5 = ({ formData, updateField }) => {
-  const fileInputRef = useRef(null)
+  const fileInputRef = useRef(/** @type {HTMLInputElement | null} */ (null))
 
   const handleFilesSelected = (e) => {
     const selected = Array.from(e.target.files || [])

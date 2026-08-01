@@ -16,8 +16,8 @@ function titleCase(value) {
 const emptyForm = { name: '', email: '', password: '', roleId: '' }
 
 const UserManagement = () => {
-  const [users, setUsers] = useState([])
-  const [roles, setRoles] = useState([])
+  const [users, setUsers] = useState(/** @type {any[]} */ ([]))
+  const [roles, setRoles] = useState(/** @type {any[]} */ ([]))
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
@@ -25,7 +25,7 @@ const UserManagement = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const [modalOpen, setModalOpen] = useState(false)
-  const [editingUser, setEditingUser] = useState(null)
+  const [editingUser, setEditingUser] = useState(/** @type {any} */ (null))
   const [form, setForm] = useState(emptyForm)
   const [formError, setFormError] = useState('')
   const [saving, setSaving] = useState(false)
@@ -363,7 +363,7 @@ const UserManagement = () => {
                 ))}
                 {!loading && pageUsers.length === 0 && (
                   <tr>
-                    <td colSpan="4" className="px-6 py-12 text-center text-sm text-slate-500">
+                    <td colSpan={4} className="px-6 py-12 text-center text-sm text-slate-500">
                       No users found.
                     </td>
                   </tr>

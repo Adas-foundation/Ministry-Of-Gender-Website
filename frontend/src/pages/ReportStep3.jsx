@@ -27,7 +27,7 @@ const ReportStep3 = ({ formData, updateField }) => {
           <textarea
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all resize-none font-['Inter']"
             placeholder="Describe the events clearly. Your safety and confidentiality are our priority..."
-            rows="6"
+            rows={6}
             value={formData.description}
             onChange={(e) => updateField('description', e.target.value)}
           ></textarea>

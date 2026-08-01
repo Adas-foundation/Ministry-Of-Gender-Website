@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getDistricts } from '../services/districtsApi'
 
 const ReportStep4 = ({ formData, updateField }) => {
-  const [districts, setDistricts] = useState([])
+  const [districts, setDistricts] = useState(/** @type {any[]} */ ([]))
   const [districtsError, setDistrictsError] = useState('')
   const [loadingDistricts, setLoadingDistricts] = useState(true)
 

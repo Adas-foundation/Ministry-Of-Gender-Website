@@ -29,8 +29,8 @@ function categoryKey(description) {
 }
 
 const Analytics = () => {
-  const [stats, setStats] = useState(null)
-  const [reports, setReports] = useState([])
+  const [stats, setStats] = useState(/** @type {any} */ (null))
+  const [reports, setReports] = useState(/** @type {any[]} */ ([]))
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 

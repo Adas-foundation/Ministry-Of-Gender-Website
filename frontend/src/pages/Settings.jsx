@@ -26,13 +26,13 @@ export default function Settings() {
   const [ipWhitelist, setIpWhitelist] = useState('')
 
   const [retention, setRetention] = useState('7 Years (Default Legal Requirement)')
-  const [lastBackup, setLastBackup] = useState(null)
+  const [lastBackup, setLastBackup] = useState(/** @type {string | null} */ (null))
 
   const [saving, setSaving] = useState(false)
   const [backingUp, setBackingUp] = useState(false)
   const [saveError, setSaveError] = useState('')
 
-  const toastRef = useRef(null)
+  const toastRef = useRef(/** @type {HTMLDivElement | null} */ (null))
 
   useEffect(() => {
     let active = true

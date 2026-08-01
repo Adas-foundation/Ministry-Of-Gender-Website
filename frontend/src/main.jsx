@@ -5,7 +5,9 @@ import './index.css'
 import './app.css'
 import App from './App.jsx'
 
-createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root')
+if (!container) throw new Error('Root element not found')
+createRoot(container).render(
   <StrictMode>
     <BrowserRouter>
       <App />
