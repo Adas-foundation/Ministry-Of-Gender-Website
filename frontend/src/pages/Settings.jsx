@@ -345,7 +345,7 @@ export default function Settings() {
                 <div className="bg-surface p-4 rounded-xl flex flex-col items-center text-center">
                   <span className="text-label-sm text-on-surface-variant mb-1">Restore Points</span>
                   <span className="font-bold text-primary">14 Available</span>
-                  <button className="text-primary font-bold text-label-sm mt-2 underline">Manage Points</button>
+                  <button className="text-primary font-bold text-label-sm mt-2 underline" onClick={() => scrollToSection('backup')}>Manage Points</button>
                 </div>
               </div>
             </section>
@@ -371,7 +371,7 @@ export default function Settings() {
                       <p className="text-label-sm text-secondary">Connected • API v2.4</p>
                     </div>
                   </div>
-                  <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">settings</span>
+                  <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" onClick={() => scrollToSection('integrations')}>settings</span>
                 </div>
                 <div className="p-6 border border-outline-variant rounded-xl hover:border-primary transition-colors flex items-center justify-between">
                   <div className="flex items-center gap-4">
@@ -383,9 +383,9 @@ export default function Settings() {
                       <p className="text-label-sm text-secondary">Connected • API v1.1</p>
                     </div>
                   </div>
-                  <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">settings</span>
+                  <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" onClick={() => scrollToSection('integrations')}>settings</span>
                 </div>
-                <button className="col-span-1 md:col-span-2 p-4 border-2 border-dashed border-outline-variant rounded-xl text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+                <button className="col-span-1 md:col-span-2 p-4 border-2 border-dashed border-outline-variant rounded-xl text-on-surface-variant hover:text-primary hover:border-primary hover:bg-primary/5 transition-all flex items-center justify-center gap-2" onClick={() => window.alert('Integration marketplace is under development. Please contact IT Support for custom integrations.')}>
                   <span className="material-symbols-outlined">add_circle</span>
                   <span className="font-semibold">Connect New Integration</span>
                 </button>
@@ -398,9 +398,9 @@ export default function Settings() {
           <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-base">
             <p className="font-body-md text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
             <div className="flex gap-gutter">
-              <a className="hover:text-on-primary transition-colors" href="#">Privacy Policy</a>
-              <a className="hover:text-on-primary transition-colors" href="#">Help Desk</a>
-              <a className="hover:text-on-primary transition-colors" href="#">Contact Us</a>
+              <a className="hover:text-on-primary transition-colors" href="/resources">Privacy Policy</a>
+              <a className="hover:text-on-primary transition-colors" href="/contact">Help Desk</a>
+              <a className="hover:text-on-primary transition-colors" href="/contact">Contact Us</a>
             </div>
           </div>
         </footer>
