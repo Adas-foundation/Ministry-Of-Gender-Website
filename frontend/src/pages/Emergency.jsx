@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { createSosAlert } from '../services/sosApi'
+import { useLanguage } from '../i18n/useLanguage'
 
 const Emergency = () => {
+  const { t } = useLanguage()
   const [sosActive, setSosActive] = useState(false)
   const [pressTimer, setPressTimer] = useState(/** @type {ReturnType<typeof setTimeout> | null} */ (null))
   const [sendingSilent, setSendingSilent] = useState(false)
@@ -9,8 +11,23 @@ const Emergency = () => {
   const [sosError, setSosError] = useState('')
   const [sosMessage, setSosMessage] = useState('')
 
-  const quickExit = () => {
-    window.location.replace("https://www.google.com/search?q=malawi+weather")
+  // Local emergency contacts; each is either a tel: or sms: target.
+  const [contacts, setContacts] = useState([
+    { id: 1, name: 'Mary Kalua', phone: '+265 888 123 456' },
+  ])
+
+  const addContact = () => {
+    const name = window.prompt(t('emergency.contactNamePrompt'))
+    const phone = window.prompt(t('emergency.contactPhonePrompt'))
+    if (name && phone) {
+      setContacts((prev) => [...prev, { id: Date.now(), name, phone }])
+    } else {
+      window.alert(t('emergency.contactInvalid'))
+    }
+  }
+
+  const removeContact = (id) => {
+    setContacts((prev) => prev.filter((c) => c.id !== id))
   }
 
   const getCurrentPosition = () => {
@@ -45,7 +62,7 @@ const Emergency = () => {
       setSosActive(true)
     } catch (err) {
       console.error('Failed to send SOS', err)
-      setSosError(err.message || 'Could not send SOS. Please call 997.')
+      setSosError(err.message || t('emergency.sosError'))
     } finally {
       setSendingSos(false)
     }
@@ -61,11 +78,11 @@ const Emergency = () => {
     setSendingSilent(true)
     try {
       await sendSosAlert('silent')
-      setSosMessage('Silent SOS sent. Your location has been shared discreetly with the emergency team. No sirens or sounds will play on this device.')
+      setSosMessage(t('emergency.silentSent'))
       setTimeout(() => setSosMessage(''), 6000)
     } catch (err) {
       console.error('Failed to send silent SOS', err)
-      setSosError(err.message || 'Could not send silent SOS.')
+      setSosError(err.message || t('emergency.silentError'))
     } finally {
       setSendingSilent(false)
     }
@@ -95,22 +112,13 @@ const Emergency = () => {
 
   return (
     <main className="flex-grow">
-      {/* Quick Exit Fixed Button (Always Visible) */}
-      <button 
-        className="fixed top-4 right-4 z-[100] px-6 py-3 rounded-full bg-gradient-to-r from-[#ba1a1a] to-[#93000a] text-white font-bold shadow-lg flex items-center gap-2 hover:scale-105 active:scale-95 transition-all"
-        onClick={quickExit}
-      >
-        <span className="material-symbols-outlined">close</span>
-        QUICK EXIT
-      </button>
-
       {/* Hero Section: Emergency Action */}
       <section className="relative py-8 px-4 md:px-10 bg-[#eff4ff] overflow-hidden">
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           {/* SOS Trigger Area */}
           <div className="lg:col-span-7 flex flex-col items-center text-center py-4">
-            <h2 className="text-[48px] leading-[56px] mb-4 text-[#00236f] font-[700] font-['Poppins']">Help is One Tap Away</h2>
-            <p className="text-[18px] text-gray-600 max-w-xl mb-8 font-['Inter']">Press the button below for immediate assistance. Your location and status will be shared with the Ministry of Gender emergency team.</p>
+            <h2 className="text-[48px] leading-[56px] mb-4 text-[#00236f] font-[700] font-['Poppins']">{t('emergency.heroTitle')}</h2>
+            <p className="text-[18px] text-gray-600 max-w-xl mb-8 font-['Inter']">{t('emergency.heroSubtitle')}</p>
             <div className="relative group">
               <div className="sos-pulse absolute inset-0 bg-[#ba1a1a]/20 rounded-full animate-pulse"></div>
               <button 
@@ -122,8 +130,8 @@ const Emergency = () => {
                 onTouchEnd={handleTouchEnd}
               >
                 <span className="material-symbols-outlined text-7xl md:text-8xl mb-2" style={{ fontVariationSettings: "'FILL' 1" }}>{sendingSos ? 'sync' : 'emergency_share'}</span>
-                <span className="text-[24px] font-[600] font-['Poppins']">{sendingSos ? 'SENDING SOS...' : 'ACTIVATE SOS'}</span>
-                <span className="text-[14px] mt-2 opacity-80 uppercase tracking-widest font-['Inter']">{sendingSos ? 'Transmitting your location' : 'Hold for 3 seconds'}</span>
+                <span className="text-[24px] font-[600] font-['Poppins']">{sendingSos ? t('emergency.sendingSos') : t('emergency.activateSos')}</span>
+                <span className="text-[14px] mt-2 opacity-80 uppercase tracking-widest font-['Inter']">{sendingSos ? t('emergency.transmitting') : t('emergency.hold')}</span>
               </button>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -133,7 +141,7 @@ const Emergency = () => {
                 disabled={sendingSilent}
               >
                 <span className="material-symbols-outlined">{sendingSilent ? 'sync' : 'visibility_off'}</span>
-                {sendingSilent ? 'SENDING...' : 'SILENT SOS (No sound)'}
+                {sendingSilent ? t('emergency.sending') : t('emergency.silent')}
               </button>
             </div>
             {sosError && (
@@ -157,11 +165,11 @@ const Emergency = () => {
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-[#00236f]">location_on</span>
-                  <span className="text-[20px] font-[500] font-['Poppins']">Live Location</span>
+                  <span className="text-[20px] font-[500] font-['Poppins']">{t('emergency.liveLocation')}</span>
                 </div>
                 <div className="flex items-center gap-1 text-green-600 font-bold text-sm">
                   <span className="w-2 h-2 bg-green-600 rounded-full animate-ping"></span>
-                  BROADCASTING
+                  {t('emergency.broadcasting')}
                 </div>
               </div>
               <div className="w-full h-48 rounded-lg overflow-hidden relative border border-gray-300">
@@ -174,29 +182,47 @@ const Emergency = () => {
                   GPS Accuracy: ±5 meters
                 </div>
               </div>
-              <p className="mt-3 text-sm text-gray-600 font-['Inter']">Last updated: Just now</p>
+              <p className="mt-3 text-sm text-gray-600 font-['Inter']">{t('emergency.lastUpdated')}</p>
             </div>
 
             {/* Emergency Contacts Quick View */}
             <div className="bg-white p-4 rounded-xl shadow-md border border-gray-300">
               <h3 className="text-[20px] font-[500] mb-4 flex items-center gap-2 font-['Poppins']">
                 <span className="material-symbols-outlined text-[#00236f]">contacts</span>
-                Emergency Contacts
+                {t('emergency.contacts')}
               </h3>
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 bg-[#eff4ff] rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#1e3a8a] text-white rounded-full flex items-center justify-center font-bold">MK</div>
-                    <div>
-                      <p className="font-bold">Mary Kalua</p>
-                      <p className="text-xs text-gray-600 font-['Inter']">Mother • +265 888 123 456</p>
+                {contacts.map((contact) => (
+                  <div key={contact.id} className="flex items-center justify-between p-3 bg-[#eff4ff] rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-[#1e3a8a] text-white rounded-full flex items-center justify-center font-bold">
+                        {contact.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="font-bold">{contact.name}</p>
+                        <p className="text-xs text-gray-600 font-['Inter']">{t('emergency.crew')} • {contact.phone}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <a href={`tel:${contact.phone.replace(/\D/g, '')}`} className="flex items-center gap-1 text-[#006a63] text-sm font-semibold hover:underline font-['Inter']">
+                        <span className="material-symbols-outlined text-[16px]">call</span>
+                      </a>
+                      <button
+                        onClick={() => removeContact(contact.id)}
+                        className="text-[#ba1a1a] hover:underline text-sm font-['Inter']"
+                        aria-label={`Remove ${contact.name}`}
+                      >
+                        <span className="material-symbols-outlined text-[18px]">delete</span>
+                      </button>
                     </div>
                   </div>
-                  <span className="material-symbols-outlined text-green-600">check_circle</span>
-                </div>
-                <button className="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 font-['Inter']">
+                ))}
+                <button
+                  onClick={addContact}
+                  className="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 font-['Inter']"
+                >
                   <span className="material-symbols-outlined">add</span>
-                  Add Primary Contact
+                  {t('emergency.addContact')}
                 </button>
               </div>
             </div>
@@ -206,15 +232,15 @@ const Emergency = () => {
 
       {/* Quick Links Grid */}
       <section className="py-8 px-4 md:px-10 max-w-[1280px] mx-auto">
-        <h3 className="text-[24px] font-[600] mb-4 text-center md:text-left font-['Poppins']">One-Touch Emergency Services</h3>
+        <h3 className="text-[24px] font-[600] mb-4 text-center md:text-left font-['Poppins']">{t('emergency.servicesTitle')}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Call Police */}
           <a className="bg-white p-6 rounded-xl shadow-md border border-gray-300 hover:border-[#00236f] transition-all group" href="tel:997">
             <div className="w-12 h-12 bg-[#00236f]/10 rounded-full flex items-center justify-center mb-4 text-[#00236f] group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined">local_police</span>
             </div>
-            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">Call Police</h4>
-            <p className="text-gray-600 text-sm mb-4 font-['Inter']">Direct line to Malawi Police Service.</p>
+            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">{t('emergency.callPolice')}</h4>
+            <p className="text-gray-600 text-sm mb-4 font-['Inter']">{t('emergency.callPoliceText')}</p>
             <span className="text-[#00236f] font-bold text-lg font-['Poppins']">997</span>
           </a>
           {/* Call Ambulance */}
@@ -222,28 +248,28 @@ const Emergency = () => {
             <div className="w-12 h-12 bg-[#ba1a1a]/10 rounded-full flex items-center justify-center mb-4 text-[#ba1a1a] group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined">medical_services</span>
             </div>
-            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">Call Ambulance</h4>
-            <p className="text-gray-600 text-sm mb-4 font-['Inter']">National Health Emergency Line.</p>
+            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">{t('emergency.callAmbulance')}</h4>
+            <p className="text-gray-600 text-sm mb-4 font-['Inter']">{t('emergency.callAmbulanceText')}</p>
             <span className="text-[#ba1a1a] font-bold text-lg font-['Poppins']">998</span>
           </a>
           {/* Nearest Safe House */}
-          <div className="bg-white p-6 rounded-xl shadow-md border border-gray-300 hover:border-[#00236f] transition-all group cursor-pointer">
+          <a href="https://www.google.com/maps/search/?api=1&query=emergency+shelter+Malawi" target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl shadow-md border border-gray-300 hover:border-[#00236f] transition-all group block">
             <div className="w-12 h-12 bg-[#006a63]/10 rounded-full flex items-center justify-center mb-4 text-[#006a63] group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined">roofing</span>
             </div>
-            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">Nearest Safe House</h4>
-            <p className="text-gray-600 text-sm mb-4 font-['Inter']">Confidential secure locations nearby.</p>
-            <span className="text-[#006a63] font-bold text-sm underline font-['Inter']">Find on Map</span>
-          </div>
+            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">{t('emergency.safeHouse')}</h4>
+            <p className="text-gray-600 text-sm mb-4 font-['Inter']">{t('emergency.safeHouseText')}</p>
+            <span className="text-[#006a63] font-bold text-sm underline font-['Inter']">{t('emergency.findOnMap')}</span>
+          </a>
           {/* Nearest Hospital */}
-          <div className="bg-white p-6 rounded-xl shadow-md border border-gray-300 hover:border-[#00236f] transition-all group cursor-pointer">
+          <a href="https://www.google.com/maps/search/?api=1&query=hospital+Malawi" target="_blank" rel="noopener noreferrer" className="bg-white p-6 rounded-xl shadow-md border border-gray-300 hover:border-[#00236f] transition-all group block">
             <div className="w-12 h-12 bg-[#533c00]/20 rounded-full flex items-center justify-center mb-4 text-[#261a00] group-hover:scale-110 transition-transform">
               <span className="material-symbols-outlined">hospital</span>
             </div>
-            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">Nearest Hospital</h4>
-            <p className="text-gray-600 text-sm mb-4 font-['Inter']">24/7 medical facilities near you.</p>
-            <span className="text-[#261a00] font-bold text-sm underline font-['Inter']">Find on Map</span>
-          </div>
+            <h4 className="text-[20px] font-[500] font-bold font-['Poppins']">{t('emergency.hospital')}</h4>
+            <p className="text-gray-600 text-sm mb-4 font-['Inter']">{t('emergency.hospitalText')}</p>
+            <span className="text-[#261a00] font-bold text-sm underline font-['Inter']">{t('emergency.findOnMap')}</span>
+          </a>
         </div>
       </section>
 
@@ -252,35 +278,35 @@ const Emergency = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-10">
           <div className="flex items-end justify-between mb-4">
             <div>
-              <h3 className="text-[24px] font-[600] font-['Poppins']">Immediate Safety Steps</h3>
-              <p className="text-gray-600 font-['Inter']">Recommended actions while waiting for help.</p>
+              <h3 className="text-[24px] font-[600] font-['Poppins']">{t('emergency.tipsTitle')}</h3>
+              <p className="text-gray-600 font-['Inter']">{t('emergency.tipsSubtitle')}</p>
             </div>
-            <a className="hidden md:block text-[#00236f] font-bold hover:underline font-['Inter']">View All Safety Guides</a>
+            <a href="/resources" className="hidden md:block text-[#00236f] font-bold hover:underline font-['Inter']">View All Safety Guides</a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Tip 1 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#00236f]">
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-8 h-8 rounded-full bg-[#00236f] text-white flex items-center justify-center font-bold">1</span>
-                <h4 className="font-bold font-['Poppins']">Find a Secure Spot</h4>
+                <h4 className="font-bold font-['Poppins']">{t('emergency.tip1Title')}</h4>
               </div>
-              <p className="text-gray-600 text-sm font-['Inter']">Lock yourself in a room or find a public place with many witnesses. Stay away from kitchen or tools.</p>
+              <p className="text-gray-600 text-sm font-['Inter']">{t('emergency.tip1Text')}</p>
             </div>
             {/* Tip 2 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#006a63]">
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-8 h-8 rounded-full bg-[#006a63] text-white flex items-center justify-center font-bold">2</span>
-                <h4 className="font-bold font-['Poppins']">Save Evidence</h4>
+                <h4 className="font-bold font-['Poppins']">{t('emergency.tip2Title')}</h4>
               </div>
-              <p className="text-gray-600 text-sm font-['Inter']">If safe, take photos or voice recordings. Keep them in a hidden folder or cloud storage immediately.</p>
+              <p className="text-gray-600 text-sm font-['Inter']">{t('emergency.tip2Text')}</p>
             </div>
             {/* Tip 3 */}
             <div className="bg-white p-4 rounded-xl shadow-sm border-l-4 border-[#f6be39]">
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-8 h-8 rounded-full bg-[#f6be39] text-[#261a00] flex items-center justify-center font-bold">3</span>
-                <h4 className="font-bold font-['Poppins']">Keep Phone Charged</h4>
+                <h4 className="font-bold font-['Poppins']">{t('emergency.tip3Title')}</h4>
               </div>
-              <p className="text-gray-600 text-sm font-['Inter']">Switch to low power mode. Do not close this browser tab as it is tracking your location for responders.</p>
+              <p className="text-gray-600 text-sm font-['Inter']">{t('emergency.tip3Text')}</p>
             </div>
           </div>
         </div>
@@ -291,13 +317,13 @@ const Emergency = () => {
         <div className="fixed inset-0 bg-[#ba1a1a]/90 z-[110] flex items-center justify-center p-6 text-center text-white animate-pulse">
           <div className="max-w-md">
             <span className="material-symbols-outlined text-9xl mb-6">emergency</span>
-            <h2 className="text-4xl font-bold mb-4 font-['Poppins']">SOS SIGNAL SENT</h2>
-            <p className="text-xl mb-8 font-['Inter']">Authorities have been notified and your live location is being shared. Responders are being dispatched to your area.</p>
+            <h2 className="text-4xl font-bold mb-4 font-['Poppins']">{t('emergency.sosSentTitle')}</h2>
+            <p className="text-xl mb-8 font-['Inter']">{t('emergency.sosSentText')}</p>
             <button 
               className="px-8 py-3 bg-white text-[#ba1a1a] font-bold rounded-full hover:bg-gray-100 transition-all font-['Inter']"
               onClick={cancelSOS}
             >
-              CANCEL SOS (I am safe)
+              {t('emergency.cancelSos')}
             </button>
           </div>
         </div>

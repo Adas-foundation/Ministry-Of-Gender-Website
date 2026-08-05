@@ -20,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
 import { EmailService } from './email/email.service';
 import { EmailModule } from './email/email.module';
 import { SettingsModule } from './settings/settings.module';
+import { EmergencySosModule } from './emergency-sos/emergency-sos.module';
 
 @Module({
   imports:[ 
@@ -68,6 +69,7 @@ import { SettingsModule } from './settings/settings.module';
     EmailModule,
 
     SettingsModule,
+    EmergencySosModule,
 
   ],
    

@@ -356,14 +356,21 @@ export default function CaseManagement() {
             <p className="font-body-md text-body-md text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
           </div>
           <div className="flex gap-gutter">
-            <a className="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="#">Privacy Policy</a>
-            <a className="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="#">Help Desk</a>
-            <a className="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="#">Contact Us</a>
+            <a className="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="/resources">Privacy Policy</a>
+            <a className="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="/contact">Help Desk</a>
+            <a className="hover:text-on-primary transition-colors font-body-md text-body-md text-on-primary/80" href="/contact">Contact Us</a>
           </div>
         </footer>
 
         <div className="fixed bottom-8 right-8 z-[100]">
-          <button className="bg-error text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all group overflow-hidden relative" aria-label="Urgent Alert">
+          <button
+            className="bg-error text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all group overflow-hidden relative"
+            aria-label="Urgent Alert"
+            onClick={() => {
+              const urgent = reports.filter((r) => String(r.status || '').toLowerCase() === 'submitted').length
+              window.alert(`You have ${urgent} submitted report(s) awaiting review. Navigate to a case to take action.`)
+            }}
+          >
             <span className="material-symbols-outlined text-[28px] group-hover:hidden">emergency_share</span>
             <span className="hidden group-hover:block font-bold text-xs uppercase tracking-tighter">Alert</span>
             <div className="absolute inset-0 bg-white/20 animate-ping rounded-full"></div>
