@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useLanguage } from '../i18n/useLanguage'
 
 const Contact = () => {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -46,26 +48,26 @@ const Contact = () => {
   const districtOffices = [
     {
       id: 1,
-      name: 'Lilongwe District Office',
-      location: 'Capital Hill, Area 20',
+      name: t('contact.officeLilongwe'),
+      location: t('contact.officeLilongweLoc'),
       phone: '+265 1 789 322'
     },
     {
       id: 2,
-      name: 'Blantyre District Office',
-      location: 'Chichiri Govt Offices',
+      name: t('contact.officeBlantyre'),
+      location: t('contact.officeBlantyreLoc'),
       phone: '+265 1 820 455'
     },
     {
       id: 3,
-      name: 'Mzuzu District Office',
-      location: 'Government Buildings, Mzuzu',
+      name: t('contact.officeMzuzu'),
+      location: t('contact.officeMzuzuLoc'),
       phone: '+265 1 311 099'
     },
     {
       id: 4,
-      name: 'Zomba District Office',
-      location: 'Chirunga Road, Zomba',
+      name: t('contact.officeZomba'),
+      location: t('contact.officeZombaLoc'),
       phone: '+265 1 524 888'
     }
   ]
@@ -77,10 +79,10 @@ const Contact = () => {
         <div className="max-w-[1280px] mx-auto relative z-10">
           <div className="max-w-2xl">
             <h1 className="text-[48px] leading-[56px] font-[700] mb-6 font-['Poppins']">
-              How can we help you today?
+              {t('contact.heroTitle')}
             </h1>
             <p className="text-[18px] leading-[28px] text-white/80 mb-8 font-['Inter']">
-              The Ministry of Gender is here to support every citizen. Whether you need to report an incident, seek guidance, or locate your nearest office, our team is ready to assist.
+              {t('contact.heroSubtitle')}
             </p>
           </div>
         </div>
@@ -94,8 +96,8 @@ const Contact = () => {
             <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
             </div>
-            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Child Helpline</h3>
-            <p className="text-gray-600 mb-4 font-['Inter']">Immediate support for children in distress.</p>
+            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('contact.childHelpline')}</h3>
+            <p className="text-gray-600 mb-4 font-['Inter']">{t('contact.childHelplineText')}</p>
             <a 
               href="tel:116" 
               className="text-red-600 font-extrabold text-3xl hover:underline font-['Poppins']"
@@ -110,8 +112,8 @@ const Contact = () => {
             <div className="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-[32px]" style={{ fontVariationSettings: "'FILL' 1" }}>support_agent</span>
             </div>
-            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">GBV Helpline</h3>
-            <p className="text-gray-600 mb-4 font-['Inter']">Confidential support for Gender-Based Violence.</p>
+            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('contact.gbvHelpline')}</h3>
+            <p className="text-gray-600 mb-4 font-['Inter']">{t('contact.gbvHelplineText')}</p>
             <a 
               href="tel:555" 
               className="text-teal-700 font-extrabold text-3xl hover:underline font-['Poppins']"
@@ -126,14 +128,14 @@ const Contact = () => {
             <div className="w-16 h-16 bg-blue-700 text-white rounded-full flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-[32px]">location_on</span>
             </div>
-            <h3 className="text-[20px] font-[500] mb-2 font-['Poppins']">HQ Location</h3>
-            <p className="text-white/80 mb-4 font-['Inter']">Ministry of Gender, Capital Hill</p>
+            <h3 className="text-[20px] font-[500] mb-2 font-['Poppins']">{t('contact.hqLocationTitle')}</h3>
+            <p className="text-white/80 mb-4 font-['Inter']">{t('contact.hqLocationText')}</p>
             <button 
               onClick={() => document.getElementById('map-section')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white text-[#00236f] px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors font-['Poppins']"
               aria-label="View map of headquarters location"
             >
-              View Map
+              {t('contact.viewMap')}
             </button>
           </div>
         </div>
@@ -146,10 +148,10 @@ const Contact = () => {
           <div className="lg:col-span-7">
             <div className="bg-white p-10 rounded-xl shadow-sm border border-gray-300">
               <h2 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-2 font-['Poppins']">
-                Send us a Message
+                {t('contact.formTitle')}
               </h2>
               <p className="text-gray-600 mb-8 font-['Inter']">
-                Have a non-urgent inquiry? Fill out the form below and our team will get back to you within 48 hours.
+                {t('contact.formSubtitle')}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -157,7 +159,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="fullName" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
-                      Full Name
+                      {t('contact.name')}
                     </label>
                     <input
                       id="fullName"
@@ -173,7 +175,7 @@ const Contact = () => {
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
-                      Email Address
+                      {t('contact.emailLabel')}
                     </label>
                     <input
                       id="email"
@@ -192,7 +194,7 @@ const Contact = () => {
                 {/* Subject Dropdown */}
                 <div className="space-y-2">
                   <label htmlFor="subject" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
-                    Subject
+                    {t('contact.subject')}
                   </label>
                   <select
                     id="subject"
@@ -202,25 +204,25 @@ const Contact = () => {
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter']"
                     aria-label="Inquiry subject dropdown"
                   >
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Case Follow-up">Case Follow-up</option>
-                    <option value="Technical Support">Technical Support</option>
-                    <option value="Media/Press Inquiry">Media/Press Inquiry</option>
-                    <option value="Report Feedback">Report Feedback</option>
+                    <option value="General Inquiry">{t('contact.subjectGeneral')}</option>
+                    <option value="Case Follow-up">{t('contact.subjectCase')}</option>
+                    <option value="Technical Support">{t('contact.subjectTech')}</option>
+                    <option value="Media/Press Inquiry">{t('contact.subjectMedia')}</option>
+                    <option value="Report Feedback">{t('contact.subjectFeedback')}</option>
                   </select>
                 </div>
 
                 {/* Message Textarea */}
                 <div className="space-y-2">
                   <label htmlFor="message" className="block text-[14px] font-[500] text-[#121c2a] font-['Inter']">
-                    Your Message
+                    {t('contact.message')}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="How can we assist you today?"
+                    placeholder={t('contact.messagePlaceholder')}
                     rows={5}
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00236f] focus:border-[#00236f] transition-all font-['Inter'] resize-none"
                     aria-label="Message textarea"
@@ -239,12 +241,12 @@ const Contact = () => {
                     {isSubmitting ? (
                       <>
                         <span className="material-symbols-outlined animate-spin">sync</span>
-                        Sending...
+                        {t('contact.sending')}
                       </>
                     ) : (
                       <>
                         <span className="material-symbols-outlined">send</span>
-                        Submit Message
+                        {t('contact.send')}
                       </>
                     )}
                   </button>
@@ -253,7 +255,7 @@ const Contact = () => {
                   {submitStatus === 'success' && (
                     <div className="p-4 bg-teal-50 border border-teal-200 rounded-lg flex items-center gap-3">
                       <span className="material-symbols-outlined text-teal-700">check_circle</span>
-                      <p className="text-teal-700 font-['Inter']">Thank you! Your message has been sent. We'll get back to you within 48 hours.</p>
+                      <p className="text-teal-700 font-['Inter']">{t('contact.successMsg')}</p>
                     </div>
                   )}
                 </div>
@@ -266,7 +268,7 @@ const Contact = () => {
             <div className="bg-[#eff4ff] p-8 rounded-xl border border-gray-300">
               <h2 className="text-[20px] font-[500] text-[#00236f] mb-6 flex items-center gap-2 font-['Poppins']">
                 <span className="material-symbols-outlined">map</span>
-                District Welfare Offices
+                {t('contact.officeTitle2')}
               </h2>
               <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
                 {districtOffices.map((office) => (
@@ -309,9 +311,9 @@ const Contact = () => {
           </div>
           {/* Map Info Card */}
           <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-300 max-w-sm">
-            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">HQ Headquarters</h3>
+            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('contact.hqCardTitle')}</h3>
             <p className="text-gray-600 text-sm mb-4 font-['Inter']">
-              Ministry of Gender, Community Development and Social Welfare, Capital Hill, Lilongwe, Malawi.
+              {t('contact.hqCardText')}
             </p>
             <div className="flex gap-4">
               <a
@@ -322,7 +324,7 @@ const Contact = () => {
                 aria-label="Get directions to Ministry of Gender headquarters on Google Maps"
               >
                 <span className="material-symbols-outlined text-sm">directions</span>
-                Get Directions
+                {t('contact.getDirections')}
               </a>
             </div>
           </div>

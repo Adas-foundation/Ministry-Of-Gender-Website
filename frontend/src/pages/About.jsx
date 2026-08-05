@@ -1,6 +1,16 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/useLanguage'
 
 const About = () => {
+  const { t } = useLanguage()
+  const partnersRef = useRef(/** @type {HTMLDivElement | null} */ (null))
+
+  const scrollPartners = (dir) => {
+    const el = partnersRef.current
+    if (el) el.scrollBy({ left: dir * (el.clientWidth * 0.85), behavior: 'smooth' })
+  }
+
   return (
     <main className="w-full">
       {/* Hero Section */}
@@ -8,12 +18,15 @@ const About = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-10">
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="flex-1">
-              <span className="text-[#006a63] font-bold tracking-widest uppercase text-[12px] mb-4 block font-['Inter']">Official Platform of Malawi</span>
-              <h2 className="text-[48px] leading-[56px] font-[700] text-[#00236f] mb-6 font-['Poppins']">Securing the Future of Every Citizen Through Digital Protection.</h2>
-              <p className="text-[18px] leading-[28px] text-gray-600 mb-8 max-w-2xl font-['Inter']">SafeReport is the Ministry of Gender's primary digital instrument for identifying, reporting, and managing cases of gender-based violence and human rights violations across the nation.</p>
+              <span className="text-[#006a63] font-bold tracking-widest uppercase text-[12px] mb-4 block font-['Inter']">{t('about.official')}</span>
+              <h2 className="text-[48px] leading-[56px] font-[700] text-[#00236f] mb-6 font-['Poppins']">{t('about.heroTitle')}</h2>
+              <p className="text-[18px] leading-[28px] text-gray-600 mb-8 max-w-2xl font-['Inter']">{t('about.heroSubtitle')}</p>
               <div className="flex flex-wrap gap-4">
-                <Link to="/report" className="bg-[#00236f] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all font-['Poppins']">Report a Case</Link>
-                <button className="border-2 border-[#006a63] text-[#006a63] px-8 py-4 rounded-xl font-semibold hover:bg-[#006a63]/5 transition-all font-['Poppins']">Watch Introduction</button>
+                <Link to="/report" className="bg-[#00236f] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all font-['Poppins']">{t('about.reportCase')}</Link>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="border-2 border-[#006a63] text-[#006a63] px-8 py-4 rounded-xl font-semibold hover:bg-[#006a63]/5 transition-all font-['Poppins'] inline-flex items-center gap-2">
+                  <span className="material-symbols-outlined">play_circle</span>
+                  {t('about.watchIntro')}
+                </a>
               </div>
             </div>
             <div className="flex-1 w-full relative">
@@ -25,8 +38,8 @@ const About = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#00236f]/60 to-transparent"></div>
                 <div className="absolute bottom-8 left-8 right-8 text-white">
-                  <p className="text-[20px] font-[500] mb-2 font-['Poppins']">Empowering Communities</p>
-                  <p className="text-[16px] opacity-90 font-['Inter']">Our technology bridges the gap between those in need and the services that protect them.</p>
+                  <p className="text-[20px] font-[500] mb-2 font-['Poppins']">{t('about.imagineCaption')}</p>
+                  <p className="text-[16px] opacity-90 font-['Inter']">{t('about.imagineText')}</p>
                 </div>
               </div>
               {/* Floating Badge */}
@@ -35,8 +48,8 @@ const About = () => {
                   <span className="material-symbols-outlined text-[#006f67]" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
                 </div>
                 <div>
-                  <p className="font-bold text-[#00236f]">Secure Encryption</p>
-                  <p className="text-[12px] text-gray-600 font-['Inter']">All reports are strictly confidential and encrypted.</p>
+                  <p className="font-bold text-[#00236f]">{t('about.secureEncryption')}</p>
+                  <p className="text-[12px] text-gray-600 font-['Inter']">{t('about.secureText')}</p>
                 </div>
               </div>
             </div>
@@ -48,32 +61,32 @@ const About = () => {
       <section className="py-24 bg-[#eff4ff]">
         <div className="max-w-[1280px] mx-auto px-4 md:px-10">
           <div className="text-center mb-16">
-            <h3 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">Our Institutional Mandate</h3>
+            <h3 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">{t('about.mandateTitle')}</h3>
             <div className="w-24 h-1 bg-[#006a63] mx-auto rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             {/* Mission Card */}
             <div className="col-span-12 md:col-span-8 bg-white p-10 rounded-[32px] shadow-sm border border-gray-300 flex flex-col justify-center">
               <span className="material-symbols-outlined text-[#00236f] text-5xl mb-6" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance</span>
-              <h4 className="text-[24px] font-[600] text-[#00236f] mb-4 font-['Poppins']">Ministry Mission Statement</h4>
+              <h4 className="text-[24px] font-[600] text-[#00236f] mb-4 font-['Poppins']">{t('about.missionTitle')}</h4>
               <p className="text-[18px] leading-[28px] text-gray-600 font-['Inter'] leading-relaxed">
-                "To promote social and economic empowerment of women, girls, and vulnerable populations through gender-responsive programming and the provision of high-quality community development and social welfare services to the people of Malawi."
+                {t('about.missionText')}
               </p>
             </div>
             {/* Purpose Card */}
             <div className="col-span-12 md:col-span-4 bg-[#00236f] text-white p-10 rounded-[32px] shadow-lg flex flex-col justify-between">
-              <h4 className="text-[24px] font-[600] mb-4 font-['Poppins']">Digital Purpose</h4>
+              <h4 className="text-[24px] font-[600] mb-4 font-['Poppins']">{t('about.digitalPurpose')}</h4>
               <p className="text-[16px] opacity-80 mb-6 font-['Inter']">
-                SafeReport exists to eliminate barriers in the reporting process, ensuring that distance and fear no longer prevent justice.
+                {t('about.digitalText')}
               </p>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-[#b6c4ff]">check_circle</span>
-                  <span className="text-[14px] font-['Inter']">Instant Alert Routing</span>
+                  <span className="text-[14px] font-['Inter']">{t('about.alertRouting')}</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-[#b6c4ff]">check_circle</span>
-                  <span className="text-[14px] font-['Inter']">Real-time Case Tracking</span>
+                  <span className="text-[14px] font-['Inter']">{t('about.caseTracking')}</span>
                 </li>
               </ul>
             </div>
@@ -82,24 +95,24 @@ const About = () => {
               <div className="bg-[#533c00] w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined text-[#261a00]">security</span>
               </div>
-              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Protection First</h5>
-              <p className="text-gray-600 text-[16px] font-['Inter']">Advanced protocols to mask user identity when reporting from sensitive environments.</p>
+              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('about.protectionFirst')}</h5>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('about.protectionText')}</p>
             </div>
             {/* Tech Feature 2 */}
             <div className="col-span-12 md:col-span-4 bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-gray-300">
               <div className="bg-[#99efe5] w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined text-[#006f67]">folder_shared</span>
               </div>
-              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Case Management</h5>
-              <p className="text-gray-600 text-[16px] font-['Inter']">Centralized database allowing inter-departmental collaboration for swift action.</p>
+              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('about.caseMgmt')}</h5>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('about.caseMgmtText')}</p>
             </div>
             {/* Tech Feature 3 */}
             <div className="col-span-12 md:col-span-4 bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-gray-300">
               <div className="bg-[#1e3a8a] w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined text-[#90a8ff]">insights</span>
               </div>
-              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">Data Analytics</h5>
-              <p className="text-gray-600 text-[16px] font-['Inter']">Heatmaps and trend analysis to deploy social services where they are most needed.</p>
+              <h5 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('about.analytics')}</h5>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('about.analyticsText')}</p>
             </div>
           </div>
         </div>
@@ -117,39 +130,39 @@ const About = () => {
               />
             </div>
             <div className="relative z-10">
-              <h3 className="text-[32px] leading-[40px] mb-12 font-['Poppins']">Our Quantifiable Impact</h3>
+              <h3 className="text-[32px] leading-[40px] mb-12 font-['Poppins']">{t('about.impactTitle')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div className="text-center md:text-left">
                   <p className="text-5xl font-bold mb-2">12k+</p>
-                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Reports Resolved</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">{t('about.reportsResolved')}</p>
                   <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
                     <div className="bg-[#b6c4ff] h-full w-[85%]"></div>
                   </div>
                 </div>
                 <div className="text-center md:text-left">
                   <p className="text-5xl font-bold mb-2">24h</p>
-                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Avg. Response Time</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">{t('about.avgResponse')}</p>
                   <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
                     <div className="bg-[#b6c4ff] h-full w-[95%]"></div>
                   </div>
                 </div>
                 <div className="text-center md:text-left">
                   <p className="text-5xl font-bold mb-2">28</p>
-                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Districts Covered</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">{t('about.districtsCovered')}</p>
                   <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
                     <div className="bg-[#b6c4ff] h-full w-full"></div>
                   </div>
                 </div>
                 <div className="text-center md:text-left">
                   <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">Confidentiality Rate</p>
+                  <p className="text-[14px] uppercase tracking-widest opacity-70 font-['Inter']">{t('about.confidentiality')}</p>
                   <div className="mt-4 h-1 w-full bg-[#90a8ff]/20 rounded-full overflow-hidden">
                     <div className="bg-[#b6c4ff] h-full w-full"></div>
                   </div>
                 </div>
               </div>
               <div className="mt-16 pt-12 border-t border-[#90a8ff]/10 flex flex-col md:flex-row gap-8 items-center justify-between">
-                <p className="text-[18px] italic max-w-xl font-['Inter']">"Since the deployment of SafeReport, the reporting of GVB cases in rural districts has increased by 40%, directly leading to faster intervention by local authorities."</p>
+                <p className="text-[18px] italic max-w-xl font-['Inter']">{t('about.quoteText')}</p>
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-full border-2 border-[#b6c4ff] overflow-hidden">
                     <img 
@@ -159,8 +172,8 @@ const About = () => {
                     />
                   </div>
                   <div>
-                    <p className="font-bold">Hon. Minister Jean Sendeza</p>
-                    <p className="text-[12px] opacity-70 font-['Inter']">Ministry of Gender, Malawi</p>
+                    <p className="font-bold">{t('about.ministerName')}</p>
+                    <p className="text-[12px] opacity-70 font-['Inter']">{t('about.ministerRole')}</p>
                   </div>
                 </div>
               </div>
@@ -174,31 +187,31 @@ const About = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-10">
           <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
-              <h3 className="text-[32px] leading-[40px] text-[#00236f] mb-4 font-['Poppins']">Inter-Agency Collaboration</h3>
-              <p className="text-[18px] text-gray-600 font-['Inter']">SafeReport is not a standalone app; it is a gateway to a coordinated national response network including law enforcement, medical practitioners, and social workers.</p>
+              <h3 className="text-[32px] leading-[40px] text-[#00236f] mb-4 font-['Poppins']">{t('about.partnersTitle')}</h3>
+              <p className="text-[18px] text-gray-600 font-['Inter']">{t('about.partnersText')}</p>
             </div>
             <div className="flex gap-2">
-              <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors">
+              <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors" onClick={() => scrollPartners(-1)} aria-label="Scroll partners left">
                 <span className="material-symbols-outlined">chevron_left</span>
               </button>
-              <button className="w-12 h-12 rounded-full bg-[#00236f] text-white flex items-center justify-center hover:opacity-90 transition-all">
+              <button className="w-12 h-12 rounded-full bg-[#00236f] text-white flex items-center justify-center hover:opacity-90 transition-all" onClick={() => scrollPartners(1)} aria-label="Scroll partners right">
                 <span className="material-symbols-outlined">chevron_right</span>
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div ref={partnersRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 overflow-x-auto snap-x snap-mandatory">
             {/* Malawi Police Service */}
             <div className="bg-white p-8 rounded-3xl border border-gray-300 hover:shadow-lg transition-shadow">
               <div className="mb-6 flex items-center justify-between">
                 <div className="w-16 h-16 bg-[#eff4ff] flex items-center justify-center rounded-2xl">
                   <span className="material-symbols-outlined text-[#00236f] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>local_police</span>
                 </div>
-                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">Primary Partner</span>
+                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">{t('about.primaryPartner')}</span>
               </div>
-              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">Malawi Police Service</h4>
-              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">Direct integration with the Victim Support Unit (VSU) for rapid response and criminal investigations.</p>
-              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="#">
-                View Protocol <span className="material-symbols-outlined">arrow_forward</span>
+              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">{t('about.policeTitle')}</h4>
+              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">{t('about.policeText')}</p>
+              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="https://www.police.gov.mw" target="_blank" rel="noopener noreferrer">
+                {t('about.viewProtocol')} <span className="material-symbols-outlined">arrow_forward</span>
               </a>
             </div>
             {/* Ministry of Health */}
@@ -207,12 +220,12 @@ const About = () => {
                 <div className="w-16 h-16 bg-[#eff4ff] flex items-center justify-center rounded-2xl">
                   <span className="material-symbols-outlined text-[#00236f] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>health_and_safety</span>
                 </div>
-                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">Health Liaison</span>
+                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">{t('about.healthLiaison')}</span>
               </div>
-              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">Ministry of Health</h4>
-              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">Ensuring immediate medical attention and forensic evidence collection for survivors.</p>
-              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="#">
-                Service Directory <span className="material-symbols-outlined">arrow_forward</span>
+              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">{t('about.healthTitle')}</h4>
+              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">{t('about.healthText')}</p>
+              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="https://www.health.gov.mw" target="_blank" rel="noopener noreferrer">
+                {t('about.serviceDir')} <span className="material-symbols-outlined">arrow_forward</span>
               </a>
             </div>
             {/* Legal Aid Bureau */}
@@ -221,12 +234,12 @@ const About = () => {
                 <div className="w-16 h-16 bg-[#eff4ff] flex items-center justify-center rounded-2xl">
                   <span className="material-symbols-outlined text-[#00236f] text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>gavel</span>
                 </div>
-                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">Legal Support</span>
+                <span className="bg-[#006a63]/10 text-[#006a63] px-3 py-1 rounded-full text-[12px]">{t('about.legalSupport')}</span>
               </div>
-              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">Legal Aid Bureau</h4>
-              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">Providing free legal representation and guidance for victims seeking justice through the courts.</p>
-              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="#">
-                Get Counsel <span className="material-symbols-outlined">arrow_forward</span>
+              <h4 className="text-[20px] font-[500] text-[#00236f] mb-3 font-['Poppins']">{t('about.legalTitle')}</h4>
+              <p className="text-[16px] text-gray-600 mb-6 font-['Inter']">{t('about.legalText')}</p>
+              <a className="text-[#00236f] font-bold inline-flex items-center gap-2 hover:underline font-['Inter']" href="https://www.judiciary.mw" target="_blank" rel="noopener noreferrer">
+                {t('about.getCounsel')} <span className="material-symbols-outlined">arrow_forward</span>
               </a>
             </div>
           </div>
@@ -237,11 +250,11 @@ const About = () => {
       <section className="py-24 bg-[#00236f] overflow-hidden relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#00236f_0%,rgba(15,118,110,0.3)_100%)] opacity-50"></div>
         <div className="max-w-[1280px] mx-auto px-4 md:px-10 text-center relative z-10">
-          <h3 className="text-[48px] leading-[56px] text-white mb-8 max-w-3xl mx-auto font-['Poppins']">Ready to help us build a safer Malawi?</h3>
-          <p className="text-[18px] text-white/80 mb-12 max-w-2xl mx-auto font-['Inter']">Whether you are a victim, a witness, or a concerned citizen, your report could save a life. Join our mission today.</p>
+          <h3 className="text-[48px] leading-[56px] text-white mb-8 max-w-3xl mx-auto font-['Poppins']">{t('about.ctaTitle')}</h3>
+          <p className="text-[18px] text-white/80 mb-12 max-w-2xl mx-auto font-['Inter']">{t('about.ctaText')}</p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button className="bg-[#006a63] text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:scale-105 transition-transform font-['Poppins']">Get Started Now</button>
-            <button className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-colors font-['Poppins']">Download Offline Form</button>
+            <Link to="/report" className="bg-[#006a63] text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:scale-105 transition-transform font-['Poppins']">{t('about.getStarted')}</Link>
+            <Link to="/resources" className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 transition-colors font-['Poppins']">{t('about.downloadForm')}</Link>
           </div>
         </div>
       </section>

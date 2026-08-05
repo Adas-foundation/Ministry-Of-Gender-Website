@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { getReportByReference, getCaseStatusHistory } from '../services/reportsApi'
 import { parseReportDescription, statusLabel, statusVariant, formatDateTime } from '../utils/parseReport'
+import { useLanguage } from '../i18n/useLanguage'
 
 const Track = () => {
+  const { t } = useLanguage()
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
   const [report, setReport] = useState(/** @type {any} */ (null))
@@ -30,7 +32,7 @@ const Track = () => {
       }
     } catch (err) {
       console.error('Report lookup error', err)
-      setError(err.message || 'Report not found. Please check your reference number.')
+      setError(err.message || t('track.notFound'))
     } finally {
       setIsSearching(false)
     }
@@ -43,8 +45,8 @@ const Track = () => {
   const timelineSteps = [
     {
       key: 'submitted',
-      title: 'Report Received',
-      description: 'Your report was successfully submitted and logged into the central database.',
+      title: t('track.reportReceived'),
+      description: t('track.reportReceivedText'),
       timestamp: report?.createdAt,
       done: true,
       inProgress: false,
@@ -52,7 +54,7 @@ const Track = () => {
     ...history.map((h, index) => ({
       key: `${h.id}-${index}`,
       title: statusLabel(h.status),
-      description: `Case status changed to ${statusLabel(h.status).toLowerCase()} by the case team.`,
+      description: `${t('track.statusChanged')} ${statusLabel(h.status).toLowerCase()} ${t('track.byCaseTeam')}`,
       timestamp: h.changed_at,
       done: true,
       inProgress: false,
@@ -62,8 +64,8 @@ const Track = () => {
       title: statusLabel(report?.status),
       description:
         statusUpper === 'RESOLVED'
-          ? 'Your case has been resolved. Thank you for reporting.'
-          : 'This is the current stage of your case.',
+          ? t('track.resolved')
+          : t('track.currentStage'),
       timestamp: null,
       done: statusUpper === 'RESOLVED',
       inProgress: statusUpper !== 'RESOLVED',
@@ -78,14 +80,14 @@ const Track = () => {
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-[#90a8ff]/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-[#99efe5]/10 rounded-full blur-3xl"></div>
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-[32px] leading-[40px] text-[#90a8ff] mb-4 font-['Poppins']">Track Your Report</h2>
-            <p className="text-[#90a8ff] text-[18px] mb-8 font-['Inter']">Enter your unique reference number to see the current status and latest updates on your case.</p>
+            <h2 className="text-[32px] leading-[40px] text-[#90a8ff] mb-4 font-['Poppins']">{t('track.title')}</h2>
+            <p className="text-[#90a8ff] text-[18px] mb-8 font-['Inter']">{t('track.subtitle')}</p>
             <form className="flex flex-col md:flex-row gap-4 bg-white rounded-xl p-2 shadow-lg" onSubmit={handleSearch}>
               <div className="flex-grow relative">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
                 <input
                   className="w-full pl-12 pr-4 py-4 rounded-lg border-none focus:ring-2 focus:ring-[#00236f] text-gray-800 font-mono text-lg font-['Inter']"
-                  placeholder="e.g. REP-2F4A9C1D0E"
+                  placeholder={t('track.placeholder')}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -96,12 +98,12 @@ const Track = () => {
                 type="submit"
                 disabled={isSearching}
               >
-                {isSearching ? <span className="material-symbols-outlined animate-spin">sync</span> : 'Search Case'}
+                {isSearching ? <span className="material-symbols-outlined animate-spin">sync</span> : t('track.search')}
               </button>
             </form>
             <div className="mt-6 flex items-center justify-center gap-2 text-[#90a8ff] bg-white/10 py-2 px-4 rounded-full w-fit mx-auto">
               <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>lock</span>
-              <span className="text-[12px] font-['Inter']">Privacy Guaranteed: Your tracking data is encrypted.</span>
+              <span className="text-[12px] font-['Inter']">{t('track.privacy')}</span>
             </div>
           </div>
         </div>
@@ -120,7 +122,7 @@ const Track = () => {
         <section className="mb-8">
           <div className="bg-white rounded-xl p-12 text-center shadow-sm border border-gray-300">
             <span className="material-symbols-outlined text-5xl text-[#00236f]/30 block mb-4">travel_explore</span>
-            <p className="text-gray-500 font-['Inter']">Enter the reference number you received after submitting your report to view its status.</p>
+            <p className="text-gray-500 font-['Inter']">{t('track.empty')}</p>
           </div>
         </section>
       )}
@@ -131,7 +133,7 @@ const Track = () => {
             <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-300">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                 <div>
-                  <span className="text-[12px] text-gray-400 uppercase tracking-wider font-bold font-['Inter']">Current Case Status</span>
+                  <span className="text-[12px] text-gray-400 uppercase tracking-wider font-bold font-['Inter']">{t('track.currentStatus')}</span>
                   <h3 className="text-[24px] font-[600] text-[#00236f] mt-1 font-['Poppins']">{statusLabel(report.status)}</h3>
                   <p className="text-sm text-gray-500 font-['Inter'] mt-1 font-mono">{report.referenceNumber}</p>
                 </div>
@@ -145,19 +147,19 @@ const Track = () => {
 
               <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">District</span>
+                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('report.district')}</span>
                   <span className="font-semibold text-gray-800 font-['Inter']">{report.district?.name || '—'}</span>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">Assigned Officer</span>
-                  <span className="font-semibold text-gray-800 font-['Inter']">{report.assignedUser?.name || 'Awaiting assignment'}</span>
+                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('track.assignedOfficer')}</span>
+                  <span className="font-semibold text-gray-800 font-['Inter']">{report.assignedUser?.name || t('track.awaiting')}</span>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">Incident Type</span>
+                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('track.incidentType')}</span>
                   <span className="font-semibold text-gray-800 font-['Inter']">{parsed.incidentType}</span>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">Submitted On</span>
+                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('track.submittedOn')}</span>
                   <span className="font-semibold text-gray-800 font-['Inter']">{formatDateTime(report.createdAt)}</span>
                 </div>
               </div>
@@ -188,7 +190,7 @@ const Track = () => {
                           <p className="text-gray-600 text-[16px] mt-1 font-['Inter']">{step.description}</p>
                         </div>
                         <span className={`text-[12px] mt-2 md:mt-0 font-medium font-['Inter'] ${step.inProgress ? 'text-[#00236f] font-bold' : 'text-gray-400'}`}>
-                          {step.inProgress ? 'IN PROGRESS' : step.timestamp ? formatDateTime(step.timestamp) : 'Pending'}
+                          {step.inProgress ? t('track.inProgress') : step.timestamp ? formatDateTime(step.timestamp) : t('track.pending')}
                         </span>
                       </div>
                     </div>
@@ -204,27 +206,27 @@ const Track = () => {
                 <span className="material-symbols-outlined text-8xl">lock_reset</span>
               </div>
               <h4 className="text-[20px] font-[500] mb-3 flex items-center gap-2 font-['Poppins']">
-                <span className="material-symbols-outlined">security</span> Safety First
+                <span className="material-symbols-outlined">security</span> {t('track.safetyTitle')}
               </h4>
-              <p className="text-[14px] mb-4 leading-relaxed font-['Inter']">Your tracking reference number is your key to this case. <span className="font-bold">Do not share it with anyone</span>, including friends or family, to ensure your safety and confidentiality.</p>
+              <p className="text-[14px] mb-4 leading-relaxed font-['Inter']">{t('track.safetyText')}</p>
               <div className="flex items-center gap-2 bg-black/5 p-2 rounded-lg">
                 <span className="material-symbols-outlined text-sm">info</span>
-                <span className="text-[12px] italic font-['Inter']">Ministry Protection Protocol 2024</span>
+                <span className="text-[12px] italic font-['Inter']">{t('track.protocol')}</span>
               </div>
             </div>
 
             <div className="bg-[#00236f] text-white p-8 rounded-xl shadow-lg relative group cursor-pointer overflow-hidden">
               <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <span className="material-symbols-outlined text-4xl mb-4 opacity-80">support_agent</span>
-              <h4 className="text-[24px] font-[600] mb-2 font-['Poppins']">Need Help?</h4>
-              <p className="text-white/80 text-[18px] mb-6 font-['Inter']">If you have questions about your status or feel unsafe, our coordinators are here 24/7.</p>
+              <h4 className="text-[24px] font-[600] mb-2 font-['Poppins']">{t('track.needHelp')}</h4>
+              <p className="text-white/80 text-[18px] mb-6 font-['Inter']">{t('track.needHelpText')}</p>
               <div className="space-y-3">
                 <a className="flex items-center gap-3 font-bold bg-white/10 p-3 rounded-lg hover:bg-white/20 transition-all font-['Inter']" href="tel:+265111">
-                  <span className="material-symbols-outlined">call</span> Call 111 (Toll-Free)
+                  <span className="material-symbols-outlined">call</span> {t('track.call')}
                 </a>
-                <button className="w-full flex items-center gap-3 font-bold bg-[#006a63] text-white p-3 rounded-lg shadow-md hover:opacity-90 active:scale-95 transition-all font-['Inter']">
-                  <span className="material-symbols-outlined">chat_bubble</span> Live Support Chat
-                </button>
+                <a className="w-full flex items-center gap-3 font-bold bg-[#006a63] text-white p-3 rounded-lg shadow-md hover:opacity-90 active:scale-95 transition-all font-['Inter']" href="mailto:support@gender.gov.mw">
+                  <span className="material-symbols-outlined">chat_bubble</span> {t('track.chat')}
+                </a>
               </div>
             </div>
           </div>

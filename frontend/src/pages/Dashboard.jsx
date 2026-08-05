@@ -85,6 +85,10 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const [broadcastOpen, setBroadcastOpen] = useState(false)
 
+  function openRoute(path) {
+    navigate(path)
+  }
+
   async function handleExportPdf() {
     try {
       const res = await fetch(`${API_URL}/reports/export`, {
@@ -116,10 +120,6 @@ const Dashboard = () => {
 
   function handleCloseBroadcast() {
     setBroadcastOpen(false)
-  }
-
-  function handleNavigateSystem() {
-    navigate('/settings')
   }
 
   return (
@@ -282,11 +282,11 @@ const Dashboard = () => {
                         <span className="material-symbols-outlined">send</span>
                         <span>Broadcast</span>
                       </button>
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button type="button" onClick={() => openRoute('/user-management')} className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">person_add</span>
                         <span>Add Staff</span>
                       </button>
-                      <button onClick={handleNavigateSystem} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button type="button" onClick={() => openRoute('/settings')} className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">settings</span>
                         <span>System</span>
                       </button>
@@ -306,7 +306,7 @@ const Dashboard = () => {
                     <h2 className="text-2xl font-semibold text-[#00236f]">Recent Activity</h2>
                     <p className="text-sm text-slate-500">Latest case updates and alert activity.</p>
                   </div>
-                  <button type="button" className="text-[#00236f] text-sm font-semibold hover:underline">View All</button>
+                  <button type="button" onClick={() => openRoute('/case-management')} className="text-[#00236f] text-sm font-semibold hover:underline">View All</button>
                 </div>
 
                 <div className="space-y-4">
@@ -361,6 +361,7 @@ const Dashboard = () => {
         <div className="fixed bottom-6 right-6 z-50">
           <button
             type="button"
+            onClick={() => openRoute('/case-management')}
             className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#ba1a1a] text-white shadow-lg transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#fca5a5]/40"
             aria-label="Immediate Critical Monitoring"
           >
