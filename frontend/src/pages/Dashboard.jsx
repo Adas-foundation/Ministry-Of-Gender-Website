@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import BroadcastModal from '../components/BroadcastModal'
+import { API_URL, authHeaders } from '../services/api'
 import AdminSidebar from '../components/AdminSidebar'
 import { getReports, getReportsDashboard } from '../services/reportsApi'
 import { parseReportDescription, statusLabel, formatDateTime } from '../utils/parseReport'
@@ -78,6 +81,46 @@ const Dashboard = () => {
 
   const topDistricts = districtCounts.slice(0, 3)
   const totalForPct = totalCases || 1
+
+  const navigate = useNavigate()
+  const [broadcastOpen, setBroadcastOpen] = useState(false)
+
+  async function handleExportPdf() {
+    try {
+      const res = await fetch(`${API_URL}/reports/export`, {
+        method: 'GET',
+        headers: authHeaders(),
+      })
+      if (!res.ok) {
+        const errText = await res.text().catch(() => res.statusText)
+        throw new Error(errText || `Export failed (${res.status})`)
+      }
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `safereport-export-${new Date().toISOString().slice(0,19)}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (err) {
+      console.error('Export PDF failed', err)
+      alert(err.message || 'Failed to export PDF. Confirm backend endpoint /reports/export exists.')
+    }
+  }
+
+  function handleOpenBroadcast() {
+    setBroadcastOpen(true)
+  }
+
+  function handleCloseBroadcast() {
+    setBroadcastOpen(false)
+  }
+
+  function handleNavigateSystem() {
+    navigate('/settings')
+  }
 
   return (
     <div className="flex">
@@ -231,11 +274,11 @@ const Dashboard = () => {
                   <article className="bg-[#1e3a8a] text-white rounded-[28px] shadow-sm p-6">
                     <p className="text-[11px] uppercase tracking-[0.24em] text-slate-200 opacity-90 mb-4">Quick Actions</p>
                     <div className="grid grid-cols-2 gap-3">
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button onClick={handleExportPdf} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">description</span>
                         <span>Export PDF</span>
                       </button>
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button onClick={handleOpenBroadcast} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">send</span>
                         <span>Broadcast</span>
                       </button>
@@ -243,12 +286,15 @@ const Dashboard = () => {
                         <span className="material-symbols-outlined">person_add</span>
                         <span>Add Staff</span>
                       </button>
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button onClick={handleNavigateSystem} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">settings</span>
                         <span>System</span>
                       </button>
                     </div>
                   </article>
+                  {broadcastOpen && (
+                    <BroadcastModal isOpen={broadcastOpen} onClose={handleCloseBroadcast} onSent={() => alert('Broadcast sent')} />
+                  )}
                 </div>
               </div>
             </section>
