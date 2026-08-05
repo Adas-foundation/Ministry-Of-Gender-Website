@@ -1,9 +1,8 @@
-import {Controller, Post,Body,Get, Param} from '@nestjs/common';
-
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { EmergencySosService } from './emergency-sos.service';
 import { CreateEmergencySosDto } from './dto/create-emergency-so.dto';
 
-@Controller('emergency-sos')
+@Controller('sos-alerts')
 export class EmergencySosController {
   constructor(
     private readonly emergencySosService: EmergencySosService,

@@ -48,11 +48,15 @@ export class EmergencySosService {
         'No emergency station found',
       );
     }
+    const emergencyType =
+      (createEmergencySosDto as any).emergencyType ??
+      (createEmergencySosDto as any).type ??
+      (createEmergencySosDto as any).emergency_type;
+
     const sos = this.emergencySosRepository.create({
       referenceId: this.generateReferenceId(),
-      // cast location to any to satisfy TypeORM/DeepPartial typing
       location: point as any,
-      emergencyType: createEmergencySosDto.emergencyType,
+      emergencyType,
       status: 'PENDING',
       station: nearestStation,
     });

@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateEmergencySosDto {
   @IsNumber()
@@ -7,6 +7,10 @@ export class CreateEmergencySosDto {
   @IsNumber()
   longitude!: number;
 
+  @IsOptional()
+  @IsNumber()
+  accuracy?: number;
+
   @IsString()
-  emergencyType!: string;
+  source!: string;
 }
