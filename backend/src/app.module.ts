@@ -19,6 +19,7 @@ import { ReportsModule } from './reports/reports.module';
 import { AuthModule } from './auth/auth.module';
 import { EmailService } from './email/email.service';
 import { EmailModule } from './email/email.module';
+import { SettingsModule } from './settings/settings.module';
 
 @Module({
   imports:[ 
@@ -65,6 +66,8 @@ import { EmailModule } from './email/email.module';
     AuthModule,
 
     EmailModule,
+
+    SettingsModule,
 
   ],
    
