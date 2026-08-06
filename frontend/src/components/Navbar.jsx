@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useLanguage } from '../i18n/useLanguage'
 
 const Navbar = () => {
   const location = useLocation()
-  
+  const { t } = useLanguage()
+
   const isActive = (path) => location.pathname === path
 
   return (
@@ -24,43 +26,43 @@ const Navbar = () => {
             to="/"
             className={`${isActive('/') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            Home
+            {t('nav.home')}
           </Link>
           <Link
             to="/report"
             className={`${isActive('/report') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            Report Incident
+            {t('nav.report')}
           </Link>
           <Link
             to="/track"
             className={`${isActive('/track') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            Track Report
+            {t('nav.track')}
           </Link>
           <Link
             to="/resources"
             className={`${isActive('/resources') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            Resources
+            {t('nav.resources')}
           </Link>
           <Link
             to="/about"
             className={`${isActive('/about') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            About
+            {t('nav.about')}
           </Link>
           <Link
             to="/contact"
             className={`${isActive('/contact') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            Contact
+            {t('nav.contact')}
           </Link>
           <Link
             to="/login"
             className={`${isActive('/login') ? 'text-[#00236f] border-b-2 border-[#00236f] pb-1' : 'text-gray-600'} font-medium hover:text-[#00236f] transition-colors text-sm`}
           >
-            Login
+            {t('nav.login')}
           </Link>
         </nav>
         <div className="flex items-center gap-3">
@@ -69,7 +71,7 @@ const Navbar = () => {
             className="bg-[#ba1a1a] text-white px-4 py-1.5 rounded-full font-bold shadow-md hover:opacity-90 active:scale-95 transition-all flex items-center gap-2 text-sm"
           >
             <span className="material-symbols-outlined text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>emergency</span>
-            Emergency SOS
+            {t('nav.sos')}
           </Link>
         </div>
       </div>

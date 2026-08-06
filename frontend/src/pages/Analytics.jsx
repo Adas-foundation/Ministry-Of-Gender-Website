@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import AdminSidebar from '../components/AdminSidebar'
+import Heatmap from '../components/Heatmap'
 import { getReportsDashboard, getReports } from '../services/reportsApi'
 
 const CATEGORY_LABELS = {
@@ -216,6 +217,14 @@ const Analytics = () => {
                 ))}
               </div>
             )}
+          </article>
+        </section>
+
+        {/* Dedicated Malawi heatmap — district/ward-level aggregation with
+            minimum-count suppression applied before anything renders. */}
+        <section className="mb-8">
+          <article className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+            <Heatmap reports={reports} />
           </article>
         </section>
 

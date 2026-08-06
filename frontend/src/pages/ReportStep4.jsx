@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getDistricts } from '../services/districtsApi'
+import { useLanguage } from '../i18n/useLanguage'
 
 const ReportStep4 = ({ formData, updateField }) => {
+  const { t } = useLanguage()
   const [districts, setDistricts] = useState(/** @type {any[]} */ ([]))
   const [districtsError, setDistrictsError] = useState('')
   const [loadingDistricts, setLoadingDistricts] = useState(true)
@@ -21,7 +23,7 @@ const ReportStep4 = ({ formData, updateField }) => {
       .catch((err) => {
         if (cancelled) return
         console.error('Failed to load districts', err)
-        setDistrictsError('Could not load districts. Please refresh the page.')
+        setDistrictsError(t('report.loadError') || 'Could not load districts.')
       })
       .finally(() => {
         if (!cancelled) setLoadingDistricts(false)
@@ -35,7 +37,7 @@ const ReportStep4 = ({ formData, updateField }) => {
 
   const useCurrentLocation = () => {
     if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser.')
+      alert(t('report.geoUnsupported'))
       return
     }
     navigator.geolocation.getCurrentPosition(
@@ -45,7 +47,7 @@ const ReportStep4 = ({ formData, updateField }) => {
       },
       (err) => {
         console.error('Geolocation error', err)
-        alert('Could not get your location. Please select a district manually.')
+        alert(t('report.geoFailed'))
       }
     )
   }
@@ -54,7 +56,8 @@ const ReportStep4 = ({ formData, updateField }) => {
 
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-300">
-      <h2 className="text-[24px] font-[600] mb-6 text-[#00236f] font-['Poppins']">Where did it occur?</h2>
+      <h2 className="text-[24px] font-[600] mb-2 text-[#00236f] font-['Poppins']">{t('report.locationTitle')}</h2>
+      <p className="text-gray-600 text-[16px] mb-6 font-['Inter']">{t('report.locationSubtitle')}</p>
       <div className="flex flex-col gap-6">
         <div className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-inner border border-gray-300 bg-[#eff4ff]">
           <div className="w-full h-full opacity-60 grayscale hover:grayscale-0 transition-all cursor-crosshair"></div>
@@ -65,7 +68,7 @@ const ReportStep4 = ({ formData, updateField }) => {
               onClick={useCurrentLocation}
             >
               <span className="material-symbols-outlined text-sm">my_location</span>
-              <span className="text-[12px]">Use My Current GPS</span>
+              <span className="text-[12px]">{t('report.useGps')}</span>
             </button>
           </div>
           {/* Mock Map UI */}
@@ -76,7 +79,7 @@ const ReportStep4 = ({ formData, updateField }) => {
                 <span className="text-xs font-bold text-gray-800 font-['Inter']">
                   {formData.latitude != null
                     ? `${formData.latitude.toFixed(4)}, ${formData.longitude.toFixed(4)}`
-                    : selectedDistrictName || 'Malawi'}
+                    : selectedDistrictName || t('report.mapMalawi')}
                 </span>
               </div>
             </div>
@@ -84,7 +87,7 @@ const ReportStep4 = ({ formData, updateField }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="text-[14px] font-['Inter']">District</label>
+            <label className="text-[14px] font-['Inter']">{t('report.district')}</label>
             {districtsError ? (
               <p className="text-red-600 text-[14px] font-['Inter']">{districtsError}</p>
             ) : (
@@ -94,7 +97,7 @@ const ReportStep4 = ({ formData, updateField }) => {
                 onChange={(e) => updateField('districtId', Number(e.target.value))}
                 disabled={loadingDistricts}
               >
-                {loadingDistricts && <option value="">Loading districts...</option>}
+                {loadingDistricts && <option value="">{t('report.loadingDistricts')}</option>}
                 {districts.map((district) => (
                   <option key={district.id} value={district.id}>
                     {district.name}
@@ -104,10 +107,10 @@ const ReportStep4 = ({ formData, updateField }) => {
             )}
           </div>
           <div className="space-y-2">
-            <label className="text-[14px] font-['Inter']">Specific Landmark or Address</label>
+            <label className="text-[14px] font-['Inter']">{t('report.landmark')}</label>
             <input
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
-              placeholder="e.g. Near Area 18 Post Office"
+              placeholder={t('report.landmarkPlaceholder')}
               type="text"
               value={formData.landmark}
               onChange={(e) => updateField('landmark', e.target.value)}

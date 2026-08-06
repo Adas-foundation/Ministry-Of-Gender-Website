@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getReportsStats } from '../services/reportsApi'
+import LanguageSwitcher from '../components/LanguageSwitcher'
+import { useLanguage } from '../i18n/useLanguage'
 
 const formatCompact = (n) => {
   if (n == null) return '—'
@@ -9,6 +11,7 @@ const formatCompact = (n) => {
 
 const Home = () => {
   const [stats, setStats] = useState(/** @type {any} */ (null))
+  const { t } = useLanguage()
 
   useEffect(() => {
     let active = true
@@ -24,15 +27,19 @@ const Home = () => {
       <section className="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32" style={{ background: 'radial-gradient(circle at top right, #e6eeff 0%, #f8f9ff 100%)' }}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-7 space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1e3a8a] text-white text-[14px] font-['Inter']">
-              <span className="material-symbols-outlined text-[18px]">verified_user</span>
-              Official Government Portal
+            {/* Language switcher — the single place to pick English / Chichewa */}
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1e3a8a] text-white text-[14px] font-['Inter']">
+                <span className="material-symbols-outlined text-[18px]">verified_user</span>
+                {t('home.official')}
+              </div>
+              <LanguageSwitcher />
             </div>
             <h1 className="text-[48px] leading-[56px] font-[700] text-[#00236f] font-['Poppins']">
-              Protecting Every Citizen Through <span className="text-[#006a63]">Safe Digital Reporting</span>
+              {t('home.heroTitle')}<span className="text-[#006a63]">{t('home.heroTitleAccent')}</span>
             </h1>
             <p className="text-[18px] leading-[28px] text-gray-600 max-w-2xl font-['Inter']">
-              A secure, confidential, and compassionate platform for reporting gender-based violence and social issues. Your safety is our priority, and your voice triggers institutional action.
+              {t('home.heroSubtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link 
@@ -40,14 +47,14 @@ const Home = () => {
                 className="bg-[#00236f] text-white px-8 py-4 rounded-xl text-[20px] font-[500] shadow-lg hover:opacity-90 active:scale-95 transition-all flex items-center gap-3 font-['Poppins']"
               >
                 <span className="material-symbols-outlined">campaign</span>
-                Report Incident
+                {t('home.reportIncident')}
               </Link>
               <Link 
                 to="/track"
                 className="bg-[#d9e3f6] text-[#00236f] px-8 py-4 rounded-xl text-[20px] font-[500] border border-gray-300 hover:opacity-90 active:scale-95 transition-all flex items-center gap-3 font-['Poppins']"
               >
                 <span className="material-symbols-outlined">search</span>
-                Track Report
+                {t('home.trackReport')}
               </Link>
             </div>
           </div>
@@ -66,7 +73,7 @@ const Home = () => {
                   <span className="material-symbols-outlined text-[#006f67]">done_all</span>
                 </div>
                 <div>
-                  <p className="text-[12px] text-gray-600 uppercase tracking-tighter font-['Inter']">Case Resolution Rate</p>
+                  <p className="text-[12px] text-gray-600 uppercase tracking-tighter font-['Inter']">{t('home.resolutionRate')}</p>
                   <p className="text-[24px] font-[600] text-[#00236f] font-['Poppins']">{stats ? `${stats.resolutionRate}%` : '—'}</p>
                 </div>
               </div>
@@ -82,22 +89,22 @@ const Home = () => {
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#00236f] text-4xl mb-4">analytics</span>
               <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">{formatCompact(stats?.totalCases)}</p>
-              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">Cases Reported</p>
+              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">{t('home.casesReported')}</p>
             </div>
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#006a63] text-4xl mb-4">check_circle</span>
               <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">{formatCompact(stats?.resolved)}</p>
-              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">Cases Resolved</p>
+              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">{t('home.casesResolved')}</p>
             </div>
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#f6be39] text-4xl mb-4">location_on</span>
               <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">{formatCompact(stats?.districtCount)}</p>
-              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">District Offices</p>
+              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">{t('home.districtOffices')}</p>
             </div>
             <div className="bg-white border border-gray-300 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <span className="material-symbols-outlined text-[#ba1a1a] text-4xl mb-4">electric_bolt</span>
               <p className="text-[48px] font-[700] text-[#00236f] font-['Poppins']">24/7</p>
-              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">Emergency Response</p>
+              <p className="text-[14px] text-gray-600 uppercase font-['Inter']">{t('home.emergencyResponse')}</p>
             </div>
           </div>
         </div>
@@ -107,31 +114,31 @@ const Home = () => {
       <section className="py-24 bg-[#eff4ff]">
         <div className="max-w-[1280px] mx-auto px-4 md:px-10">
           <div className="text-center mb-16">
-            <h2 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">Simple Steps to Justice</h2>
-            <p className="text-gray-600 max-w-xl mx-auto font-['Inter']">Our streamlined process ensures that every report is handled with the highest degree of professionalism and speed.</p>
+            <h2 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">{t('home.howTitle')}</h2>
+            <p className="text-gray-600 max-w-xl mx-auto font-['Inter']">{t('home.howSubtitle')}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6 relative">
             {/* Connector line for desktop */}
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 -z-10 translate-y-[-10px]"></div>
             <div className="bg-white p-8 rounded-2xl border border-gray-300 text-center space-y-4">
               <div className="w-12 h-12 bg-[#00236f] text-white rounded-full flex items-center justify-center font-bold mx-auto">1</div>
-              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">Report</h3>
-              <p className="text-gray-600 text-[16px] font-['Inter']">Fill out our secure form with incident details. You can choose to remain anonymous.</p>
+              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">{t('home.step1Title')}</h3>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('home.step1Text')}</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-300 text-center space-y-4">
               <div className="w-12 h-12 bg-[#00236f] text-white rounded-full flex items-center justify-center font-bold mx-auto">2</div>
-              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">Reference #</h3>
-              <p className="text-gray-600 text-[16px] font-['Inter']">Instantly receive a unique tracking ID to monitor your case progress securely.</p>
+              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">{t('home.step2Title')}</h3>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('home.step2Text')}</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-300 text-center space-y-4">
               <div className="w-12 h-12 bg-[#00236f] text-white rounded-full flex items-center justify-center font-bold mx-auto">3</div>
-              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">Assigned</h3>
-              <p className="text-gray-600 text-[16px] font-['Inter']">A dedicated Social Welfare Officer is assigned to evaluate and act on your case.</p>
+              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">{t('home.step3Title')}</h3>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('home.step3Text')}</p>
             </div>
             <div className="bg-white p-8 rounded-2xl border border-gray-300 text-center space-y-4">
               <div className="w-12 h-12 bg-[#00236f] text-white rounded-full flex items-center justify-center font-bold mx-auto">4</div>
-              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">Support</h3>
-              <p className="text-gray-600 text-[16px] font-['Inter']">Receive medical, legal, or psychological support through our partner network.</p>
+              <h3 className="text-[20px] font-[500] text-[#00236f] font-['Poppins']">{t('home.step4Title')}</h3>
+              <p className="text-gray-600 text-[16px] font-['Inter']">{t('home.step4Text')}</p>
             </div>
           </div>
         </div>
@@ -142,64 +149,64 @@ const Home = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">Comprehensive Support Services</h2>
-              <p className="text-gray-600 font-['Inter']">The Ministry offers a wide array of specialized services to ensure the holistic safety and recovery of all citizens.</p>
+              <h2 className="text-[32px] leading-[40px] font-[600] text-[#00236f] mb-4 font-['Poppins']">{t('home.servicesTitle')}</h2>
+              <p className="text-gray-600 font-['Inter']">{t('home.servicesSubtitle')}</p>
             </div>
-            <button className="text-[#00236f] font-bold flex items-center gap-2 hover:underline">
-              View All Services
+            <Link to="/resources" className="text-[#00236f] font-bold flex items-center gap-2 hover:underline">
+              {t('home.viewAll')}
               <span className="material-symbols-outlined">arrow_forward</span>
-            </button>
+            </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[200px]">
             {/* Anonymous Reporting */}
             <div className="md:col-span-4 md:row-span-2 bg-[#1e3a8a] text-white p-8 rounded-3xl flex flex-col justify-between shadow-lg">
               <span className="material-symbols-outlined text-5xl">person_off</span>
               <div>
-                <h3 className="text-[24px] font-[600] mb-2 font-['Poppins']">Anonymous Reporting</h3>
-                <p className="opacity-90 text-[16px] font-['Inter']">Your identity is protected by state-of-the-art encryption. Report without fear of disclosure.</p>
+                <h3 className="text-[24px] font-[600] mb-2 font-['Poppins']">{t('home.anonymousTitle')}</h3>
+                <p className="opacity-90 text-[16px] font-['Inter']">{t('home.anonymousText')}</p>
               </div>
             </div>
             {/* Emergency SOS */}
             <div className="md:col-span-4 md:row-span-1 bg-[#ffdad6] text-[#93000a] p-6 rounded-3xl flex items-center gap-6">
               <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>emergency_share</span>
               <div>
-                <h4 className="text-[20px] font-[500] font-bold">Emergency SOS</h4>
-                <p className="text-sm opacity-80">Immediate police and medical dispatch to your GPS location.</p>
+                <h4 className="text-[20px] font-[500] font-bold">{t('home.sosTitle')}</h4>
+                <p className="text-sm opacity-80">{t('home.sosText')}</p>
               </div>
             </div>
             {/* Case Tracking */}
             <div className="md:col-span-4 md:row-span-2 bg-white border border-gray-300 p-8 rounded-3xl flex flex-col justify-between shadow-sm">
               <span className="material-symbols-outlined text-[#006a63] text-5xl">my_location</span>
               <div>
-                <h3 className="text-[24px] font-[600] text-[#00236f] mb-2 font-['Poppins']">Live Case Tracking</h3>
-                <p className="text-gray-600 font-['Inter']">Get real-time updates as your report moves through official channels toward resolution.</p>
+                <h3 className="text-[24px] font-[600] text-[#00236f] mb-2 font-['Poppins']">{t('home.trackingTitle')}</h3>
+                <p className="text-gray-600 font-['Inter']">{t('home.trackingText')}</p>
               </div>
             </div>
             {/* Legal Support */}
             <div className="md:col-span-4 md:row-span-1 bg-[#99efe5] text-[#006f67] p-6 rounded-3xl flex items-center gap-6">
               <span className="material-symbols-outlined text-4xl">gavel</span>
               <div>
-                <h4 className="text-[20px] font-[500] font-bold">Legal Aid</h4>
-                <p className="text-sm opacity-80">Free legal representation for survivors of gender-based violence.</p>
+                <h4 className="text-[20px] font-[500] font-bold">{t('home.legalTitle')}</h4>
+                <p className="text-sm opacity-80">{t('home.legalText')}</p>
               </div>
             </div>
             {/* Child Protection */}
             <div className="md:col-span-3 md:row-span-1 bg-[#533c00] text-[#261a00] p-6 rounded-3xl flex flex-col justify-center gap-2">
               <span className="material-symbols-outlined">child_care</span>
-              <h4 className="text-[20px] font-[500] font-bold leading-tight">Child Protection</h4>
+              <h4 className="text-[20px] font-[500] font-bold leading-tight">{t('home.childTitle')}</h4>
             </div>
             {/* Counselling */}
             <div className="md:col-span-3 md:row-span-1 bg-white border border-gray-300 p-6 rounded-3xl flex flex-col justify-center gap-2">
               <span className="material-symbols-outlined text-[#00236f]">psychology</span>
-              <h4 className="text-[20px] font-[500] font-bold leading-tight text-[#00236f]">Psychological Support</h4>
+              <h4 className="text-[20px] font-[500] font-bold leading-tight text-[#00236f]">{t('home.psychTitle')}</h4>
             </div>
             {/* Emergency Shelter */}
             <div className="md:col-span-6 md:row-span-1 bg-[#dee9fc] p-6 rounded-3xl flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <span className="material-symbols-outlined text-[#00236f]">holiday_village</span>
-                <h4 className="text-[20px] font-[500] font-bold text-[#00236f]">Emergency Safe Houses</h4>
+                <h4 className="text-[20px] font-[500] font-bold text-[#00236f]">{t('home.shelterTitle')}</h4>
               </div>
-              <button className="bg-[#00236f] text-white px-4 py-2 rounded-xl text-sm font-bold">Find Location</button>
+              <Link to="/emergency" className="bg-[#00236f] text-white px-4 py-2 rounded-xl text-sm font-bold">{t('home.findLocation')}</Link>
             </div>
           </div>
         </div>
@@ -212,18 +219,19 @@ const Home = () => {
             {/* Background texture/pattern simulation */}
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
             <div className="relative z-10 space-y-8 max-w-3xl mx-auto">
-              <h2 className="text-[48px] leading-[56px] font-[700] font-['Poppins']">Do Not Stay in Silence.<br/>We are Here to Help.</h2>
-              <p className="text-[18px] leading-[28px] opacity-80 font-['Inter']">SafeReport is available 24/7 across all districts of Malawi. Your report is the first step toward a safer life and a stronger nation.</p>
+              <h2 className="text-[48px] leading-[56px] font-[700] font-['Poppins']">{t('home.ctaTitle')}<br/>{t('home.ctaTitle2')}</h2>
+              <p className="text-[18px] leading-[28px] opacity-80 font-['Inter']">{t('home.ctaText')}</p>
               <div className="flex flex-wrap justify-center gap-6 pt-4">
                 <Link 
                   to="/report"
                   className="bg-white text-[#00236f] px-10 py-5 rounded-2xl text-[20px] font-[500] shadow-xl hover:opacity-90 active:scale-95 transition-all font-['Poppins']"
                 >
-                  Start Secure Report Now
+                  {t('home.ctaButton')}
                 </Link>
-                <button className="border-2 border-white/30 text-white px-10 py-5 rounded-2xl text-[20px] font-[500] hover:bg-white/10 active:scale-95 transition-all font-['Poppins']">
-                  Call Helpline: 116
-                </button>
+                <a href="tel:116" className="border-2 border-white/30 text-white px-10 py-5 rounded-2xl text-[20px] font-[500] hover:bg-white/10 active:scale-95 transition-all font-['Poppins'] inline-flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined">call</span>
+                  {t('home.ctaHelpline')}
+                </a>
               </div>
             </div>
           </div>

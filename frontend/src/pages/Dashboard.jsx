@@ -1,4 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import BroadcastModal from '../components/BroadcastModal'
+import { API_URL, authHeaders } from '../services/api'
 import AdminSidebar from '../components/AdminSidebar'
 import { getReports, getReportsDashboard } from '../services/reportsApi'
 import { parseReportDescription, statusLabel, formatDateTime } from '../utils/parseReport'
@@ -78,6 +81,46 @@ const Dashboard = () => {
 
   const topDistricts = districtCounts.slice(0, 3)
   const totalForPct = totalCases || 1
+
+  const navigate = useNavigate()
+  const [broadcastOpen, setBroadcastOpen] = useState(false)
+
+  function openRoute(path) {
+    navigate(path)
+  }
+
+  async function handleExportPdf() {
+    try {
+      const res = await fetch(`${API_URL}/reports/export`, {
+        method: 'GET',
+        headers: authHeaders(),
+      })
+      if (!res.ok) {
+        const errText = await res.text().catch(() => res.statusText)
+        throw new Error(errText || `Export failed (${res.status})`)
+      }
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `safereport-export-${new Date().toISOString().slice(0,19)}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (err) {
+      console.error('Export PDF failed', err)
+      alert(err.message || 'Failed to export PDF. Confirm backend endpoint /reports/export exists.')
+    }
+  }
+
+  function handleOpenBroadcast() {
+    setBroadcastOpen(true)
+  }
+
+  function handleCloseBroadcast() {
+    setBroadcastOpen(false)
+  }
 
   return (
     <div className="flex">
@@ -231,24 +274,27 @@ const Dashboard = () => {
                   <article className="bg-[#1e3a8a] text-white rounded-[28px] shadow-sm p-6">
                     <p className="text-[11px] uppercase tracking-[0.24em] text-slate-200 opacity-90 mb-4">Quick Actions</p>
                     <div className="grid grid-cols-2 gap-3">
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button onClick={handleExportPdf} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">description</span>
                         <span>Export PDF</span>
                       </button>
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button onClick={handleOpenBroadcast} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">send</span>
                         <span>Broadcast</span>
                       </button>
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button type="button" onClick={() => openRoute('/user-management')} className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">person_add</span>
                         <span>Add Staff</span>
                       </button>
-                      <button type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                      <button type="button" onClick={() => openRoute('/settings')} className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">settings</span>
                         <span>System</span>
                       </button>
                     </div>
                   </article>
+                  {broadcastOpen && (
+                    <BroadcastModal isOpen={broadcastOpen} onClose={handleCloseBroadcast} onSent={() => alert('Broadcast sent')} />
+                  )}
                 </div>
               </div>
             </section>
@@ -260,7 +306,7 @@ const Dashboard = () => {
                     <h2 className="text-2xl font-semibold text-[#00236f]">Recent Activity</h2>
                     <p className="text-sm text-slate-500">Latest case updates and alert activity.</p>
                   </div>
-                  <button type="button" className="text-[#00236f] text-sm font-semibold hover:underline">View All</button>
+                  <button type="button" onClick={() => openRoute('/case-management')} className="text-[#00236f] text-sm font-semibold hover:underline">View All</button>
                 </div>
 
                 <div className="space-y-4">
@@ -315,6 +361,7 @@ const Dashboard = () => {
         <div className="fixed bottom-6 right-6 z-50">
           <button
             type="button"
+            onClick={() => openRoute('/case-management')}
             className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#ba1a1a] text-white shadow-lg transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#fca5a5]/40"
             aria-label="Immediate Critical Monitoring"
           >
