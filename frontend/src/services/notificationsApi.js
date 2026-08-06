@@ -13,3 +13,13 @@ export async function getNotificationsByReport(reportId) {
   })
   return handleResponse(response)
 }
+
+// POST /notifications/broadcast — send a broadcast message to staff via email/SMS
+export async function sendBroadcast(payload) {
+  const response = await fetch(`${API_URL}/notifications/broadcast`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...authHeaders() },
+    body: JSON.stringify(payload),
+  })
+  return handleResponse(response)
+}
