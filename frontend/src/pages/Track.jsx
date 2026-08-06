@@ -14,6 +14,8 @@ const Track = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault()
+    const query = searchQuery.trim()
+    if (!query) return
     setError('')
     setReport(null)
     setHistory([])
@@ -21,7 +23,7 @@ const Track = () => {
     setSearched(true)
 
     try {
-      const found = await getReportByReference(searchQuery.trim())
+      const found = await getReportByReference(query)
       setReport(found)
       try {
         const historyData = await getCaseStatusHistory(found.id)
@@ -41,7 +43,18 @@ const Track = () => {
   const parsed = report ? parseReportDescription(report.description) : null
   const statusUpper = String(report?.status || '').toUpperCase()
 
-  // Build the timeline: submission + recorded status changes.
+  // Maps the stored incident type key to a readable, localized case name.
+  const incidentNameLabel = () => {
+    const labelMap = {
+      domestic: t('report.domestic'),
+      sexual: t('report.sexual'),
+      child: t('report.childAbuse'),
+      harassment: t('report.harassment'),
+    }
+    const base = labelMap[parsed.incidentType] || (parsed.incidentType && parsed.incidentType !== 'General Report' ? parsed.incidentType : '')
+    return base ? `${base} ${t('track.caseName')}`.trim() : (t('track.caseName'))
+  }
+
   const timelineSteps = [
     {
       key: 'submitted',
@@ -71,6 +84,19 @@ const Track = () => {
       inProgress: statusUpper !== 'RESOLVED',
     },
   ]
+
+  // Shared detail cells that stop if the value is missing.
+  const detailCell = (label, value) =>
+    value ? (
+      <div className="bg-gray-50 rounded-lg p-4">
+        <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{label}</span>
+        <span className="font-semibold text-gray-800 font-['Inter']">{value}</span>
+      </div>
+    ) : null
+
+  const victimName = parsed?.isAnonymous
+    ? t('track.anonymous')
+    : parsed?.victimName || t('track.anonymous')
 
   return (
     <main className="flex-grow w-full max-w-[1280px] mx-auto px-4 md:px-10 py-8">
@@ -130,45 +156,69 @@ const Track = () => {
       {report && parsed && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-8 space-y-6">
-            <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-300">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-                <div>
-                  <span className="text-[12px] text-gray-400 uppercase tracking-wider font-bold font-['Inter']">{t('track.currentStatus')}</span>
-                  <h3 className="text-[24px] font-[600] text-[#00236f] mt-1 font-['Poppins']">{statusLabel(report.status)}</h3>
-                  <p className="text-sm text-gray-500 font-['Inter'] mt-1 font-mono">{report.referenceNumber}</p>
+            {/* Case header: name, reference, status */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-300">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="min-w-0">
+                  <span className="text-[12px] text-gray-400 uppercase tracking-wider font-bold font-['Inter']">{t('track.caseName')}</span>
+                  <h1 className="text-[26px] font-[700] text-[#00236f] mt-1 font-['Poppins'] leading-tight">{incidentNameLabel()}</h1>
+                  <p className="text-sm text-gray-500 font-['Inter'] mt-1 font-mono">
+                    {t('track.referenceNumber')}: <span className="font-semibold text-gray-700">{report.referenceNumber}</span>
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className={`px-4 py-2 rounded-full border flex items-center gap-2 ${statusVariant(report.status)}`}>
-                    <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
-                    <span className="font-semibold font-['Inter']">{statusLabel(report.status)}</span>
-                  </span>
-                </div>
+                <span className={`px-4 py-2 rounded-full border flex items-center gap-2 whitespace-nowrap ${statusVariant(report.status)}`}>
+                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
+                  <span className="font-semibold font-['Inter']">{statusLabel(report.status)}</span>
+                </span>
               </div>
+            </div>
 
-              <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('report.district')}</span>
-                  <span className="font-semibold text-gray-800 font-['Inter']">{report.district?.name || '—'}</span>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('track.assignedOfficer')}</span>
-                  <span className="font-semibold text-gray-800 font-['Inter']">{report.assignedUser?.name || t('track.awaiting')}</span>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('track.incidentType')}</span>
-                  <span className="font-semibold text-gray-800 font-['Inter']">{parsed.incidentType}</span>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <span className="text-[12px] uppercase tracking-wider text-gray-400 font-bold font-['Inter'] block mb-1">{t('track.submittedOn')}</span>
-                  <span className="font-semibold text-gray-800 font-['Inter']">{formatDateTime(report.createdAt)}</span>
-                </div>
+            {/* Case overview */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-300">
+              <h2 className="text-[16px] font-[600] text-[#00236f] mb-3 font-['Inter']">{t('track.detailsTitle')}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                {detailCell(t('track.incidentType'), incidentNameLabel())}
+                {detailCell(t('track.district'), report.district?.name || '—')}
+                {detailCell(t('track.assignedOfficer'), report.assignedUser?.name || t('track.awaiting'))}
+                {detailCell(t('track.submittedOn'), formatDateTime(report.createdAt))}
+                {detailCell(t('track.incidentDateTime'), parsed.incidentDateTime)}
+                {detailCell(t('report.landmark'), parsed.landmark)}
+                {detailCell(t('track.coordinates'), parsed.coordinates)}
+                {detailCell(t('track.threat'), parsed.immediateThreat)}
+                {detailCell(
+                  t('track.emergencyAssistance'),
+                  parsed.needsEmergencyHelp ? t('report.threatYes') : t('report.threatNo')
+                )}
               </div>
+            </div>
 
+            {/* Victim information */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-300">
+              <h2 className="text-[16px] font-[600] text-[#00236f] mb-3 font-['Inter']">{t('track.victimTitle')}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                {detailCell(t('track.victimName'), victimName)}
+                {!parsed.isAnonymous && detailCell(t('track.victimAge'), parsed.victimAgeRange)}
+                {!parsed.isAnonymous && detailCell(t('track.victimGender'), parsed.victimGender)}
+                {!parsed.isAnonymous && detailCell(t('track.victimPhone'), parsed.victimPhone || t('track.noPhone'))}
+              </div>
+            </div>
+
+            {/* Description */}
+            {parsed.details && (
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-300">
+                <h2 className="text-[16px] font-[600] text-[#00236f] mb-3 font-['Inter']">{t('track.descriptionSection')}</h2>
+                <p className="text-gray-700 text-[15px] leading-relaxed whitespace-pre-wrap font-['Inter']">{parsed.details}</p>
+              </div>
+            )}
+
+            {/* Status timeline */}
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-300">
+              <h2 className="text-[16px] font-[600] text-[#00236f] mb-4 font-['Inter']">{t('track.currentStatus')}</h2>
               <div className="space-y-0">
                 {timelineSteps.map((step, index) => {
                   const isLast = index === timelineSteps.length - 1
                   return (
-                    <div key={step.key} className="relative pl-10 pb-10" style={{ position: 'relative' }}>
+                    <div key={step.key} className="relative pl-10 pb-10">
                       <div
                         className={`absolute left-0 top-0 w-6 h-6 rounded-full flex items-center justify-center z-10 shadow-md ${
                           step.done

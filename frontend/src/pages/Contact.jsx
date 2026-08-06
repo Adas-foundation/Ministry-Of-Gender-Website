@@ -299,37 +299,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="px-4 md:px-10 py-12" id="map-section">
-        <div className="max-w-[1280px] mx-auto rounded-2xl overflow-hidden shadow-xl h-[450px] relative">
-          <div className="w-full h-full">
-            <img
-              className="w-full h-full object-cover"
-              alt="A detailed, professional digital map showing the Lilongwe capital city region of Malawi, specifically highlighting the Capital Hill government district"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIt-DMJ8y0daaRI0xNM1w4uVdnMrRqhLPXlS8nO3tq4llG_H90S8_9Cksjl2JhdpaRPtx4XQteGXFvv0MqAGKRerlsPTF1ObFfAoWrQySKe621UGV6dI2Lj27z-SNWCi6dMYcLjemdOhmOEOS-D4kp2UeQh-wwcdsFWD79TVej0pLjgZnewScz3UJuXIWnE421rq5Mu70FeSGKHOAv8zIwE8Ctsa31uR8jUIdca_l6YeRiGneAvYmdbrNVz6rgKBizT7wheBx6TA"
-            />
-          </div>
-          {/* Map Info Card */}
-          <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-300 max-w-sm">
-            <h3 className="text-[20px] font-[500] text-[#00236f] mb-2 font-['Poppins']">{t('contact.hqCardTitle')}</h3>
-            <p className="text-gray-600 text-sm mb-4 font-['Inter']">
-              {t('contact.hqCardText')}
-            </p>
-            <div className="flex gap-4">
-              <a
-                href="https://maps.google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#00236f] font-semibold flex items-center gap-1 hover:underline font-['Inter']"
-                aria-label="Get directions to Ministry of Gender headquarters on Google Maps"
-              >
-                <span className="material-symbols-outlined text-sm">directions</span>
-                {t('contact.getDirections')}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
