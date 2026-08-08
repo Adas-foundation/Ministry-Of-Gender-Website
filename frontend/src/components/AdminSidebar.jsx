@@ -6,32 +6,34 @@ export default function AdminSidebar() {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-in-out ${
-          isActive ? 'bg-primary-container text-on-primary-container font-bold' : 'text-on-surface-variant hover:bg-surface-container-highest'
+        `flex items-center gap-3 px-5 py-4 rounded-2xl transition-all duration-200 ease-in-out ${
+          isActive
+            ? 'bg-[#0f4b8f] text-white font-semibold shadow-inner'
+            : 'text-slate-300 hover:bg-[#0a3260] hover:text-white'
         }`
       }
     >
       <span className="material-symbols-outlined">{icon}</span>
-      <span className="font-label-md text-label-md">{label}</span>
+      <span className="font-semibold">{label}</span>
     </NavLink>
   )
 
   return (
-    <aside className="h-screen w-64 fixed left-0 top-0 bg-surface shadow-md flex flex-col p-stack-md z-40 transition-all duration-200 ease-in-out">
-      <div className="mb-stack-lg">
-        <h1 className="font-title-lg text-title-lg text-primary font-bold">Admin Portal</h1>
-        <p className="font-label-sm text-label-sm text-on-surface-variant opacity-70">SafeReport Malawi</p>
+    <aside className="h-screen w-56 fixed left-0 top-0 bg-[#041c40] text-slate-100 shadow-2xl flex flex-col p-6 z-40 transition-all duration-200 ease-in-out">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-white">Admin Portal</h1>
+        <p className="text-sm text-slate-300 opacity-80">SafeReport Malawi</p>
       </div>
 
       <Link
         to="/case-management/create"
-        className="mb-stack-lg bg-primary text-on-primary py-3 px-4 rounded-lg font-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+        className="mb-8 bg-[#0d4a8a] text-white py-3 px-4 rounded-2xl font-semibold flex items-center justify-center gap-2 hover:bg-[#0b3c70] transition-colors"
       >
         <span className="material-symbols-outlined text-[20px]">add_circle</span>
         Create New Case
       </Link>
 
-      <nav className="flex-grow space-y-1 overflow-y-auto">
+      <nav className="flex-grow space-y-3 overflow-y-auto">
         {navItem('/dashboard', 'Dashboard', 'dashboard')}
         {navItem('/case-management', 'Case Management', 'folder_shared')}
         {navItem('/analytics', 'Analytics', 'analytics')}
@@ -39,10 +41,13 @@ export default function AdminSidebar() {
         {navItem('/district-setup', 'District Setup', 'map')}
       </nav>
 
-      <div className="mt-auto pt-stack-md border-t border-outline-variant">
-        <NavLink to="/settings" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200 ease-in-out">
+      <div className="mt-auto pt-6 border-t border-slate-700/50">
+        <NavLink
+          to="/settings"
+          className="flex items-center gap-3 px-4 py-3 rounded-2xl text-slate-300 hover:bg-[#0a3260] hover:text-white transition-all duration-200 ease-in-out"
+        >
           <span className="material-symbols-outlined">settings</span>
-          <span className="font-label-md text-label-md">Settings</span>
+          <span className="font-semibold">Settings</span>
         </NavLink>
         <button
           type="button"
@@ -51,11 +56,11 @@ export default function AdminSidebar() {
             localStorage.removeItem('safereport_token')
             navigate('/login')
           }}
-          className="w-full text-left flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 rounded-lg transition-all duration-200 ease-in-out"
+          className="w-full text-left flex items-center gap-3 px-4 py-3 rounded-2xl text-amber-200 hover:bg-amber-300/10 transition-all duration-200 ease-in-out"
           aria-label="Logout and return to login"
         >
           <span className="material-symbols-outlined">logout</span>
-          <span className="font-label-md text-label-md">Logout</span>
+          <span className="font-semibold">Logout</span>
         </button>
       </div>
     </aside>

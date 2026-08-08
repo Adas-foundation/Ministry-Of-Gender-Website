@@ -91,6 +91,10 @@ const Report = () => {
     }
   }
 
+  const handleGoBack = () => {
+    navigate(-1)
+  }
+
   const handleStepClick = (step) => {
     // Allow moving back freely, and allow staying on the current step.
     if (step < currentStep) {
@@ -166,6 +170,16 @@ const Report = () => {
 
   return (
     <main className="w-full max-w-4xl mx-auto px-4 py-12">
+      <div className="mb-6">
+        <button
+          type="button"
+          onClick={handleGoBack}
+          className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm transition hover:bg-slate-50 hover:text-slate-900"
+        >
+          <span className="material-symbols-outlined">arrow_back</span>
+          Back
+        </button>
+      </div>
       {/* Progress Stepper */}
       <div className="mb-12">
         <div className="flex items-center justify-between relative">
