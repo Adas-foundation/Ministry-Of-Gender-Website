@@ -123,7 +123,7 @@ export default function Login() {
       localStorage.setItem('safereport_token', token)
       localStorage.setItem('safereport_user', JSON.stringify(user))
 
-      const roleName = typeof user.role === 'string' ? user.role : user.role?.roleName || ''
+      const roleName = (typeof user.role === 'string' ? user.role : user.role?.roleName || '').toLowerCase()
       const isStaff =
         roleName === 'admin' ||
         roleName === 'platform_admin' ||
