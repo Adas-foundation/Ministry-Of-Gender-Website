@@ -128,7 +128,7 @@ export default function Login() {
         roleName === 'admin' ||
         roleName === 'platform_admin' ||
         roleName === 'tenant_admin' ||
-        roleName === 'officer' ||
+        roleName === 'case_officer' ||
         roleName === 'case_manager'
 
       navigate(isStaff ? '/dashboard' : '/')
