@@ -1,4 +1,4 @@
-import {Injectable,NotFoundException,Inject,forwardRef} from '@nestjs/common';
+import { Injectable, NotFoundException, Inject, forwardRef } from '@nestjs/common';
 
 import { CreateReportDto } from './dto/create-report.dto';
 import { UpdateReportDto } from './dto/update-report.dto';
@@ -41,8 +41,6 @@ export class ReportsService {
   }
 
   async create(createReportDto: CreateReportDto) {
-    
-
     const district = await this.districtRepository.findOne({
       where: {
         id: createReportDto.districtId,
@@ -52,8 +50,6 @@ export class ReportsService {
     if (!district) {
       throw new NotFoundException('District not found');
     }
-
-    
 
     let assignedUser: User | null = null;
 
@@ -69,28 +65,23 @@ export class ReportsService {
       }
     }
 
-    
-
     const report = this.reportsRepository.create({
       description: createReportDto.description,
 
-      
       status: createReportDto.status ?? CaseStatus.SUBMITTED,
 
       referenceNumber: this.generateReferenceNumber(),
 
       district,
 
-      
       ...(assignedUser && { assignedUser }),
     });
 
-    
-
     const savedReport = await this.reportsRepository.save(report);
 
-    
-    const saved = Array.isArray(savedReport) ? savedReport[0] : savedReport;
+    const saved = Array.isArray(savedReport)
+      ? savedReport[0]
+      : savedReport;
 
     try {
       await this.caseStatusHistoryService.create({
@@ -130,6 +121,24 @@ export class ReportsService {
     });
   }
 
+  async findByReference(referenceNumber: string) {
+    const report = await this.reportsRepository.findOne({
+      where: {
+        referenceNumber,
+      },
+      relations: {
+        district: true,
+        assignedUser: true,
+      },
+    });
+
+    if (!report) {
+      throw new NotFoundException('Report not found');
+    }
+
+    return report;
+  }
+
   async findOne(id: string) {
     const report = await this.reportsRepository.findOne({
       where: {
@@ -153,19 +162,13 @@ export class ReportsService {
 
     const oldStatus = report.status;
 
-    
-
     if (updateReportDto.description) {
       report.description = updateReportDto.description;
     }
 
-    
-
     if (updateReportDto.status) {
       report.status = updateReportDto.status;
     }
-
-    
 
     if (updateReportDto.districtId) {
       const district = await this.districtRepository.findOne({
@@ -181,8 +184,6 @@ export class ReportsService {
       report.district = district;
     }
 
-    
-
     if (updateReportDto.assignedUserId) {
       const assignedUser = await this.userRepository.findOne({
         where: {
@@ -197,11 +198,7 @@ export class ReportsService {
       report.assignedUser = assignedUser;
     }
 
-    
-
     const updatedReport = await this.reportsRepository.save(report);
-
-    
 
     if (
       updateReportDto.status &&
@@ -220,8 +217,6 @@ export class ReportsService {
         );
       }
     }
-
-    
 
     if (
       updateReportDto.status &&
