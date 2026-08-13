@@ -161,7 +161,12 @@ const Report = () => {
       })
     } catch (err) {
       console.error('Report submission error', err)
-      setError(err.message || t('report.errorSubmit'))
+      // Browser-level network failure (backend down / unreachable) surfaces as
+      // a TypeError with "Failed to fetch" — replace it with an actionable
+      // message instead of the raw error. Server-side failures (non-2xx) are
+      // already turned into readable messages by handleResponse.
+      const isNetworkError = err instanceof TypeError || /failed to fetch/i.test(String(err?.message || ''))
+      setError(isNetworkError ? t('report.serverUnreachable') : err.message || t('report.errorSubmit'))
       updateStepUI()
     } finally {
       setIsSubmitting(false)

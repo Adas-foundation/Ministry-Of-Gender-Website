@@ -233,17 +233,11 @@ const ReportStep4 = ({ formData, updateField }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-[14px] font-['Inter']">{t('report.district')}</label>
-            {usingFallback && (
-              <p className="text-[11px] text-[#854d0e] font-['Inter'] flex items-center gap-1">
-                <span className="material-symbols-outlined text-[13px]">info</span>
-                {t('report.offlineDistricts')}
-              </p>
-            )}
             {districtsError ? (
               <p className="text-red-600 text-[14px] font-['Inter']">{districtsError}</p>
             ) : (
               <select
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
+                className="w-full h-[50px] px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
                 value={formData.districtId ?? ''}
                 onChange={(e) => updateField('districtId', Number(e.target.value))}
                 disabled={loadingDistricts}
@@ -256,11 +250,19 @@ const ReportStep4 = ({ formData, updateField }) => {
                 ))}
               </select>
             )}
+            {/* Note sits below the select so it never shifts the box out of
+                alignment with the landmark input next to it. */}
+            {usingFallback && !districtsError && (
+              <p className="text-[11px] text-[#854d0e] font-['Inter'] flex items-center gap-1">
+                <span className="material-symbols-outlined text-[13px]">info</span>
+                {t('report.offlineDistricts')}
+              </p>
+            )}
           </div>
           <div className="space-y-2">
             <label className="text-[14px] font-['Inter']">{t('report.landmark')}</label>
             <input
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
+              className="w-full h-[50px] px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00236f] focus:outline-none transition-all font-['Inter']"
               placeholder={t('report.landmarkPlaceholder')}
               type="text"
               value={formData.landmark}

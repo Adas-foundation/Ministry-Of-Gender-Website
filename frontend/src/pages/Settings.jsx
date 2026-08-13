@@ -81,9 +81,9 @@ export default function Settings() {
         timezone,
         language,
         contact_email: contactEmail,
-        two_fa: String(twoFA),
-        session_timeout: String(sessionTimeout),
-        password_expiry: String(passwordExpiry),
+        two_fa: twoFA,
+        session_timeout: Number(sessionTimeout),
+        password_expiry: Number(passwordExpiry),
         ip_whitelist: ipWhitelist,
         retention,
       })

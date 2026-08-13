@@ -89,7 +89,7 @@ const Dashboard = () => {
     navigate(path)
   }
 
-  async function handleExportPdf() {
+  async function handleExportCsv() {
     try {
       const res = await fetch(`${API_URL}/reports/export`, {
         method: 'GET',
@@ -103,14 +103,14 @@ const Dashboard = () => {
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `safereport-export-${new Date().toISOString().slice(0,19)}.pdf`
+      a.download = `safereport-export-${new Date().toISOString().slice(0,19)}.csv`
       document.body.appendChild(a)
       a.click()
       a.remove()
       window.URL.revokeObjectURL(url)
     } catch (err) {
-      console.error('Export PDF failed', err)
-      alert(err.message || 'Failed to export PDF. Confirm backend endpoint /reports/export exists.')
+      console.error('Export CSV failed', err)
+      alert(err.message || 'Failed to export CSV.')
     }
   }
 
@@ -274,9 +274,9 @@ const Dashboard = () => {
                   <article className="bg-[#1e3a8a] text-white rounded-[28px] shadow-sm p-6">
                     <p className="text-[11px] uppercase tracking-[0.24em] text-slate-200 opacity-90 mb-4">Quick Actions</p>
                     <div className="grid grid-cols-2 gap-3">
-                      <button onClick={handleExportPdf} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
-                        <span className="material-symbols-outlined">description</span>
-                        <span>Export PDF</span>
+                      <button onClick={handleExportCsv} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
+                        <span className="material-symbols-outlined">download</span>
+                        <span>Export CSV</span>
                       </button>
                       <button onClick={handleOpenBroadcast} type="button" className="flex flex-col items-center justify-center gap-2 rounded-3xl bg-white/10 px-3 py-4 text-sm font-semibold hover:bg-white/20 transition">
                         <span className="material-symbols-outlined">send</span>
