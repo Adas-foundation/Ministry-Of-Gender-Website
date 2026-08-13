@@ -23,6 +23,16 @@ export class ReportsController {
     return this.reportsService.getDashboardStats();
   }
 
+  @Get('stats')
+  getStats() {
+    return this.reportsService.getDashboardStats();
+  }
+
+  @Get('by-reference/:referenceNumber')
+  findByReference(@Param('referenceNumber') referenceNumber: string) {
+    return this.reportsService.findByReference(referenceNumber);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.reportsService.findOne(id);
