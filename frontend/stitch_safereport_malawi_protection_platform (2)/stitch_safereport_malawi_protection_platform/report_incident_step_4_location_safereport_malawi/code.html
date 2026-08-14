@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Malawi - Report Incident (Location)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#dce1ff",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#121c2a",
+                    "on-background": "#121c2a",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface": "#f8f9ff",
+                    "outline": "#757682",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d9e3f6",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-fixed": "#9cf2e8",
+                    "secondary-container": "#99efe5",
+                    "on-primary-fixed-variant": "#264191",
+                    "inverse-primary": "#b6c4ff",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e6eeff",
+                    "secondary": "#006a63",
+                    "surface-tint": "#4059aa",
+                    "outline-variant": "#c5c5d3",
+                    "on-primary-fixed": "#00164e",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#533c00",
+                    "on-primary-container": "#90a8ff",
+                    "background": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#27313f",
+                    "on-surface-variant": "#444651",
+                    "primary-container": "#1e3a8a",
+                    "on-secondary-container": "#006f67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-dim": "#d0dbed",
+                    "surface-container-high": "#dee9fc",
+                    "tertiary": "#382700",
+                    "surface-container-highest": "#d9e3f6",
+                    "on-tertiary-container": "#d8a31b",
+                    "tertiary-fixed": "#ffdfa0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Poppins"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Poppins"],
+                    "display-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F9FAFB;
+            font-family: 'Inter', sans-serif;
+            color: #121c2a;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Custom Elevation for Cards per Style Guidance */
+        .card-elevation {
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.05);
+        }
+        /* Hide scrollbars for a clean administrative feel */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar (Shared Component) -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm sticky top-0 z-50 w-full">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">Ministry of Gender - SafeReport</h1>
+</div>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-semibold hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Report Incident</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Resources</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-error text-white px-6 py-2 rounded-full font-bold shadow-md hover:opacity-90 active:scale-95 transition-all">Emergency SOS</button>
+<button class="text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined">language</span>
+                    English / Chichewa
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center py-stack-lg px-margin-mobile md:px-margin-desktop">
+<!-- Form Progress Tracker -->
+<div class="w-full max-w-4xl mb-stack-lg">
+<div class="flex justify-between relative mb-2">
+<div class="absolute top-1/2 left-0 w-full h-1 bg-surface-variant -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 w-3/4 h-1 bg-primary -translate-y-1/2 z-0 transition-all duration-500"></div>
+<!-- Stage 1 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">1</div>
+<span class="font-label-sm text-label-sm mt-2 text-on-surface-variant">Type</span>
+</div>
+<!-- Stage 2 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">2</div>
+<span class="font-label-sm text-label-sm mt-2 text-on-surface-variant">Details</span>
+</div>
+<!-- Stage 3 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">3</div>
+<span class="font-label-sm text-label-sm mt-2 text-on-surface-variant">Victim</span>
+</div>
+<!-- Stage 4: Location (ACTIVE) -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-10 h-10 -mt-1 rounded-full bg-primary-container text-white border-4 border-surface ring-2 ring-primary flex items-center justify-center font-bold text-sm">4</div>
+<span class="font-label-md text-label-md mt-2 text-primary font-bold">Location</span>
+</div>
+<!-- Stage 5 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold text-sm">5</div>
+<span class="font-label-sm text-label-sm mt-2 text-on-surface-variant">Submit</span>
+</div>
+</div>
+</div>
+<!-- Incident Location Form Section -->
+<div class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Side: Form Fields -->
+<div class="lg:col-span-5 flex flex-col gap-stack-md">
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl card-elevation border border-outline-variant/30">
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Where did this occur?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Providing a specific location helps local authorities and support teams reach you faster.</p>
+<div class="space-y-stack-md">
+<!-- District Dropdown -->
+<div>
+<label class="block font-label-md text-label-md font-semibold text-on-surface mb-2" for="district">Select District</label>
+<div class="relative">
+<select class="w-full bg-white border border-outline rounded-lg px-4 py-3 appearance-none focus:ring-2 focus:ring-primary-container focus:border-primary transition-all outline-none font-body-md" id="district">
+<option disabled="" selected="" value="">Choose a district...</option>
+<option value="lilongwe">Lilongwe</option>
+<option value="blantyre">Blantyre</option>
+<option value="mzuzu">Mzuzu</option>
+<option value="zomba">Zomba</option>
+<option value="kasungu">Kasungu</option>
+<option value="mangochi">Mangochi</option>
+<option value="dedza">Dedza</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<!-- Specific Landmark -->
+<div>
+<label class="block font-label-md text-label-md font-semibold text-on-surface mb-2" for="landmark">Specific Landmark or Village</label>
+<input class="w-full bg-white border border-outline rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-container focus:border-primary transition-all outline-none font-body-md" id="landmark" placeholder="e.g. Near the Central Market or Chimbiya Village" type="text"/>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1.5 opacity-70">Optional: Any notable nearby features.</p>
+</div>
+<!-- Note Box -->
+<div class="bg-secondary-container/20 p-4 rounded-lg border border-secondary/20 flex gap-3 mt-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="font-label-md text-label-md text-secondary leading-relaxed">Your location data is encrypted and only shared with verified emergency responders.</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons (Mobile and Desktop) -->
+<div class="flex items-center justify-between mt-stack-md">
+<button class="px-8 py-3 rounded-lg border-2 border-secondary text-secondary font-bold flex items-center gap-2 hover:bg-secondary/5 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </button>
+<button class="px-10 py-3 rounded-lg bg-primary text-white font-bold flex items-center gap-2 shadow-lg hover:bg-primary-container transition-all active:scale-95">
+                        Continue
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Right Side: Interactive Map Integration -->
+<div class="lg:col-span-7 h-full min-h-[400px]">
+<div class="bg-surface-container-lowest h-full rounded-xl card-elevation border border-outline-variant/30 overflow-hidden relative flex flex-col">
+<!-- Map Header -->
+<div class="px-6 py-4 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Pin exact location (Optional)</span>
+</div>
+<button class="text-primary-container font-semibold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm">my_location</span>
+                            Use My Current GPS
+                        </button>
+</div>
+<!-- Map Placeholder -->
+<div class="flex-grow relative overflow-hidden bg-surface-container">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, highly detailed topographic and street map of Lilongwe, Malawi, presented in a minimalist professional UI style. The map uses soft grays and blues with primary blue accents for major roads. A large circular location pin icon in royal blue is centered over a quiet neighborhood. The mood is calm, secure, and technologically advanced, suitable for a government reporting platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjInfnMHZoWZD8hcL5H4IWOASR9R0tWIEO_g_OSpSsNyhYi2YZ_ktc8Q2tDjWOrdS9ox3kx2H-IlXM9TUHtM5Ky-TlP65RkdfMpIxP4TPs6aHnIGx8VkWyH8ItEgxp24P03q0ZtoE1rW2wcMSCN-D5GGDnRLljIWUaqmQ9GmPfreGbiQXEV8RuZfzkDTyy_wdhQGVgJjk2bJPfzu1TolSE96sLN6BMR28SGANf0nmIBLmnvisiVuf0Fr97uK7pNuHlUMoYxJqckg')">
+<!-- Overlay UI elements for the map -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-2xl border-4 border-white animate-bounce pointer-events-auto">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<!-- Map Zoom Controls -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center text-on-surface hover:bg-surface transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center text-on-surface hover:bg-surface transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<!-- Map Layer Toggle -->
+<div class="absolute top-6 right-6">
+<button class="px-4 py-2 bg-white rounded-lg shadow-md flex items-center gap-2 text-label-sm font-semibold text-on-surface hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-sm">layers</span>
+                                    Satellite
+                                </button>
+</div>
+</div>
+</div>
+<!-- Map Footer info -->
+<div class="p-4 bg-surface-container-low border-t border-outline-variant">
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">touch_app</span>
+                            Tap on the map to move the pin to a specific building or street.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Help Section (Contextual) -->
+<div class="w-full max-w-4xl mt-stack-lg grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary-container mb-2 text-3xl">privacy_tip</span>
+<h4 class="font-label-md text-label-md font-bold mb-1">Your Privacy</h4>
+<p class="font-label-sm text-label-sm opacity-80">Location is only used for deployment of help services and incident mapping.</p>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary-container mb-2 text-3xl">offline_pin</span>
+<h4 class="font-label-md text-label-md font-bold mb-1">Offline Use</h4>
+<p class="font-label-sm text-label-sm opacity-80">You can still file a report without a map pin if you are in a low-signal area.</p>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border border-outline-variant/30 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary-container mb-2 text-3xl">support_agent</span>
+<h4 class="font-label-md text-label-md font-bold mb-1">Need Help?</h4>
+<p class="font-label-sm text-label-sm opacity-80">Call the national toll-free helpline at 5600 for verbal reporting guidance.</p>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-primary dark:bg-on-primary-fixed full-width mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base max-w-container-max mx-auto">
+<div class="flex flex-col gap-2">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport Malawi</span>
+<p class="font-body-md text-body-md text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex gap-gutter">
+<a class="font-body-md text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Help Desk</a>
+<a class="font-body-md text-body-md text-on-primary/80 hover:text-on-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Interaction: Simulate district selection affecting map (visual only)
+        const districtSelect = document.getElementById('district');
+        districtSelect.addEventListener('change', (e) => {
+            console.log(`District changed to: ${e.target.value}`);
+            // In a real app, this would re-center the map on the district coordinates
+        });
+
+        // Toggle focus states on inputs for better accessibility feedback
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

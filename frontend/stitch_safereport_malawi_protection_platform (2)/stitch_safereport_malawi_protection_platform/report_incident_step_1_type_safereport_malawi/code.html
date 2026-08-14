@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Malawi - Report Incident (Step 1)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#dce1ff",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#121c2a",
+                    "on-background": "#121c2a",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface": "#f8f9ff",
+                    "outline": "#757682",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d9e3f6",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-fixed": "#9cf2e8",
+                    "secondary-container": "#99efe5",
+                    "on-primary-fixed-variant": "#264191",
+                    "inverse-primary": "#b6c4ff",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e6eeff",
+                    "secondary": "#006a63",
+                    "surface-tint": "#4059aa",
+                    "outline-variant": "#c5c5d3",
+                    "on-primary-fixed": "#00164e",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#533c00",
+                    "on-primary-container": "#90a8ff",
+                    "background": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#27313f",
+                    "on-surface-variant": "#444651",
+                    "primary-container": "#1e3a8a",
+                    "on-secondary-container": "#006f67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-dim": "#d0dbed",
+                    "surface-container-high": "#dee9fc",
+                    "tertiary": "#382700",
+                    "surface-container-highest": "#d9e3f6",
+                    "on-tertiary-container": "#d8a31b",
+                    "tertiary-fixed": "#ffdfa0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Poppins"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Poppins"],
+                    "display-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .incident-card:hover {
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
+        }
+        .incident-card.selected {
+            border-color: #1e3a8a;
+            background-color: #f0f4ff;
+        }
+        .incident-card.selected .check-circle {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto docked full-width top-0 sticky z-50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<span class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">Ministry of Gender - SafeReport</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-semibold hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Report Incident</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" href="#">Resources</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-semibold text-label-md hover:opacity-90 transition-all active:scale-95 shadow-md">Emergency SOS</button>
+<span class="text-on-surface-variant text-label-sm font-medium">English / Chichewa</span>
+</div>
+</nav>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<!-- Progress Tracker -->
+<div class="w-full max-w-4xl mx-auto mb-12">
+<div class="flex items-center justify-between relative">
+<!-- Progress Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-surface-variant -translate-y-1/2 z-0"></div>
+<!-- Active Progress Line -->
+<div class="absolute top-1/2 left-0 w-1/5 h-0.5 bg-primary -translate-y-1/2 z-0 transition-all duration-500"></div>
+<!-- Step 1: Active -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold shadow-md">1</div>
+<span class="text-label-sm text-primary font-bold">Type</span>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center font-bold">2</div>
+<span class="text-label-sm text-on-surface-variant font-medium">Victim</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center font-bold">3</div>
+<span class="text-label-sm text-on-surface-variant font-medium">Details</span>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center font-bold">4</div>
+<span class="text-label-sm text-on-surface-variant font-medium">Location</span>
+</div>
+<!-- Step 5 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center font-bold">5</div>
+<span class="text-label-sm text-on-surface-variant font-medium">Evidence</span>
+</div>
+</div>
+</div>
+<!-- Heading Section -->
+<div class="max-w-4xl mx-auto text-center mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-3">What type of incident are you reporting?</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Please select the category that best describes the situation. This helps us direct your report to the right response team.</p>
+</div>
+<!-- Incident Grid -->
+<div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mb-12">
+<!-- Card 1: Domestic Violence -->
+<button class="incident-card group flex flex-col items-start p-6 bg-surface-container-lowest border border-outline-variant rounded-xl text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary relative overflow-hidden" onclick="selectIncident(this, 'domestic')">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center mb-4 text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">home_health</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Domestic Violence</h3>
+<p class="text-body-md text-on-surface-variant">Violence or abuse within a household or relationship.</p>
+<div class="check-circle absolute top-4 right-4 opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Card 2: Child Protection -->
+<button class="incident-card group flex flex-col items-start p-6 bg-surface-container-lowest border border-outline-variant rounded-xl text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary relative overflow-hidden" onclick="selectIncident(this, 'child')">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center mb-4 text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">child_care</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Child Protection</h3>
+<p class="text-body-md text-on-surface-variant">Harm, neglect, or endangerment of a minor.</p>
+<div class="check-circle absolute top-4 right-4 opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Card 3: Sexual Assault -->
+<button class="incident-card group flex flex-col items-start p-6 bg-surface-container-lowest border border-outline-variant rounded-xl text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary relative overflow-hidden" onclick="selectIncident(this, 'sexual')">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center mb-4 text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">safety_divider</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Sexual Assault</h3>
+<p class="text-body-md text-on-surface-variant">Unwanted sexual contact, harassment, or behavior.</p>
+<div class="check-circle absolute top-4 right-4 opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Card 4: Human Trafficking -->
+<button class="incident-card group flex flex-col items-start p-6 bg-surface-container-lowest border border-outline-variant rounded-xl text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary relative overflow-hidden" onclick="selectIncident(this, 'trafficking')">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center mb-4 text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">groups_2</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Human Trafficking</h3>
+<p class="text-body-md text-on-surface-variant">Forced labor, exploitation, or debt bondage.</p>
+<div class="check-circle absolute top-4 right-4 opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Card 5: Elderly Welfare -->
+<button class="incident-card group flex flex-col items-start p-6 bg-surface-container-lowest border border-outline-variant rounded-xl text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary relative overflow-hidden" onclick="selectIncident(this, 'elderly')">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center mb-4 text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">elderly</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Elderly Welfare</h3>
+<p class="text-body-md text-on-surface-variant">Abuse, neglect, or exploitation of older persons.</p>
+<div class="check-circle absolute top-4 right-4 opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<!-- Card 6: Cyber Bullying -->
+<button class="incident-card group flex flex-col items-start p-6 bg-surface-container-lowest border border-outline-variant rounded-xl text-left transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary relative overflow-hidden" onclick="selectIncident(this, 'cyber')">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center mb-4 text-primary group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">devices_off</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-1">Cyber Bullying</h3>
+<p class="text-body-md text-on-surface-variant">Online harassment, stalking, or digital abuse.</p>
+<div class="check-circle absolute top-4 right-4 opacity-0 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+</div>
+<!-- SOS & Action Area -->
+<div class="max-w-4xl mx-auto border-t border-outline-variant pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4 bg-error-container/20 p-4 rounded-xl border border-error/20">
+<div class="relative flex items-center">
+<input class="w-6 h-6 text-error rounded border-outline focus:ring-error cursor-pointer" id="urgent-sos" onchange="toggleSOS(this)" type="checkbox"/>
+</div>
+<label class="flex flex-col cursor-pointer" for="urgent-sos">
+<span class="text-on-surface font-bold text-label-md">I need immediate help</span>
+<span class="text-error text-label-sm font-medium">Click for Emergency Response Dispatch</span>
+</label>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none border-1.5 border-secondary text-secondary font-bold px-8 py-3 rounded-lg hover:bg-secondary/5 transition-all text-label-md">Save Draft</button>
+<button class="flex-1 md:flex-none bg-primary text-on-primary font-bold px-12 py-3 rounded-lg opacity-50 cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-95 shadow-md text-label-md" disabled="" id="continue-btn">Continue</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-on-primary-fixed text-on-primary dark:text-primary-fixed py-stack-lg mt-auto full-width">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-base">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport Malawi</span>
+<p class="font-body-md text-body-md text-on-primary/80">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex gap-6 text-body-md">
+<a class="hover:text-on-primary transition-colors text-on-primary/80" href="#">Privacy Policy</a>
+<a class="hover:text-on-primary transition-colors text-on-primary/80" href="#">Terms of Service</a>
+<a class="hover:text-on-primary transition-colors text-on-primary/80" href="#">Help Desk</a>
+<a class="hover:text-on-primary transition-colors text-on-primary/80" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+        let selectedType = null;
+
+        function selectIncident(element, type) {
+            // Remove selection from all cards
+            document.querySelectorAll('.incident-card').forEach(card => {
+                card.classList.remove('selected');
+                card.classList.remove('border-primary');
+            });
+
+            // Add selection to clicked card
+            element.classList.add('selected');
+            selectedType = type;
+
+            // Enable continue button
+            const continueBtn = document.getElementById('continue-btn');
+            continueBtn.disabled = false;
+            continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            continueBtn.classList.add('hover:opacity-90');
+        }
+
+        function toggleSOS(checkbox) {
+            if (checkbox.checked) {
+                // In a real app, this might redirect or open a high-priority modal
+                if(confirm("You are about to be redirected to the Emergency SOS portal. Do you want to proceed?")) {
+                    window.location.href = "#sos-emergency";
+                } else {
+                    checkbox.checked = false;
+                }
+            }
+        }
+
+        // Simple enter animation for cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.incident-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.4s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body></html>

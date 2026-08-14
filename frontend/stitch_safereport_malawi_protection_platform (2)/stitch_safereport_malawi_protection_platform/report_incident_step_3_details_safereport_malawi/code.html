@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeReport Malawi - Step 3: Case Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#dce1ff",
+                    "on-tertiary-fixed-variant": "#5c4300",
+                    "surface-container-low": "#eff4ff",
+                    "on-surface": "#121c2a",
+                    "on-background": "#121c2a",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface": "#f8f9ff",
+                    "outline": "#757682",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#d9e3f6",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-fixed": "#9cf2e8",
+                    "secondary-container": "#99efe5",
+                    "on-primary-fixed-variant": "#264191",
+                    "inverse-primary": "#b6c4ff",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "on-error": "#ffffff",
+                    "surface-container": "#e6eeff",
+                    "secondary": "#006a63",
+                    "surface-tint": "#4059aa",
+                    "outline-variant": "#c5c5d3",
+                    "on-primary-fixed": "#00164e",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#533c00",
+                    "on-primary-container": "#90a8ff",
+                    "background": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00236f",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#27313f",
+                    "on-surface-variant": "#444651",
+                    "primary-container": "#1e3a8a",
+                    "on-secondary-container": "#006f67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#f6be39",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-secondary-fixed": "#00201d",
+                    "surface-dim": "#d0dbed",
+                    "surface-container-high": "#dee9fc",
+                    "tertiary": "#382700",
+                    "surface-container-highest": "#d9e3f6",
+                    "on-tertiary-container": "#d8a31b",
+                    "tertiary-fixed": "#ffdfa0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "stack-lg": "32px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Poppins"],
+                    "headline-lg-mobile": ["Poppins"],
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-lg": ["Poppins"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Poppins"],
+                    "display-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .safe-exit-shadow {
+            box-shadow: 0 4px 14px 0 rgba(186, 26, 26, 0.39);
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #1e3a8a !important;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (JSON Content Applied) -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm sticky top-0 z-50 w-full">
+<nav class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="Official Coat of Arms of Malawi featuring a lion and a leopard supporting a shield with rising sun, rendered in a clean professional vector style suitable for a high-authority government portal. The colors are regal and institutional, emphasizing stability and national pride for the Ministry of Gender." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2C4qdVy5o4POrnvu3zrpDz776m_52kfQAUhYg7-BKL_QbTKWRCEP6HrGLrl7N9Tmwh7KVKX2qbqOd7iy9OlTS_FrZbIyESDfVsrAy8LLy4-8ADvVK1Z1gDROXTVmHAa4441zOI_cjpDYItUDIq-Vd4tvvLymPVJqbfKNrPJox6nm3Hc7HpbgVtRtw5ZGcJcLUWUhOsRdDdLtTJikpnhAkGVzGXulGctsdj-sluk57qbmB63_MLzsfgFqMUK7uIP-70pgYT1J6Nw"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">Ministry of Gender - SafeReport</h1>
+</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-semibold" href="#">Report Incident</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Track Report</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">Resources</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center gap-base">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-all active:scale-95 shadow-md">Emergency SOS</button>
+<button class="bg-error text-on-error px-4 py-2.5 rounded-lg flex items-center gap-2 safe-exit-shadow hover:bg-error/90 transition-all font-bold" id="safeExit">
+<span class="material-symbols-outlined">logout</span>
+                    Quick Exit
+                </button>
+</div>
+</nav>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-start py-stack-lg px-margin-mobile md:px-margin-desktop bg-[#F9FAFB]">
+<div class="w-full max-w-3xl">
+<!-- Step Tracker (Stage 3 Active) -->
+<div class="flex items-center justify-between mb-12 relative w-full px-2">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-outline-variant -translate-y-1/2 z-0"></div>
+<!-- Stage 1 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold border-2 border-secondary">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Type</span>
+</div>
+<!-- Stage 2 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold border-2 border-secondary">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Location</span>
+</div>
+<!-- Stage 3 (ACTIVE) -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold shadow-lg ring-4 ring-primary-fixed transition-all">
+                        3
+                    </div>
+<span class="font-label-md text-label-md text-primary font-bold">Details</span>
+</div>
+<!-- Stage 4 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold">
+                        4
+                    </div>
+<span class="font-label-md text-label-md text-on-surface-variant">Contact</span>
+</div>
+<!-- Stage 5 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold">
+                        5
+                    </div>
+<span class="font-label-md text-label-md text-on-surface-variant">Review</span>
+</div>
+</div>
+<!-- Content Card -->
+<div class="bg-white rounded-xl shadow-sm border border-outline-variant/30 p-8 md:p-12">
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Tell us what happened</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Your safety and privacy are our top priorities. All information shared is encrypted and handled by professional social workers.</p>
+</div>
+<form class="space-y-stack-lg">
+<!-- Incident Description -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-base">description</span>
+                            Incident Description
+                        </label>
+<textarea class="w-full p-4 bg-surface border border-outline-variant rounded-lg font-body-md text-on-surface resize-none transition-all placeholder:text-outline" placeholder="Please provide as much detail as possible to help us understand the situation. Include what happened, any persons involved, and any immediate threats." rows="6"></textarea>
+</div>
+<!-- Date and Time Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+                                Date of Incident
+                            </label>
+<input class="w-full p-3 bg-surface border border-outline-variant rounded-lg font-body-md text-on-surface transition-all" type="date"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-base">schedule</span>
+                                Approximate Time
+                            </label>
+<input class="w-full p-3 bg-surface border border-outline-variant rounded-lg font-body-md text-on-surface transition-all" type="time"/>
+</div>
+</div>
+<!-- Recurring Incident Checkbox -->
+<div class="bg-surface-container-low p-6 rounded-lg border border-outline-variant/20 flex items-start gap-4 hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex items-center h-5">
+<input class="h-6 w-6 text-primary border-outline rounded transition-all focus:ring-primary cursor-pointer" id="recurring" name="recurring" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<label class="font-title-lg text-title-lg text-on-surface cursor-pointer select-none" for="recurring">Is this a recurring incident?</label>
+<p class="text-on-surface-variant font-body-md">Check this box if this is not the first time this situation has occurred. This helps our team understand the urgency and pattern of the case.</p>
+</div>
+</div>
+<!-- Informational Alert -->
+<div class="flex gap-4 p-4 bg-primary-fixed/30 rounded-lg border border-primary-fixed">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-on-primary-fixed-variant font-body-md italic">
+                            If you are in immediate danger right now, please use the <span class="font-bold">Emergency SOS</span> button at the top or call <span class="font-bold">997</span> immediately.
+                        </p>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-gutter pt-8">
+<button class="w-full md:w-auto px-8 py-3.5 border-2 border-secondary text-secondary rounded-full font-bold hover:bg-secondary/5 transition-all flex items-center justify-center gap-2 order-2 md:order-1" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+                            Back
+                        </button>
+<button class="w-full md:w-auto px-12 py-4 bg-primary text-on-primary rounded-full font-bold shadow-lg hover:shadow-xl hover:translate-y-[-2px] transition-all flex items-center justify-center gap-2 order-1 md:order-2" type="button">
+                            Continue to Contact Info
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Footer (JSON Content Applied) -->
+<footer class="bg-primary dark:bg-on-primary-fixed text-on-primary dark:text-primary-fixed full-width mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg gap-base w-full max-w-container-max mx-auto">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<span class="font-title-lg text-title-lg text-on-primary font-bold">SafeReport Malawi</span>
+<p class="font-body-md text-body-md opacity-80 text-center md:text-left">© 2024 Ministry of Gender, Community Development and Social Welfare - Government of Malawi</p>
+</div>
+<div class="flex gap-gutter items-center">
+<a class="text-on-primary/80 font-body-md hover:text-on-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 font-body-md hover:text-on-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-primary/80 font-body-md hover:text-on-primary transition-colors" href="#">Help Desk</a>
+<a class="text-on-primary/80 font-body-md hover:text-on-primary transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<script>
+        // Emergency Safe Exit Logic
+        const exitBtns = document.querySelectorAll('#safeExit');
+        exitBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Change location to a neutral site like Google or Weather
+                window.location.replace('https://www.google.com');
+                
+                // For browsers that allow it, try to close the tab
+                if (window.confirm("You are about to leave this page immediately for your safety. Continue?")) {
+                    window.close();
+                }
+            });
+        });
+
+        // Interactive micro-effects for text area
+        const textArea = document.querySelector('textarea');
+        textArea.addEventListener('focus', () => {
+            textArea.parentElement.classList.add('scale-[1.01]');
+        });
+        textArea.addEventListener('blur', () => {
+            textArea.parentElement.classList.remove('scale-[1.01]');
+        });
+
+        // Checkbox container click trigger
+        const checkboxContainer = document.querySelector('.group.cursor-pointer');
+        const checkbox = document.querySelector('#recurring');
+        checkboxContainer.addEventListener('click', (e) => {
+            if (e.target !== checkbox) {
+                checkbox.checked = !checkbox.checked;
+            }
+        });
+    </script>
+</body></html>
